@@ -1,0 +1,4 @@
+include ':app',
+        ':ptr-lib',
+        ':library',
+        ':agora-ktv-kit-release'

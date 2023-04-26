@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".module.profile.ui.LocalPhoneLoginActivity">
+
+
+    <ImageView
+        android:id="@+id/ivClose"
+        android:layout_width="@dimen/dp_16"
+        android:layout_height="@dimen/dp_16"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="@dimen/dp_24"
+        android:src="@mipmap/login_close"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_88"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/sp_17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="139****8888" />
+
+    <TextView
+        android:id="@+id/tvTelecom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="认证服务由运营商提供"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/sp_7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
+
+    <com.xjh.xinwo.view.ButtonStyle
+        android:id="@+id/btnLocalPhoneLogin"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_22"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="sans-serif-black"
+        android:text="本机号码一键登录"
+        android:textColor="#FF636B"
+        android:textSize="@dimen/sp_7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTelecom"
+        app:corner="@dimen/dp_11"
+        app:normal_color="#FFFFFF"
+        app:press_color="#E9EEF2"
+        app:stroke_color="#CCCDD0"
+        app:stroke_width="0dp"
+        />
+
+    <com.xjh.xinwo.view.ButtonStyle
+        android:id="@+id/btnOtherPhoneLogin"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_22"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="sans-serif-black"
+        android:text="其他手机号登录"
+        android:textColor="#FF636B"
+        android:textSize="@dimen/sp_7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLocalPhoneLogin"
+        app:corner="@dimen/dp_11"
+        app:normal_color="#66F1F1F1"
+        app:press_color="#E9EEF2"
+        app:stroke_color="#CCCDD0"
+        app:stroke_width="0dp"
+        />
+
+
+    <TextView
+        android:id="@+id/tvTongYi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="登录即表明同意"
+        app:layout_constraintEnd_toStartOf="@+id/tvBiXin"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnOtherPhoneLogin"
+        android:textSize="@dimen/sp_7"
+        android:textColor="#FFFFFF"
+        />
+
+    <TextView
+        android:id="@+id/tvBiXin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="比心用户协议"
+        app:layout_constraintEnd_toStartOf="@+id/tvHe"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvTongYi"
+        app:layout_constraintTop_toBottomOf="@+id/btnOtherPhoneLogin"
+        android:textSize="@dimen/sp_7"
+        android:textColor="#FFEA00"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        />
+
+    <TextView
+        android:id="@+id/tvHe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="和"
+        app:layout_constraintEnd_toStartOf="@+id/tvYinSi"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvBiXin"
+        app:layout_constraintTop_toBottomOf="@+id/btnOtherPhoneLogin"
+        android:textSize="@dimen/sp_7"
+        android:textColor="#FFFFFF"
+        />
+
+    <TextView
+        android:id="@+id/tvYinSi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="隐私政策"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvHe"
+        app:layout_constraintTop_toBottomOf="@+id/btnOtherPhoneLogin"
+        android:textSize="@dimen/sp_7"
+        android:textColor="#FFEA00"
+        android:layout_marginLeft="2dp"
+        />
+
+    <TextView
+        android:id="@+id/tvYiJi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="以及"
+        app:layout_constraintEnd_toStartOf="@+id/tvTiaoKuan"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvBiXin"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:textSize="@dimen/sp_7"
+        android:textColor="#FFFFFF"
+        />
+
+    <TextView
+        android:id="@+id/tvTiaoKuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="《中国移动认证服务条款》"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvYiJi"
+        app:layout_constraintTop_toBottomOf="@+id/tvHe"
+        android:textSize="@dimen/sp_7"
+        android:textColor="#FFEA00"
+        android:layout_marginLeft="2dp"
+        />
+
+    <TextView
+        android:id="@+id/tvOtherMethod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        android:text="其它登录方式"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvYiJi"
+        android:textSize="@dimen/sp_7"
+        android:textColor="#FFFFFF"
+        />
+
+    <ImageView
+        android:id="@+id/ivLoginWeChat"
+        android:layout_width="@dimen/dp_18"
+        android:layout_height="@dimen/dp_18"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvOtherMethod"
+        android:src="@mipmap/login_wechat" />
+
+    <TextView
+        android:id="@+id/tvLoginTrouble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="32dp"
+        android:text="登录遇到问题"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="@dimen/sp_7"
+        android:textColor="#FFEA00"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
