@@ -11,18 +11,18 @@ public class ApiManager {
 
     // 普通接口
     private static String mHost;
-    private final static String HOST_TEST = "https://api.xjhwkeji.com";
-    private final static String HOST_PRODUCTION = "https://api.xjhwkeji.com";
+    private final static String HOST_TEST = "";
+    private final static String HOST_PRODUCTION = "";
 
     //文件上传接口
     private static String mFileUploadHost;
-    private final static String FILE_UPLOAD_HOST_TEST = "https://web.xjhwkeji.com";
-    private final static String FILE_UPLOAD_HOST_PRODUCTION = "https://web.xjhwkeji.com";
+    private final static String FILE_UPLOAD_HOST_TEST = "";
+    private final static String FILE_UPLOAD_HOST_PRODUCTION = "";
 
     //文件访问接口
     private static String mFileAccessHost;
-    private final static String FILE_ACCESS_HOST_TEST = "https://vfs.xjhwkeji.com";
-    private final static String FILE_ACCESS_HOST_PRODUCTION = "https://vfs.xjhwkeji.com";
+    private final static String FILE_ACCESS_HOST_TEST = "";
+    private final static String FILE_ACCESS_HOST_PRODUCTION = "";
 
 
 
