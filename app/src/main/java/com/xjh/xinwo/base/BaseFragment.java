@@ -1,17 +1,9 @@
 package com.xjh.xinwo.base;
 
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.ArrayMap;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.cavalry.androidlib.toolbox.exception.LibException;
 import com.cavalry.androidlib.ui.fragment.LibRLBaseFragment;

@@ -1,4 +1,6 @@
 include ':app',
-        ':ptr-lib',
-        ':library',
-        ':agora-ktv-kit-release'
+        ':framework:pull-refresh-ui',
+        ':framework:mvp',
+        ':framework:agora-ktv-kit-release',
+        ':framework:agota',
+        ':library'
