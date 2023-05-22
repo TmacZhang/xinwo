@@ -7,7 +7,6 @@ import android.util.ArrayMap;
 import android.view.View;
 
 import com.cavalry.androidlib.toolbox.exception.LibException;
-import com.cavalry.androidlib.toolbox.utils.LibLog;
 import com.cavalry.androidlib.toolbox.utils.LibSPUtils;
 import com.cavalry.androidlib.toolbox.utils.LibToastUtils;
 import com.cavalry.androidlib.ui.activity.LibRLBaseActivity;
