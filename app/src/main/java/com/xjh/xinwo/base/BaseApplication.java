@@ -1,10 +1,7 @@
 package com.xjh.xinwo.base;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -14,13 +11,9 @@ import com.cavalry.androidlib.LibApplication;
 import com.cavalry.androidlib.toolbox.utils.LibSPUtils;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.SDKOptions;
-import com.netease.nimlib.sdk.StatusBarNotificationConfig;
 import com.netease.nimlib.sdk.auth.LoginInfo;
-import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
-import com.netease.nimlib.sdk.uinfo.UserInfoProvider;
 import com.netease.nimlib.sdk.util.NIMUtil;
 import com.xjh.xinwo.Constants;
-import com.xjh.xinwo.R;
 import com.xjh.xinwo.module.ktv.model.WorkerThread;
 
 import java.io.IOException;
