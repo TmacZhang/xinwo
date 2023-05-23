@@ -3,4 +3,5 @@ include ':app',
         ':framework:mvp',
         ':framework:agora-ktv-kit-release',
         ':framework:agota',
+        ':framework:litesdk',
         ':library'
