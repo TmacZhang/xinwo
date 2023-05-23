@@ -121,6 +121,7 @@
         </activity>
 
         <activity
+            android:theme="@style/AppTheme"
             android:name=".module.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true">
