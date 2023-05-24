@@ -8,11 +8,6 @@ android {
         targetSdkVersion 31
     }
 
-    lintOptions {
-        abortOnError false
-    }
-
-
     buildTypes {
         release {
             minifyEnabled true
@@ -20,10 +15,7 @@ android {
         }
 
     }
-    lintOptions {
-        checkReleaseBuilds false
-        abortOnError false
-    }
+
 }
 
 
