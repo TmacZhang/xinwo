@@ -6,10 +6,20 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 31
+        ndk {
+            abiFilters "armeabi-v7a"
+            // DO NOT MODIFY THIS LINE, IT'S UPDATED BY BUILD MACHINE AUTOMATICALLY.
+        }
     }
 
     lintOptions {
         abortOnError false
+    }
+    sourceSets {
+        main {
+            //jniLibs.srcDirs = ['src/main/jniLibs']
+            jniLibs.srcDirs('jniLibs')
+        }
     }
 }
 
