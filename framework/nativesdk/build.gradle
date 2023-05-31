@@ -6,6 +6,16 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 31
+
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=gnu++17 -frtti -fexceptions"
+            }
+            ndk {
+                abiFilters "armeabi-v7a"
+
+            }
+        }
     }
 
     buildTypes {
@@ -17,6 +27,13 @@ android {
 
     lintOptions {
         abortOnError false
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+            version "3.18.1"
+        }
     }
 }
 
