@@ -22,7 +22,8 @@ import java.util.Map;
 
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
-    private final String[] fragmentTags = {ChatFragment.class.getName(), FUDualInputToTextureExampleFragment.class.getName(), GroupChatFragment.class.getName()};
+    private final String[] fragmentTags = {ChatFragment.class.getName(),
+            FUDualInputToTextureExampleFragment.class.getName(), GroupChatFragment.class.getName()};
     private Fragment mCurrentFragment;
     private ImageView ivChat;
     private ImageView ivCamera;
@@ -48,10 +49,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             public void permissionDenied(@NonNull String[] permission) {
                 Toast.makeText(MainActivity.this, "权限申请失败", Toast.LENGTH_LONG).show();
             }
-        }, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
+        }, Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.CAMERA,
-                Manifest.permission.RECORD_AUDIO});
+                Manifest.permission.RECORD_AUDIO);
     }
 
     @Override
@@ -100,18 +101,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
 
-    private void switchFragment(int tabPosition){
+    private void switchFragment(int tabPosition) {
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentByTag(fragmentTags[tabPosition]);
-        if(fragment == null){
+        if (fragment == null) {
             fragment = createFragment(tabPosition);
 
-            if(mCurrentFragment == null){
+            if (mCurrentFragment == null) {
                 fm.beginTransaction()
                         // 在添加的时候给其制定 tag，不然到时候上面的语句就没用了
                         .add(R.id.container, fragment, fragmentTags[tabPosition])
                         .commit();
-            }else{
+            } else {
                 fm.beginTransaction()
                         // 在添加的时候给其制定 tag，不然到时候上面的语句就没用了
                         .add(R.id.container, fragment, fragmentTags[tabPosition])
@@ -120,14 +121,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             }
 
             mCurrentFragment = fragment;
-        }else{
+        } else {
             //BUG FIX: NullPointerException: Attempt to invoke virtual method 'void androidx.fragment.app.Fragment.setNextAnim(int)' on a null object reference
-            if(mCurrentFragment != null){
+            if (mCurrentFragment != null) {
                 fm.beginTransaction()
                         .hide(mCurrentFragment)
                         .show(fragment)
                         .commit();
-            }else{
+            } else {
                 fm.beginTransaction()
                         .show(fragment)
                         .commit();
@@ -137,9 +138,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    private Fragment createFragment(int tabPosition){
+    private Fragment createFragment(int tabPosition) {
         Fragment fragment = null;
-        switch(tabPosition){
+        switch (tabPosition) {
             case 0:
                 fragment = new ChatFragment();
                 break;
@@ -158,7 +159,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.ivChat:
                 switchFragment(0);
                 changeTab(0);
@@ -177,16 +178,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    private void changeTab(int position){
-        if(mCurrentTab == position)
+    private void changeTab(int position) {
+        if (mCurrentTab == position)
             return;
 
         mLastTab = mCurrentTab;
         mCurrentTab = position;
     }
 
-    public void switchToLastTab(){
-        switch(mLastTab){
+    public void switchToLastTab() {
+        switch (mLastTab) {
             case 0:
                 ivChat.performClick();
                 break;

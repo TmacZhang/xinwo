@@ -6,6 +6,5 @@ build/
 .idea/
 *.iml
 *.log
-*.so
 wrap.sh
 local.properties
