@@ -5,4 +5,11 @@ include ':app',
         ':framework:agota',
         ':framework:litesdk',
         ':framework:nativesdk',
-        ':library'
+
+        "ft:feed-ft",
+        "ft:social-ft",
+
+        ':library:xin-network',
+        ':library:xin-log',
+        ':library:xin-image'
+
