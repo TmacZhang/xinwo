@@ -1,6 +1,9 @@
 app        ------  APP入口
+
 ft         ------  业务team
+
 framework  ------  框架层
+
 library    ------  底层库
 
 
