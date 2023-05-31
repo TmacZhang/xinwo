@@ -1,9 +1,7 @@
-com.cavalry.view --> 自定义View
+app        ------  APP入口
+ft         ------  业务team
+framework  ------  框架层
+library    ------  底层库
 
-com.xjh.gestureheart --> 相机部分
 
-com.xjh.xinwo --> 心窝界面
-
-module: library --> 基础类库
-
-module: ptr-lib --> 上下拉刷新控件
+依赖关系从上往下
