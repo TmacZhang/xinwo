@@ -2,6 +2,7 @@ package com.xjh.xinwo.module;
 
 import android.Manifest;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import com.github.dfqin.grantor.PermissionListener;
 import com.github.dfqin.grantor.PermissionsUtil;
 import com.xjh.gestureheart.record.FUDualInputToTextureExampleFragment;
 import com.xjh.xinwo.R;
+import com.xjh.xinwo.TestKt;
 import com.xjh.xinwo.base.BaseActivity;
 import com.xjh.xinwo.module.chat.fragment.ChatFragment;
 import com.xjh.xinwo.module.groupchat.fragment.GroupChatFragment;
@@ -34,6 +36,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Log.d("jin", String.valueOf(TestKt.a));
     }
 
 
