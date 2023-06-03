@@ -35,7 +35,7 @@ import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.xjh.xinwo.R;
 import com.xjh.xinwo.adapter.ChatAdapter;
 import com.xjh.xinwo.adapter.CommonFragmentPagerAdapter;
-import com.xjh.xinwo.base.BaseApplication;
+import com.xinwo.feed.base.BaseApplication;
 import com.xjh.xinwo.enity.ChatGameEntity;
 import com.xjh.xinwo.enity.FullImageInfo;
 import com.xjh.xinwo.enity.ImMessageInfo;

@@ -12,8 +12,8 @@ import android.widget.FrameLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.xjh.xinwo.module.ktv.model.AGEventHandler;
-import com.xjh.xinwo.module.ktv.model.ConstantApp;
+import com.xinwo.feed.base.AGEventHandler;
+import com.xinwo.feed.base.ConstantApp;
 import com.xjh.xinwo.R;
 
 import org.slf4j.Logger;

@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xjh.xinwo.R;
-import com.xjh.xinwo.enity.base.BaseBean;
+import com.xjh.xinwo.mvp.model.BaseBean;
 
 import java.util.List;
 

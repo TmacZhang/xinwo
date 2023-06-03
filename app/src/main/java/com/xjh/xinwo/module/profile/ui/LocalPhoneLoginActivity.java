@@ -12,18 +12,17 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-
-import com.cavalry.androidlib.toolbox.utils.LibSPUtils;
 import com.github.dfqin.grantor.PermissionListener;
 import com.github.dfqin.grantor.PermissionsUtil;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.xinwo.log.LibSPUtils;
 import com.xjh.xinwo.Constants;
 import com.xjh.xinwo.R;
-import com.xjh.xinwo.base.BaseLoginActivity;
+import com.xinwo.feed.base.BaseLoginActivity;
 import com.xjh.xinwo.enity.WXLoginBean;
-import com.xjh.xinwo.manager.ApiManager;
+import com.xinwo.network.ApiManager;
 import com.xjh.xinwo.mvp.presenter.TagPresenter;
 import com.xjh.xinwo.util.Decrypt;
 import com.xjh.xinwo.util.JsonUtils;
@@ -56,7 +55,7 @@ public class LocalPhoneLoginActivity extends BaseLoginActivity implements View.O
 
     @Override
     protected void success(Object bean, int tag) {
-        if(TAG_WX_LOGIN == tag){
+        if (TAG_WX_LOGIN == tag) {
             WXLoginBean wxLoginBean = (WXLoginBean) bean;
             Decrypt.JWTParse(wxLoginBean.jwt_token);
             Log.e("JWT_CODE", wxLoginBean.jwt_token);
@@ -74,7 +73,7 @@ public class LocalPhoneLoginActivity extends BaseLoginActivity implements View.O
     @Override
     public Map<String, String> getParams(int tag) {
         ArrayMap<String, String> map = new ArrayMap<>();
-        if(tag == TAG_WX_LOGIN){
+        if (tag == TAG_WX_LOGIN) {
             map.put("appid", Constants.APP_ID);
             map.put("code", wxCode);
 
@@ -99,12 +98,12 @@ public class LocalPhoneLoginActivity extends BaseLoginActivity implements View.O
                 },
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
-        api = WXAPIFactory.createWXAPI(this, Constants.APP_ID,false);
+        api = WXAPIFactory.createWXAPI(this, Constants.APP_ID, false);
     }
 
     @Override
     public void initPresenter() {
-        mPresenter = new TagPresenter(getBaseContext(),this);
+        mPresenter = new TagPresenter(getBaseContext(), this);
     }
 
     @Override
@@ -137,7 +136,7 @@ public class LocalPhoneLoginActivity extends BaseLoginActivity implements View.O
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.ivClose:
                 finish();
                 break;
@@ -168,17 +167,17 @@ public class LocalPhoneLoginActivity extends BaseLoginActivity implements View.O
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        Log.e(TAG,"onNewIntent");
+        Log.e(TAG, "onNewIntent");
 
 
-        if(intent != null){
+        if (intent != null) {
             wxCode = intent.getStringExtra("code");
-            Log.e("WXTOKEN","TOKEN = " + wxCode);
+            Log.e("WXTOKEN", "TOKEN = " + wxCode);
 
             mPresenter.postBody(getHeaders(null), ApiManager.LOGIN_WX, TAG_WX_LOGIN, WXLoginBean.class, JsonUtils.parse2Json("appid", Constants.APP_ID, "code", wxCode));
 
-        }else{
-            Log.e("WXTOKEN","TOKEN为空");
+        } else {
+            Log.e("WXTOKEN", "TOKEN为空");
         }
 
     }

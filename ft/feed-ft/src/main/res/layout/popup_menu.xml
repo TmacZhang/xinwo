@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="180dp"
+    android:layout_height="wrap_content"
+    android:background="#000000"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    >
+
+    <ImageView
+        android:id="@+id/ivMenuFlash"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="@dimen/menu_size"
+        android:src="@mipmap/record_menu_flash_off"
+
+
+        />
+
+    <ImageView
+        android:id="@+id/ivMenuCountDown"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="@dimen/menu_size"
+        android:src="@mipmap/record_menu_countdown"
+        />
+
+    <ImageView
+        android:id="@+id/ivMenuBeauty"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="@dimen/menu_size"
+        android:src="@mipmap/record_menu_beauty_off"
+        />
+
+</LinearLayout>

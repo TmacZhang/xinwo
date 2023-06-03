@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">心窝</string>
+
+    <string name="error_gankio" translatable="false">GankIo interface error</string>
+    <string name="error_no_match_bean" translatable="false">Bean type mismatch</string>
+
+    <string name="title_activity_main">MainActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+
+    <string name="label_settings">Settings</string>
+
+    <string name="msg_choose_role">Would you like to be the broadcaster or an audience?</string>
+
+    <string name="label_audience">Audience</string>
+
+    <string name="label_broadcaster">Broadcaster</string>
+
+    <string name="label_confirm">Confirm</string>
+</resources>

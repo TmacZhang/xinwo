@@ -24,7 +24,7 @@ import androidx.core.content.FileProvider;
 
 
 import com.xjh.xinwo.R;
-import com.xjh.xinwo.base.BaseFragment;
+import com.xinwo.feed.base.BaseFragment;
 import com.xjh.xinwo.enity.ImMessageInfo;
 import com.xjh.xinwo.module.chat.activity.ContactActivity;
 import com.xjh.xinwo.util.Constants;

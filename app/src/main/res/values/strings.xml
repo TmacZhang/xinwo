@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">心窝</string>
+    <string name="app_name">新我</string>
 
     <string name="error_gankio" translatable="false">GankIo interface error</string>
     <string name="error_no_match_bean" translatable="false">Bean type mismatch</string>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="#F5F6FA"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_24">
+
+        <ImageView
+            android:id="@+id/ivChatBack"
+            android:layout_width="@dimen/dp_18"
+            android:layout_height="@dimen/dp_18"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/chat_back"
+            android:layout_marginLeft="8dp"
+            />
+
+        <com.shehuan.niv.NiceImageView
+            android:id="@+id/ivChatHeader"
+            android:layout_width="@dimen/dp_18"
+            android:layout_height="@dimen/dp_18"
+            android:src="@drawable/header_girl"
+            android:layout_toRightOf="@+id/ivChatBack"
+            android:layout_marginLeft="8dp"
+            android:layout_centerVertical="true"
+            app:is_circle="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我家兔啾啾"
+            android:layout_toRightOf="@+id/ivChatHeader"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:textColor="#333333"
+            android:textSize="@dimen/sp_9"
+            />
+
+
+        <ImageView
+            android:id="@+id/ivChatReport"
+            android:layout_width="@dimen/dp_18"
+            android:layout_height="@dimen/dp_18"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/chat_report"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"
+            />
+
+        <ImageView
+            android:id="@+id/ivChatAudioVideo"
+            android:layout_width="@dimen/dp_18"
+            android:layout_height="@dimen/dp_18"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/chat_video"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@+id/ivChatReport"
+            />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chat_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/bg_content"
+        />
+
+    <include
+        layout="@layout/include_reply_layout_new"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

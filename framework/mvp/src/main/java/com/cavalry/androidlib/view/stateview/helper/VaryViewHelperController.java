@@ -8,8 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cavalry.androidlib.R;
-import com.cavalry.androidlib.toolbox.utils.LibUtils;
 import com.cavalry.androidlib.view.stateview.view.PageStateLayout;
+import com.xinwo.log.LibUtils;
 
 /**
  * @author Cavalry Lin

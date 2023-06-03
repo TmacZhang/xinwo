@@ -12,7 +12,7 @@ import android.webkit.WebViewClient;
 
 
 import com.xjh.xinwo.R;
-import com.xjh.xinwo.base.BaseActivity;
+import com.xinwo.feed.base.BaseActivity;
 
 import java.util.Map;
 

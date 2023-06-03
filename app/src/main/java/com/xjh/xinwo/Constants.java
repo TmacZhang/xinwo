@@ -10,9 +10,7 @@ public class Constants {
 
 	public static final int PERMISSIONS_REQUEST_STORAGE = 1;
 
-	public static final String NIM_LOGIN_INFO_ACCOUNT = "nim_login_info_acount";
-	public static final String NIM_LOGIN_INFO_TOKEN = "nim_login_info_token";
-	public static final String NIM_LOGIN_INFO_APPKEY = "nim_login_info_appkey";
+
 
     public static class ShowMsgActivity {
 		public static final String STitle = "showmsg_title";

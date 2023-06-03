@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#212121"
+    >
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerWan"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
+        >
+
+        <com.xjh.gestureheart.gl.VideoGLSurfaceView
+            android:id="@+id/glSurfaceView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentEnd="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline2"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintDimensionRatio="2:3"
+            app:layout_constraintHorizontal_bias="0.505"
+            android:layout_marginTop="8dp" />
+
+        <ImageView
+            android:id="@+id/ivPlayStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/play_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/glSurfaceView"
+            app:layout_constraintVertical_bias="0.48"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="8dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline2"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline1"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.68" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/linearLayout"
+        android:background="#000000"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        >
+        <com.cavalry.view.StatusTextView
+            android:id="@+id/tvFilter"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_horizontal"
+            app:text="滤镜特效"
+            app:selected_color="#FFFFFF"
+            app:unselected_color="#FFFFFF"
+            app:selected="true"
+            />
+
+        <com.cavalry.view.StatusTextView
+            android:id="@+id/tvMagic"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_horizontal"
+            app:text="魔法特效"
+            app:selected_color="#FFFFFF"
+            app:unselected_color="#FFFFFF"
+            app:selected="false"
+            />
+
+        <com.cavalry.view.StatusTextView
+            android:id="@+id/tvTime"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_horizontal"
+            app:text="时间特效"
+            app:selected_color="#FFFFFF"
+            app:unselected_color="#FFFFFF"
+            app:selected="false"
+            />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/containerFrag"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline1"
+        app:layout_constraintVertical_bias="0.0"
+        android:background="#373737"
+        />
+
+    <TextView
+        android:id="@+id/tvCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="取消"
+        android:textColor="#FFFFFF"
+        android:padding="8dp"
+        />
+
+    <TextView
+        android:id="@+id/tvSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="16dp"        app:layout_constraintRight_toRightOf="parent"
+        android:text="保存"
+        android:textColor="#FFFFFF"
+        android:padding="8dp"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,7 +22,7 @@ import com.xjh.gestureheart.history.EditStepStack;
 import com.xjh.gestureheart.history.ParticlePoint;
 import com.xjh.gestureheart.history.ParticleStack;
 import com.xjh.xinwo.R;
-import com.xjh.xinwo.base.BaseApplication;
+import com.xinwo.feed.base.BaseApplication;
 
 
 /**

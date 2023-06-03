@@ -12,16 +12,15 @@ import android.view.Window;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.xjh.xinwo.base.BaseActivity;
-import com.xjh.xinwo.module.ktv.model.ConstantApp;
-import com.xjh.xinwo.module.ktv.model.EngineConfig;
-import com.xjh.xinwo.module.ktv.model.MyEngineEventHandler;
-import com.xjh.xinwo.module.ktv.model.WorkerThread;
-import com.xjh.xinwo.base.BaseApplication;
+import com.xinwo.feed.base.BaseActivity;
+import com.xinwo.feed.base.ConstantApp;
+import com.xinwo.feed.base.EngineConfig;
+import com.xinwo.feed.base.MyEngineEventHandler;
+import com.xinwo.feed.base.BaseApplication;
+import com.xinwo.feed.base.WorkerThread;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

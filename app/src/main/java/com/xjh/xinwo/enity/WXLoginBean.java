@@ -1,7 +1,7 @@
 package com.xjh.xinwo.enity;
 
 
-import com.xjh.xinwo.enity.base.BaseBean;
+import com.xjh.xinwo.mvp.model.BaseBean;
 
 /**
  * 用户信息
