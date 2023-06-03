@@ -3,6 +3,8 @@ package com.xinwo.log;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.xinwo.application.XinApplicationUtil;
+
 public class LibToastUtils {
 
     public static void toast(String text) {

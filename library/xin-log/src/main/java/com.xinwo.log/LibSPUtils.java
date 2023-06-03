@@ -3,6 +3,8 @@ package com.xinwo.log;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.xinwo.application.XinApplicationUtil;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;

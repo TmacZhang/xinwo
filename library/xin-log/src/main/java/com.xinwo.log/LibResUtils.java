@@ -5,6 +5,8 @@ import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.xinwo.application.XinApplicationUtil;
+
 
 /**
  * @author Cavalry Lin
