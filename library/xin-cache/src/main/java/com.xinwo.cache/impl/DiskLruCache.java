@@ -4,7 +4,7 @@ import com.xinwo.cache.DiskCache;
 import com.xinwo.log.LibConvertNumberUtils;
 import com.xinwo.log.LibIoUtils;
 import com.xinwo.log.LibLog;
-import com.xinwo.log.XinApplicationUtil;
+import com.xinwo.application.XinApplicationUtil;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

@@ -2,7 +2,7 @@ package com.xinwo.network;
 
 import com.xinwo.log.LibLog;
 import com.xinwo.log.LibToastUtils;
-import com.xinwo.log.XinApplicationUtil;
+import com.xinwo.application.XinApplicationUtil;
 
 import java.io.IOException;
 

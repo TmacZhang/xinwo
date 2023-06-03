@@ -13,7 +13,7 @@ import com.netease.nimlib.sdk.SDKOptions;
 import com.netease.nimlib.sdk.auth.LoginInfo;
 import com.netease.nimlib.sdk.util.NIMUtil;
 import com.xinwo.log.LibSPUtils;
-import com.xinwo.log.XinApplicationUtil;
+import com.xinwo.application.XinApplicationUtil;
 
 import java.io.IOException;
 

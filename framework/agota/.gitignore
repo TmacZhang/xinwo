@@ -5,6 +5,5 @@ build/
 .gradle/
 .idea/
 *.iml
-*.log
 wrap.sh
 local.properties
