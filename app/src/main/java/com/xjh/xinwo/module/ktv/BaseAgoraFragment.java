@@ -11,12 +11,12 @@ import androidx.core.content.ContextCompat;
 
 import com.github.dfqin.grantor.PermissionListener;
 import com.github.dfqin.grantor.PermissionsUtil;
-import com.xjh.xinwo.base.BaseApplication;
-import com.xjh.xinwo.base.BaseFragment;
-import com.xjh.xinwo.module.ktv.model.ConstantApp;
-import com.xjh.xinwo.module.ktv.model.EngineConfig;
-import com.xjh.xinwo.module.ktv.model.MyEngineEventHandler;
-import com.xjh.xinwo.module.ktv.model.WorkerThread;
+import com.xinwo.feed.base.BaseApplication;
+import com.xinwo.feed.base.BaseFragment;
+import com.xinwo.feed.base.ConstantApp;
+import com.xinwo.feed.base.EngineConfig;
+import com.xinwo.feed.base.MyEngineEventHandler;
+import com.xinwo.feed.base.WorkerThread;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

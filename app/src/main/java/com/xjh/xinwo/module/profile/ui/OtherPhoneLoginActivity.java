@@ -9,12 +9,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.TypeReference;
-import com.cavalry.androidlib.toolbox.utils.LibSPUtils;
+import com.xinwo.log.LibSPUtils;
 import com.xjh.xinwo.Constants;
 import com.xjh.xinwo.R;
-import com.xjh.xinwo.base.BaseLoginActivity;
-import com.xjh.xinwo.enity.base.BaseBean;
-import com.xjh.xinwo.manager.ApiManager;
+import com.xinwo.feed.base.BaseLoginActivity;
+import com.xjh.xinwo.mvp.model.BaseBean;
+import com.xinwo.network.ApiManager;
 import com.xjh.xinwo.mvp.presenter.TagPresenter;
 import com.xjh.xinwo.util.JsonUtils;
 
@@ -41,7 +41,7 @@ public class OtherPhoneLoginActivity extends BaseLoginActivity {
 
     @Override
     protected void success(Object bean, int tag) {
-        if(tag == TAG_SUBMIT){
+        if (tag == TAG_SUBMIT) {
             Toast.makeText(getApplicationContext(), "绑定成功", Toast.LENGTH_SHORT).show();
         }
     }
@@ -108,7 +108,8 @@ public class OtherPhoneLoginActivity extends BaseLoginActivity {
                 mPresenter.postBody(getHeaders(LibSPUtils.getString(Constants.JWT_CODE, "")),
                         ApiManager.BIND_PHONE,
                         TAG_SUBMIT,
-                        new TypeReference<BaseBean>(){}.getType(),
+                        new TypeReference<BaseBean>() {
+                        }.getType(),
                         JsonUtils.parse2Json("appid", Constants.APP_ID, "code", etCode.getText().toString(), "phone", etPhone.getText().toString()));
             }
         });
@@ -118,7 +119,6 @@ public class OtherPhoneLoginActivity extends BaseLoginActivity {
     public void loadData() {
 
     }
-
 
 
 }

@@ -8,7 +8,7 @@ import android.os.Build;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import com.xjh.xinwo.base.BaseFragment;
+import com.xinwo.feed.base.BaseFragment;
 
 
 public class PhotoUtils {

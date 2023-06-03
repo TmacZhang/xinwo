@@ -1,14 +1,11 @@
 package com.xjh.xinwo.module.groupchat.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.View;
 
 import com.xjh.xinwo.R;
-import com.xjh.xinwo.base.BaseActivity;
+import com.xinwo.feed.base.BaseActivity;
 import com.xjh.xinwo.enity.TotalGroupChatEntity;
 import com.xjh.xinwo.module.groupchat.adapter.PagerLayoutManager;
 import com.xjh.xinwo.module.groupchat.adapter.TotalGroupChatAdapter;

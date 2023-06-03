@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.cavalry.androidlib.R;
-import com.cavalry.androidlib.toolbox.utils.LibDimenUtils;
+import com.xinwo.log.LibDimenUtils;
 
 
 /**

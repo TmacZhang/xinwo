@@ -13,7 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.xjh.xinwo.R;
-import com.xjh.xinwo.base.BaseApplication;
+import com.xinwo.feed.base.BaseApplication;
 import com.xjh.xinwo.module.chat.activity.AudioVideoChatActivity;
 
 

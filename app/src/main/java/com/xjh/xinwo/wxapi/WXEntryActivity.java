@@ -13,7 +13,7 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.xjh.xinwo.Constants;
-import com.xjh.xinwo.base.BaseActivity;
+import com.xinwo.feed.base.BaseActivity;
 import com.xjh.xinwo.module.profile.ui.LocalPhoneLoginActivity;
 import com.xjh.xinwo.mvp.presenter.TagPresenter;
 

@@ -11,5 +11,7 @@ include ':app',
 
         ':library:xin-network',
         ':library:xin-log',
-        ':library:xin-image'
+        ':library:xin-image',
+        ':library:xin-application',
+        ':library:xin-cache'
 

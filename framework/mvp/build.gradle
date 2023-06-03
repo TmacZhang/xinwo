@@ -54,6 +54,12 @@ dependencies {
     androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+
+    implementation project(path: ':library:xin-log')
+    implementation project(path: ':library:xin-network')
+    implementation project(path: ':library:xin-cache')
+    implementation project(path: ':library:xin-log')
+
     implementation 'androidx.appcompat:appcompat:1.0.0'
     testImplementation 'junit:junit:4.12'
     // Google原生 json处理器

@@ -21,16 +21,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.labo.kaji.relativepopupwindow.RelativePopupWindow;
 import com.xjh.xinwo.R;
-import com.xjh.xinwo.base.BaseFragment;
+import com.xinwo.feed.base.BaseFragment;
 import com.xjh.xinwo.enity.FullImageInfo;
 import com.xjh.xinwo.enity.ImGroupMessageInfo;
-import com.xjh.xinwo.enity.ImMessageInfo;
 import com.xjh.xinwo.enity.Link;
 import com.xjh.xinwo.module.chat.activity.FullImageActivity;
 import com.xjh.xinwo.module.groupchat.adapter.IMGroupAdapter;
 import com.xjh.xinwo.util.Constants;
 import com.xjh.xinwo.util.MediaManager;
-import com.xjh.xinwo.widget.ChatContextMenu;
 import com.xjh.xinwo.widget.GroupChatContextMenu;
 import com.xjh.xinwo.widget.IMGroupInputDetector;
 

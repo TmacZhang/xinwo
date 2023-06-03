@@ -2,10 +2,10 @@ package com.cavalry.androidlib.mvp.presenter;
 
 import android.content.Context;
 
-import com.cavalry.androidlib.mvp.service.DefualtServiceGenerator;
-import com.cavalry.androidlib.mvp.service.GetService;
-import com.cavalry.androidlib.mvp.service.PostBodyService;
-import com.cavalry.androidlib.mvp.service.PostFormService;
+import com.xinwo.network.DefualtServiceGenerator;
+import com.xinwo.network.GetService;
+import com.xinwo.network.PostBodyService;
+import com.xinwo.network.PostFormService;
 import com.cavalry.androidlib.mvp.view.IView;
 
 /**

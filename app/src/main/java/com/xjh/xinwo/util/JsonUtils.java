@@ -1,6 +1,6 @@
 package com.xjh.xinwo.util;
 
-import com.cavalry.androidlib.toolbox.utils.LibLog;
+import com.xinwo.log.LibLog;
 
 public class JsonUtils {
     public static String parse2Json(String ...args){

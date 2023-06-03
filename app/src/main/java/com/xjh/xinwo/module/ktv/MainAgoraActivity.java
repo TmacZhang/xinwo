@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AlertDialog;
 
-import com.xjh.xinwo.module.ktv.model.ConstantApp;
+import com.xinwo.feed.base.ConstantApp;
 import com.xjh.xinwo.R;
 
 import java.util.Map;
