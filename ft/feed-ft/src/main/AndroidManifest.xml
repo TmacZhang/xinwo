@@ -3,7 +3,6 @@
     package="com.xinwo.feed">
 
     <application
-        android:name=".base.BaseApplication"
         android:allowBackup="true"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true">

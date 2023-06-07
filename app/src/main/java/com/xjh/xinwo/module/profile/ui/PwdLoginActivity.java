@@ -5,7 +5,7 @@ import android.view.View;
 
 
 import com.xjh.xinwo.R;
-import com.xinwo.feed.base.BaseLoginActivity;
+import com.xinwo.base.BaseLoginActivity;
 
 import java.util.Map;
 

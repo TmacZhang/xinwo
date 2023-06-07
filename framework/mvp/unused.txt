@@ -1,0 +1,58 @@
+com.cavalry.androidlib.mvp.presenter.LibFastJsonTagPresenter
+com.cavalry.androidlib.mvp.presenter.LibFastJsonTagPresenter$3
+com.cavalry.androidlib.mvp.subscriber.LibFastJsonSubscriber
+com.cavalry.androidlib.mvp.subscriber.GsonSubscriber
+com.cavalry.androidlib.toolbox.managers.gsonadapter.IntegerDefault0Adapter
+com.xjh.xinwo.mvp.presenter.SampleSubscriber
+com.cavalry.androidlib.toolbox.managers.HandlerManager
+com.cavalry.androidlib.ui.fragment.LibRLBaseFragment
+com.cavalry.androidlib.mvp.subscriber.listener.OnSubscriberNextListener
+com.cavalry.androidlib.toolbox.managers.ThreadPoolManager
+com.cavalry.androidlib.toolbox.exception.LibException
+com.xjh.xinwo.mvp.presenter.TagPresenter
+com.xjh.xinwo.mvp.model.BaseBean$MessageBean
+com.xjh.xinwo.mvp.presenter.TagPresenter$1
+com.cavalry.androidlib.mvp.presenter.IPresenter
+com.cavalry.androidlib.mvp.subscriber.handler.ProgressDialogHandler
+com.cavalry.androidlib.toolbox.managers.gsonadapter.LongDefault0Adapter
+com.cavalry.androidlib.mvp.subscriber.handler.ProgressDialogHandler$1
+com.cavalry.androidlib.mvp.subscriber.JsonSubscriber
+com.cavalry.androidlib.mvp.subscriber.listener.OnProgressCancelListener
+com.cavalry.androidlib.toolbox.managers.ThreadPoolManager$1
+com.cavalry.androidlib.mvp.subscriber.ISubscriber
+com.cavalry.androidlib.toolbox.managers.GsonManager$GsonPool
+com.cavalry.androidlib.toolbox.managers.gsonadapter.DoubleDefault0Adapter
+com.cavalry.androidlib.mvp.presenter.LibFastJsonTagPresenter$1
+com.xjh.xinwo.mvp.presenter.TagPresenter$3
+com.cavalry.androidlib.mvp.presenter.BasePresenter
+com.cavalry.androidlib.ui.adapter.TitleFragmentPagerAdapter
+com.xjh.xinwo.mvp.presenter.TagPresenter$5
+com.cavalry.androidlib.mvp.presenter.LibFastJsonTagPresenter$4
+com.cavalry.androidlib.mvp.presenter.LibFastJsonTagPresenter$2
+com.cavalry.androidlib.ui.fragment.LibRLBaseFragment$1
+com.xjh.xinwo.mvp.model.BaseBean
+com.cavalry.androidlib.BuildConfig
+com.cavalry.androidlib.ui.fragment.LibBaseFragment
+com.cavalry.androidlib.mvp.view.IView
+com.cavalry.androidlib.mvp.presenter.DefaultFastJsonTagPresenter
+com.cavalry.androidlib.mvp.subscriber.FastJsonSubscriber
+com.cavalry.androidlib.mvp.presenter.LibTagPresenter
+com.cavalry.androidlib.toolbox.managers.ActivityManager
+com.cavalry.androidlib.ui.activity.LibRLBaseActivity:
+    protected void setRLMode(in.srain.cube.views.ptr.PtrFrameLayout$Mode)
+    protected in.srain.cube.views.ptr.PtrFrameLayout getPtrFramLayout()
+    protected boolean isRefreshing()
+    protected boolean isLoadingMore()
+    protected boolean isRefreshingOrLoadingMore()
+    protected void refreshOrLoadMoreComplete()
+    private static final java.lang.String TAG
+com.cavalry.androidlib.LibApplication:
+    public static android.content.Context getContext()
+com.cavalry.androidlib.mvp.subscriber.LoadingSubscriber
+com.xjh.xinwo.mvp.presenter.TagPresenter$6
+com.cavalry.androidlib.mvp.subscriber.BaseSubscriber
+com.cavalry.androidlib.toolbox.managers.GsonManager
+com.xjh.xinwo.mvp.presenter.TagPresenter$2
+com.xjh.xinwo.mvp.presenter.TagPresenter$4
+com.cavalry.androidlib.LibApplication:
+    private static android.content.Context mContext

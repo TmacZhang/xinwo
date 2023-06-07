@@ -8,7 +8,7 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.xinwo.feed.base.BaseApplication;
+import com.xinwo.base.BaseApplication;
 
 import java.io.File;
 import java.io.FileOutputStream;

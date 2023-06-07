@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#000000"
+    >
+
+    <RelativeLayout
+        android:id="@+id/containerPlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.xjh.gestureheart.gl.VideoGLSurfaceView
+            android:id="@+id/glSurfaceView"
+            android:layout_width="180dp"
+            android:layout_height="320dp"
+            android:layout_centerHorizontal="true"/>
+
+        <ImageView
+            android:id="@+id/ivPlayStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/play_button"
+            />
+
+    </RelativeLayout>
+
+
+    <FrameLayout
+        android:id="@+id/containerFrag"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#FF0000"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:background="#00FF00"
+        >
+
+        <TextView
+            android:id="@+id/tvFilter"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="滤镜特效"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_horizontal"
+            android:textColor="#FFFFFF"
+            />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:background="#FFFFFF"
+            />
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="时间特效"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_horizontal"
+            android:textColor="#FFFFFF"
+            />
+
+    </LinearLayout>
+
+   <!-- <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="24dp"
+        >
+
+        <Button
+            android:id="@+id/btnPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="播放"
+            />
+
+        <Button
+            android:id="@+id/btnFilter01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter01"
+            />
+
+        <Button
+            android:id="@+id/btnFilter02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter02"
+            />
+
+        <Button
+            android:id="@+id/btnFilter03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter03"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:id="@+id/btnFilter04"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter04"
+            />
+
+        <Button
+            android:id="@+id/btnFilter05"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter05"
+            />
+
+        <Button
+            android:id="@+id/btnFilter06"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter06"
+            />
+
+        <Button
+            android:id="@+id/btnFilter07"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter07"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:id="@+id/btnFilter08"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter08"
+            />
+
+        <Button
+            android:id="@+id/btnFilter09"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter09"
+            />
+
+        <Button
+            android:id="@+id/btnFilter10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter10"
+            />
+
+        <Button
+            android:id="@+id/btnFilter11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter11"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        >
+
+        <Button
+            android:id="@+id/btnFilter12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter12"
+            />
+
+        <Button
+            android:id="@+id/btnFilter13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter13"
+            />
+
+        <Button
+            android:id="@+id/btnFilter14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter14"
+            />
+
+        <Button
+            android:id="@+id/btnFilter15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter15"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:id="@+id/btnGenerate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="生成视频"
+            />
+
+        <Button
+            android:id="@+id/btnRetrieveFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="撤销滤镜"
+            />
+
+        <Button
+            android:id="@+id/btnRetrieveParticle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="撤销粒子"
+            />
+
+        <Button
+            android:id="@+id/btnReverse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="反转"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:id="@+id/btnCancelReverse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="取消反转"
+            />
+
+        <Button
+            android:id="@+id/btnTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="音频混合"
+            />
+    </LinearLayout>-->
+
+
+</LinearLayout>

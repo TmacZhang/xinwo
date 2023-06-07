@@ -12,7 +12,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.xinwo.log.LibSPUtils;
 import com.xjh.xinwo.Constants;
 import com.xjh.xinwo.R;
-import com.xinwo.feed.base.BaseLoginActivity;
+import com.xinwo.base.BaseLoginActivity;
 import com.xjh.xinwo.mvp.model.BaseBean;
 import com.xinwo.network.ApiManager;
 import com.xjh.xinwo.mvp.presenter.TagPresenter;

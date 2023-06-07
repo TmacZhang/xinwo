@@ -8,7 +8,7 @@ import com.netease.nimlib.sdk.msg.MessageBuilder;
 import com.netease.nimlib.sdk.msg.MsgService;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
-import com.xinwo.feed.base.BaseApplication;
+import com.xinwo.base.BaseApplication;
 
 import java.io.File;
 

@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xjh.xinwo.R;
-import com.xinwo.feed.base.BaseFragment;
+import com.xinwo.base.BaseFragment;
 import com.xjh.xinwo.mvp.model.BaseBean;
 import com.xjh.xinwo.module.chat.activity.IMActivity;
 import com.xjh.xinwo.module.chat.adapter.ChatAdapter;

@@ -38,12 +38,16 @@ android {
 dependencies {
     //业务相关
     implementation project(path: ':ft:feed-ft')
+    implementation project(path: ':ft:produce-ft')
     // framework相关
     implementation project(path: ':framework:agora-ktv-kit-release')
     implementation project(path: ':framework:mvp')
     implementation project(path: ':framework:litesdk')
     implementation project(path: ':framework:nativesdk')
     implementation project(path: ':framework:xinview')
+    implementation project(path: ':framework:xinresources')
+    implementation project(path: ':framework:base-framework')
+
     implementation project(path: ':library:xin-network')
     implementation project(path: ':library:xin-log')
     // 各种控件集合

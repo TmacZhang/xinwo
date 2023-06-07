@@ -6,9 +6,12 @@ include ':app',
         ':framework:litesdk',
         ':framework:nativesdk',
         ':framework:xinview',
+        ':framework:xinresources',
+        ':framework:base-framework',
 
         "ft:feed-ft",
         "ft:social-ft",
+        "ft:produce-ft",
 
         ':library:xin-network',
         ':library:xin-log',

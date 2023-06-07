@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.labo.kaji.relativepopupwindow.RelativePopupWindow;
 import com.xjh.xinwo.R;
-import com.xinwo.feed.base.BaseFragment;
+import com.xinwo.base.BaseFragment;
 import com.xjh.xinwo.enity.FullImageInfo;
 import com.xjh.xinwo.enity.ImGroupMessageInfo;
 import com.xjh.xinwo.enity.Link;

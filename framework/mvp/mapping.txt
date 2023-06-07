@@ -1,0 +1,140 @@
+# compiler: R8
+# compiler_version: 2.1.62
+# pg_map_id: f098340
+# common_typos_disable
+com.cavalry.androidlib.LibApplication -> com.cavalry.androidlib.LibApplication:
+    10:10:void <init>() -> <init>
+    15:17:void onCreate() -> onCreate
+com.cavalry.androidlib.ui.activity.LibBaseActivity -> com.cavalry.androidlib.ui.activity.LibBaseActivity:
+    android.view.View mContentView -> a
+    22:22:void <init>() -> <init>
+    67:67:android.view.View afterInitView(android.view.View) -> a
+    70:70:void initVaryViewHelperController() -> e
+    27:30:void onCreate(android.os.Bundle) -> onCreate
+    58:59:void onDestroy() -> onDestroy
+    34:38:void setContentView(int) -> setContentView
+    42:43:void setContentView(android.view.View) -> setContentView
+    47:52:void setContentView(android.view.View,android.view.ViewGroup$LayoutParams) -> setContentView
+com.cavalry.androidlib.ui.activity.LibRLBaseActivity -> com.cavalry.androidlib.ui.activity.LibRLBaseActivity:
+    in.srain.cube.views.ptr.PtrFrameLayout$Mode mRLMode -> c
+    in.srain.cube.views.ptr.PtrFrameLayout mPtrFrameLayout -> b
+    25:29:void <init>() -> <init>
+    void onLoadMoreStart(in.srain.cube.views.ptr.PtrFrameLayout) -> a
+    46:49:android.view.View afterInitView(android.view.View) -> a
+    void onRefreshStart(in.srain.cube.views.ptr.PtrFrameLayout) -> b
+    58:80:in.srain.cube.views.ptr.PtrFrameLayout addRefreshLoadmore(android.view.View) -> b
+    40:40:in.srain.cube.views.ptr.PtrFrameLayout$Mode getRLMode() -> f
+    android.view.View getRLView() -> g
+    88:110:in.srain.cube.views.ptr.LibPtrFrameLayout initPtrFrameLayout() -> h
+com.cavalry.androidlib.ui.activity.LibRLBaseActivity$1 -> com.cavalry.androidlib.ui.activity.LibRLBaseActivity$a:
+    com.cavalry.androidlib.ui.activity.LibRLBaseActivity this$0 -> a
+    98:98:void <init>(com.cavalry.androidlib.ui.activity.LibRLBaseActivity) -> <init>
+    101:102:void onLoadMoreBegin(in.srain.cube.views.ptr.PtrFrameLayout) -> onLoadMoreBegin
+    106:107:void onRefreshBegin(in.srain.cube.views.ptr.PtrFrameLayout) -> onRefreshBegin
+com.cavalry.androidlib.ui.inter.IFunction -> com.cavalry.androidlib.a.a.a:
+    void initData() -> a
+    void loadData() -> b
+    void initView() -> c
+    void initPresenter() -> d
+com.cavalry.androidlib.view.stateview.helper.VaryViewHelper -> com.cavalry.androidlib.view.stateview.helper.VaryViewHelper:
+    33:50:void <init>(android.view.View) -> <init>
+    132:132:android.content.Context getContext() -> getContext
+    158:158:android.view.View getCurrentLayout() -> getCurrentLayout
+    136:136:android.view.View getOriginalView() -> getOriginalView
+    145:148:android.view.View getParentView() -> getParentView
+    127:127:android.view.View inflate(int) -> inflate
+    53:68:void init() -> init
+    121:122:void restoreView() -> restoreView
+    78:99:void showLayout(android.view.View) -> showLayout
+    107:108:void showLayout(int) -> showLayout
+com.cavalry.androidlib.view.stateview.helper.VaryViewHelperController -> com.cavalry.androidlib.view.stateview.helper.VaryViewHelperController:
+    27:28:void <init>(android.view.View) -> <init>
+    30:32:void <init>(com.cavalry.androidlib.view.stateview.helper.IVaryViewHelper) -> <init>
+    91:92:void restore() -> restore
+    41:60:void showState(android.graphics.drawable.Drawable,java.lang.String,android.view.View$OnClickListener) -> showState
+    68:71:void showState(android.view.View,android.view.View$OnClickListener) -> showState
+    79:85:void showState(com.cavalry.androidlib.view.stateview.view.PageStateLayout$PageState,android.view.View$OnClickListener) -> showState
+com.cavalry.androidlib.view.stateview.helper.VaryViewHelperX -> com.cavalry.androidlib.view.stateview.helper.VaryViewHelperX:
+    31:44:void <init>(android.view.View) -> <init>
+    68:68:android.content.Context getContext() -> getContext
+    48:48:android.view.View getCurrentLayout() -> getCurrentLayout
+    72:72:android.view.View getOriginalView() -> getOriginalView
+    79:79:android.view.View getParentView() -> getParentView
+    63:63:android.view.View inflate(int) -> inflate
+    53:54:void restoreView() -> restoreView
+    58:59:void showLayout(android.view.View) -> showLayout
+com.cavalry.androidlib.view.stateview.view.MaterialProgress -> com.cavalry.androidlib.view.stateview.view.MaterialProgress:
+    26:62:void <init>(android.content.Context,android.util.AttributeSet) -> <init>
+    26:66:void <init>(android.content.Context) -> <init>
+    152:159:void initPaint() -> initPaint
+    136:149:void initRectF() -> initRectF
+    163:203:void onDraw(android.graphics.Canvas) -> onDraw
+    90:120:void onMeasure(int,int) -> onMeasure
+    124:132:void onSizeChanged(int,int,int,int) -> onSizeChanged
+    69:86:void parseAttrs(android.content.res.TypedArray) -> parseAttrs
+    253:262:void reset() -> reset
+    238:240:void setColor(int) -> setColor
+    248:250:void setColors(java.util.ArrayList) -> setColors
+    206:230:void updateBarLength(long) -> updateBarLength
+com.cavalry.androidlib.view.stateview.view.PageStateLayout -> com.cavalry.androidlib.view.stateview.view.PageStateLayout:
+    28:31:void <init>(android.content.Context) -> <init>
+    34:37:void <init>(android.content.Context,android.util.AttributeSet) -> <init>
+    40:43:void init() -> init
+    104:112:android.view.View initEmptyView() -> initEmptyView
+    92:99:android.view.View initErrorView() -> initErrorView
+    77:87:android.view.View initLoadingView() -> initLoadingView
+    47:73:void show(com.cavalry.androidlib.view.stateview.view.PageStateLayout$PageState,android.view.View$OnClickListener) -> show
+com.cavalry.androidlib.view.stateview.view.PageStateLayout$PageState -> com.cavalry.androidlib.view.stateview.view.PageStateLayout$PageState:
+    116:117:void <clinit>() -> <clinit>
+    116:116:void <init>(java.lang.String,int) -> <init>
+    116:116:com.cavalry.androidlib.view.stateview.view.PageStateLayout$PageState valueOf(java.lang.String) -> valueOf
+    116:116:com.cavalry.androidlib.view.stateview.view.PageStateLayout$PageState[] values() -> values
+com.cavalry.androidlib.view.stateview.view.RippleView -> com.cavalry.androidlib.view.stateview.view.RippleView:
+    37:70:void <init>(android.content.Context) -> <init>
+    37:75:void <init>(android.content.Context,android.util.AttributeSet) -> <init>
+    37:80:void <init>(android.content.Context,android.util.AttributeSet,int) -> <init>
+    33:33:void access$000(com.cavalry.androidlib.view.stateview.view.RippleView,java.lang.Boolean) -> access$000
+    202:203:void animateRipple(android.view.MotionEvent) -> animateRipple
+    212:213:void animateRipple(float,float) -> animateRipple
+    222:248:void createAnimation(float,float) -> createAnimation
+    137:182:void draw(android.graphics.Canvas) -> draw
+    286:298:android.graphics.Bitmap getCircleBitmap(int) -> getCircleBitmap
+    422:422:int getFrameRate() -> getFrameRate
+    437:437:int getRippleAlpha() -> getRippleAlpha
+    312:312:int getRippleColor() -> getRippleColor
+    407:407:int getRippleDuration() -> getRippleDuration
+    347:347:int getRipplePadding() -> getRipplePadding
+    317:317:com.cavalry.androidlib.view.stateview.view.RippleView$RippleType getRippleType() -> getRippleType
+    392:392:int getZoomDuration() -> getZoomDuration
+    377:377:float getZoomScale() -> getZoomScale
+    89:133:void init(android.content.Context,android.util.AttributeSet) -> init
+    332:332:java.lang.Boolean isCentered() -> isCentered
+    362:362:java.lang.Boolean isZooming() -> isZooming
+    261:262:boolean onInterceptTouchEvent(android.view.MotionEvent) -> onInterceptTouchEvent
+    186:194:void onSizeChanged(int,int,int,int) -> onSizeChanged
+    252:256:boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+    271:283:void sendClickEvent(java.lang.Boolean) -> sendClickEvent
+    342:343:void setCentered(java.lang.Boolean) -> setCentered
+    432:433:void setFrameRate(int) -> setFrameRate
+    451:452:void setOnRippleCompleteListener(com.cavalry.androidlib.view.stateview.view.RippleView$OnRippleCompleteListener) -> setOnRippleCompleteListener
+    447:448:void setRippleAlpha(int) -> setRippleAlpha
+    308:309:void setRippleColor(int) -> setRippleColor
+    417:418:void setRippleDuration(int) -> setRippleDuration
+    357:358:void setRipplePadding(int) -> setRipplePadding
+    327:328:void setRippleType(com.cavalry.androidlib.view.stateview.view.RippleView$RippleType) -> setRippleType
+    402:403:void setZoomDuration(int) -> setZoomDuration
+    387:388:void setZoomScale(float) -> setZoomScale
+    372:373:void setZooming(java.lang.Boolean) -> setZooming
+com.cavalry.androidlib.view.stateview.view.RippleView$1 -> com.cavalry.androidlib.view.stateview.view.RippleView$1:
+    59:59:void <init>(com.cavalry.androidlib.view.stateview.view.RippleView) -> <init>
+    62:63:void run() -> run
+com.cavalry.androidlib.view.stateview.view.RippleView$2 -> com.cavalry.androidlib.view.stateview.view.RippleView$2:
+    112:112:void <init>(com.cavalry.androidlib.view.stateview.view.RippleView) -> <init>
+    115:118:void onLongPress(android.view.MotionEvent) -> onLongPress
+    122:122:boolean onSingleTapConfirmed(android.view.MotionEvent) -> onSingleTapConfirmed
+    127:127:boolean onSingleTapUp(android.view.MotionEvent) -> onSingleTapUp
+com.cavalry.androidlib.view.stateview.view.RippleView$RippleType -> com.cavalry.androidlib.view.stateview.view.RippleView$RippleType:
+    461:464:void <clinit>() -> <clinit>
+    469:471:void <init>(java.lang.String,int,int) -> <init>
+    461:461:com.cavalry.androidlib.view.stateview.view.RippleView$RippleType valueOf(java.lang.String) -> valueOf
+    461:461:com.cavalry.androidlib.view.stateview.view.RippleView$RippleType[] values() -> values

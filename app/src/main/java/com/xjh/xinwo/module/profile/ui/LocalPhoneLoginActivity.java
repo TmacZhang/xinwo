@@ -20,7 +20,7 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.xinwo.log.LibSPUtils;
 import com.xjh.xinwo.Constants;
 import com.xjh.xinwo.R;
-import com.xinwo.feed.base.BaseLoginActivity;
+import com.xinwo.base.BaseLoginActivity;
 import com.xjh.xinwo.enity.WXLoginBean;
 import com.xinwo.network.ApiManager;
 import com.xjh.xinwo.mvp.presenter.TagPresenter;
