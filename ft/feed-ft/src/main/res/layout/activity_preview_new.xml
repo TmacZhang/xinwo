@@ -75,7 +75,7 @@
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         >
-        <com.cavalry.view.StatusTextView
+        <com.xinwo.xinview.StatusTextView
             android:id="@+id/tvFilter"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -88,7 +88,7 @@
             app:selected="true"
             />
 
-        <com.cavalry.view.StatusTextView
+        <com.xinwo.xinview.StatusTextView
             android:id="@+id/tvMagic"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -101,7 +101,7 @@
             app:selected="false"
             />
 
-        <com.cavalry.view.StatusTextView
+        <com.xinwo.xinview.StatusTextView
             android:id="@+id/tvTime"
             android:layout_width="0dp"
             android:layout_weight="1"

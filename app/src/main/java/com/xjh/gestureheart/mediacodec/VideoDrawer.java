@@ -18,9 +18,9 @@ import com.xjh.gestureheart.filter.particles.programs.ParticleShaderProgram;
 import com.xjh.gestureheart.filter.particles.util.Geometry;
 import com.xjh.gestureheart.filter.particles.util.TextureHelper;
 import com.xjh.gestureheart.gl.VideoGLSurfaceView;
-import com.xjh.gestureheart.history.EditStepStack;
-import com.xjh.gestureheart.history.ParticlePoint;
-import com.xjh.gestureheart.history.ParticleStack;
+import com.xinwo.xinview.history.EditStepStack;
+import com.xinwo.xinview.history.ParticlePoint;
+import com.xinwo.xinview.history.ParticleStack;
 import com.xjh.xinwo.R;
 import com.xinwo.feed.base.BaseApplication;
 

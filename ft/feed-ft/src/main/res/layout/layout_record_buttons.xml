@@ -52,7 +52,7 @@
                 android:layout_gravity="center_vertical"
                 android:src="@mipmap/record_play" />
 
-            <com.cavalry.view.BreatheButton
+            <com.xinwo.xinview.BreatheButton
                 android:id="@+id/btn_recording"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

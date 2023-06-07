@@ -37,7 +37,7 @@
 
 
 
-        <com.cavalry.view.SectionProgressBar
+        <com.xinwo.xinview.SectionProgressBar
             android:id="@+id/sectionProgressBar"
             android:layout_width="match_parent"
             android:layout_height="6dp"

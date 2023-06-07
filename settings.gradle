@@ -5,6 +5,7 @@ include ':app',
         ':framework:agota',
         ':framework:litesdk',
         ':framework:nativesdk',
+        ':framework:xinview',
 
         "ft:feed-ft",
         "ft:social-ft",

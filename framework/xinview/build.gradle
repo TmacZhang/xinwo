@@ -1,6 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 31
@@ -20,11 +18,10 @@ android {
     lintOptions {
         abortOnError false
     }
-
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.7.20"
+    implementation 'androidx.annotation:annotation:1.4.0'
 }
 
 
