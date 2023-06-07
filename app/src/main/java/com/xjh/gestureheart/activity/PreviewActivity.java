@@ -12,8 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-
-import com.cavalry.view.StatusTextView;
+import com.xinwo.xinview.StatusTextView;
 import com.xjh.gestureheart.gl.VideoGLSurfaceView;
 import com.xjh.gestureheart.mediacodec.VideoClipper;
 import com.xjh.gestureheart.record.FUExampleFragment;

@@ -5,7 +5,7 @@ import android.opengl.Matrix;
 
 
 import com.xjh.gestureheart.filter.particles.util.Geometry;
-import com.xjh.gestureheart.history.ParticlePoint;
+import com.xinwo.xinview.history.ParticlePoint;
 
 import java.util.Random;
 

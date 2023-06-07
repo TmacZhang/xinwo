@@ -12,12 +12,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import com.cavalry.view.ColorSeekBar;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.xinwo.xinview.ColorSeekBar;
 import com.xjh.gestureheart.activity.adapter.TimeAdapter;
 import com.xjh.gestureheart.activity.bean.FilterTimeBean;
-import com.xjh.gestureheart.history.ShakeStack;
+import com.xinwo.xinview.history.ShakeStack;
 import com.xjh.xinwo.R;
 
 import java.util.ArrayList;

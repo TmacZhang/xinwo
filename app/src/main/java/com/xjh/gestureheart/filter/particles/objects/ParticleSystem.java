@@ -8,8 +8,8 @@ import android.util.SparseArray;
 import com.xjh.gestureheart.filter.particles.data.VertexArray;
 import com.xjh.gestureheart.filter.particles.programs.ParticleShaderProgram;
 import com.xjh.gestureheart.filter.particles.util.Constants;
-import com.xjh.gestureheart.history.ParticlePoint;
-import com.xjh.gestureheart.history.ParticleStack;
+import com.xinwo.xinview.history.ParticlePoint;
+import com.xinwo.xinview.history.ParticleStack;
 
 
 /**

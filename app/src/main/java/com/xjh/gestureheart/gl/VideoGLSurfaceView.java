@@ -13,10 +13,9 @@ import android.view.Surface;
 import android.view.View;
 import android.widget.Toast;
 
-
-import com.cavalry.view.ColorSeekBar;
-import com.xjh.gestureheart.history.EditStepDetail;
-import com.xjh.gestureheart.history.EditStepStack;
+import com.xinwo.xinview.ColorSeekBar;
+import com.xinwo.xinview.history.EditStepDetail;
+import com.xinwo.xinview.history.EditStepStack;
 import com.xjh.gestureheart.mediacodec.CavalryMediaPlayer;
 import com.xjh.gestureheart.mediacodec.VideoDrawer;
 
