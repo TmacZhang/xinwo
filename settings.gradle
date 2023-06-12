@@ -8,6 +8,7 @@ include ':app',
         ':framework:xinview',
         ':framework:xinresources',
         ':framework:base-framework',
+        ':framework:xinutil',
 
         "ft:feed-ft",
         "ft:social-ft",

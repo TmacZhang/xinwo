@@ -73,7 +73,7 @@
             android:scaleType="centerCrop"
             android:src="@mipmap/icon_add" />
 
-        <com.xjh.xinwo.widget.StateButton
+        <com.xinwo.xinview.StateButton
             android:id="@+id/emotion_send"
             android:layout_width="40dp"
             android:layout_height="30dp"
@@ -101,7 +101,7 @@
         android:orientation="vertical"
         android:visibility="gone">
 
-        <com.xjh.xinwo.widget.NoScrollViewPager
+        <com.xinwo.xinview.NoScrollViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

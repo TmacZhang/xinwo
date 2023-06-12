@@ -14,7 +14,7 @@ import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.xjh.xinwo.Constants;
 import com.xinwo.base.BaseActivity;
-import com.xjh.xinwo.module.profile.ui.LocalPhoneLoginActivity;
+import com.xinwo.social.profile.login.LocalPhoneLoginActivity;
 import com.xjh.xinwo.mvp.presenter.TagPresenter;
 
 import java.util.Map;
@@ -23,8 +23,7 @@ public class WXEntryActivity extends BaseActivity implements IWXAPIEventHandler 
 
     private final static String TAG = "WXEntryActivity";
 
-
-
+    public static final String APP_ID = "wxa78ebfd006b71da9";
     // IWXAPI 是第三方app和微信通信的openApi接口
     private IWXAPI api;
     private String wxCode;
@@ -109,7 +108,7 @@ public class WXEntryActivity extends BaseActivity implements IWXAPIEventHandler 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        api = WXAPIFactory.createWXAPI(this, Constants.APP_ID, false);
+        api = WXAPIFactory.createWXAPI(this, APP_ID, false);
 
         try {
             Intent intent = getIntent();

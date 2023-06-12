@@ -6,8 +6,7 @@ import androidx.annotation.Nullable;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xjh.xinwo.R;
-import com.xjh.xinwo.enity.ChatGameEntity;
-import com.xjh.xinwo.enity.KTVPeopleEntity;
+import com.xinwo.social.chat.entity.ChatGameEntity;
 
 import java.util.List;
 

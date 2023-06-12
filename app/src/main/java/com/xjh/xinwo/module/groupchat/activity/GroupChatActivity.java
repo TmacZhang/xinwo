@@ -29,29 +29,29 @@ import android.widget.Toast;
 import com.github.dfqin.grantor.PermissionListener;
 import com.github.dfqin.grantor.PermissionsUtil;
 import com.labo.kaji.relativepopupwindow.RelativePopupWindow;
+import com.xinwo.social.chat.ChatContextMenu;
+import com.xinwo.social.chat.EmotionInputDetector;
+import com.xinwo.social.chat.MessageCenter;
+import com.xinwo.social.chat.entity.ImMessageInfo;
+import com.xinwo.social.chat.entity.Link;
+import com.xinwo.xinutil.Constants;
+import com.xinwo.xinutil.GlobalOnItemClickManagerUtils;
+import com.xinwo.xinutil.MediaManager;
+import com.xinwo.xinview.NoScrollViewPager;
+import com.xinwo.xinview.StateButton;
 import com.xjh.xinwo.R;
-import com.xjh.xinwo.adapter.ChatAdapter;
-import com.xjh.xinwo.adapter.CommonFragmentPagerAdapter;
-import com.xjh.xinwo.enity.ChatGameEntity;
+import com.xinwo.social.chat.adapter.ChatAdapterV2;
+import com.xinwo.social.chat.adapter.CommonFragmentPagerAdapter;
+import com.xinwo.social.chat.entity.ChatGameEntity;
 import com.xjh.xinwo.enity.FullImageInfo;
 import com.xjh.xinwo.enity.FunctionEnvEntity;
-import com.xjh.xinwo.enity.ImMessageInfo;
 import com.xjh.xinwo.enity.KTVPeopleEntity;
-import com.xjh.xinwo.enity.Link;
-import com.xjh.xinwo.module.chat.activity.FullImageActivity;
+import com.xinwo.social.chat.activity.FullImageActivity;
 import com.xjh.xinwo.module.groupchat.adapter.ChatGameAdapter;
 import com.xjh.xinwo.module.groupchat.adapter.FunctionEvnAdapter;
 import com.xjh.xinwo.module.groupchat.adapter.KTVPeopleAdapter;
-import com.xjh.xinwo.module.chat.fragment.ChatEmotionFragment;
-import com.xjh.xinwo.module.chat.fragment.ChatFunctionFragment;
-import com.xjh.xinwo.util.Constants;
-import com.xjh.xinwo.util.GlobalOnItemClickManagerUtils;
-import com.xjh.xinwo.util.MediaManager;
-import com.xjh.xinwo.util.MessageCenter;
-import com.xjh.xinwo.widget.ChatContextMenu;
-import com.xjh.xinwo.widget.EmotionInputDetector;
-import com.xjh.xinwo.widget.NoScrollViewPager;
-import com.xjh.xinwo.widget.StateButton;
+import com.xinwo.social.chat.fragment.ChatEmotionFragment;
+import com.xinwo.social.chat.fragment.ChatFunctionFragment;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -78,7 +78,7 @@ public class GroupChatActivity extends AppCompatActivity implements View.OnClick
     private ChatFunctionFragment chatFunctionFragment;
     private CommonFragmentPagerAdapter adapter;
 
-    private ChatAdapter chatAdapter;
+    private ChatAdapterV2 chatAdapter;
     private LinearLayoutManager layoutManager;
     private List<ImMessageInfo> messageInfos;
     //录音相关
@@ -350,10 +350,7 @@ public class GroupChatActivity extends AppCompatActivity implements View.OnClick
 //                .bindToAudioVideoButton(ivChatAudioVideo)
                 .build();
 
-        GlobalOnItemClickManagerUtils globalOnItemClickListener = GlobalOnItemClickManagerUtils.getInstance(this);
-        globalOnItemClickListener.attachToEditText(editText);
-
-        chatAdapter = new ChatAdapter(messageInfos);
+        chatAdapter = new ChatAdapterV2(messageInfos);
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         chatList.setLayoutManager(layoutManager);
@@ -388,7 +385,7 @@ public class GroupChatActivity extends AppCompatActivity implements View.OnClick
     /**
      * item点击事件
      */
-    private ChatAdapter.onItemClickListener itemClickListener = new ChatAdapter.onItemClickListener() {
+    private ChatAdapterV2.onItemClickListener itemClickListener = new ChatAdapterV2.onItemClickListener() {
         @Override
         public void onHeaderClick(int position) {
             Toast.makeText(GroupChatActivity.this, "onHeaderClick", Toast.LENGTH_SHORT).show();

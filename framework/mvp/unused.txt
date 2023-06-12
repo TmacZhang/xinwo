@@ -10,8 +10,8 @@ com.cavalry.androidlib.mvp.subscriber.listener.OnSubscriberNextListener
 com.cavalry.androidlib.toolbox.managers.ThreadPoolManager
 com.cavalry.androidlib.toolbox.exception.LibException
 com.xjh.xinwo.mvp.presenter.TagPresenter
-com.xjh.xinwo.mvp.model.BaseBean$MessageBean
 com.xjh.xinwo.mvp.presenter.TagPresenter$1
+com.xjh.xinwo.mvp.model.BaseBean$MessageBean
 com.cavalry.androidlib.mvp.presenter.IPresenter
 com.cavalry.androidlib.mvp.subscriber.handler.ProgressDialogHandler
 com.cavalry.androidlib.toolbox.managers.gsonadapter.LongDefault0Adapter
@@ -24,8 +24,8 @@ com.cavalry.androidlib.toolbox.managers.GsonManager$GsonPool
 com.cavalry.androidlib.toolbox.managers.gsonadapter.DoubleDefault0Adapter
 com.cavalry.androidlib.mvp.presenter.LibFastJsonTagPresenter$1
 com.xjh.xinwo.mvp.presenter.TagPresenter$3
-com.cavalry.androidlib.mvp.presenter.BasePresenter
 com.cavalry.androidlib.ui.adapter.TitleFragmentPagerAdapter
+com.cavalry.androidlib.mvp.presenter.BasePresenter
 com.xjh.xinwo.mvp.presenter.TagPresenter$5
 com.cavalry.androidlib.mvp.presenter.LibFastJsonTagPresenter$4
 com.cavalry.androidlib.mvp.presenter.LibFastJsonTagPresenter$2
@@ -37,7 +37,6 @@ com.cavalry.androidlib.mvp.view.IView
 com.cavalry.androidlib.mvp.presenter.DefaultFastJsonTagPresenter
 com.cavalry.androidlib.mvp.subscriber.FastJsonSubscriber
 com.cavalry.androidlib.mvp.presenter.LibTagPresenter
-com.cavalry.androidlib.toolbox.managers.ActivityManager
 com.cavalry.androidlib.ui.activity.LibRLBaseActivity:
     protected void setRLMode(in.srain.cube.views.ptr.PtrFrameLayout$Mode)
     protected in.srain.cube.views.ptr.PtrFrameLayout getPtrFramLayout()
@@ -46,6 +45,7 @@ com.cavalry.androidlib.ui.activity.LibRLBaseActivity:
     protected boolean isRefreshingOrLoadingMore()
     protected void refreshOrLoadMoreComplete()
     private static final java.lang.String TAG
+com.cavalry.androidlib.toolbox.managers.ActivityManager
 com.cavalry.androidlib.LibApplication:
     public static android.content.Context getContext()
 com.cavalry.androidlib.mvp.subscriber.LoadingSubscriber

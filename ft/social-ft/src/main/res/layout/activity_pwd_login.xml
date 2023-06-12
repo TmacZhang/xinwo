@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.xinwo.social.profile.login.PwdLoginActivity">
+
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="@dimen/dp_18"
+        android:layout_height="@dimen/dp_18"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="@dimen/dp_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@mipmap/arrow_back" />
+
+
+    <EditText
+        android:id="@+id/etPhone"
+        android:layout_width="@dimen/dp_148"
+        android:layout_height="@dimen/dp_24"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:inputType="phone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.37"
+        android:background="@drawable/shape_bg_phone"
+        android:gravity="center"
+        android:textSize="@dimen/sp_9"
+        android:textColor="#FFFFFF"
+        android:hint="输入手机号"
+        android:textColorHint="#FFFFFF"
+        />
+
+
+    <EditText
+        android:id="@+id/etPwd"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_24"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shape_bg_phone"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="输入密码"
+        android:inputType="number"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/sp_9"
+        app:layout_constraintEnd_toEndOf="@+id/etPhone"
+        app:layout_constraintStart_toStartOf="@+id/etPhone"
+        app:layout_constraintTop_toBottomOf="@+id/etPhone"
+        android:textColorHint="#FFFFFF"
+        />
+
+
+
+    <TextView
+        android:id="@+id/tvForgetPwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="忘记了?找回密码"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPwd"
+        android:textSize="@dimen/sp_7"
+        android:textColor="#FFEA00"
+        />
+
+
+    <TextView
+        android:id="@+id/tvTongYi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_15"
+        android:text="登录即表明同意"
+        app:layout_constraintEnd_toStartOf="@+id/tvBiXin"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvForgetPwd"
+        android:textSize="@dimen/sp_7"
+        android:textColor="#FFFFFF"
+        />
+
+    <TextView
+        android:id="@+id/tvBiXin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_15"
+        android:text="比心用户协议"
+        app:layout_constraintEnd_toStartOf="@+id/tvHe"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvTongYi"
+        app:layout_constraintTop_toBottomOf="@+id/tvForgetPwd"
+        android:textSize="@dimen/sp_7"
+        android:textColor="#FFEA00"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        />
+
+    <TextView
+        android:id="@+id/tvHe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_15"
+        android:text="和"
+        app:layout_constraintEnd_toStartOf="@+id/tvYinSi"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvBiXin"
+        app:layout_constraintTop_toBottomOf="@+id/tvForgetPwd"
+        android:textSize="@dimen/sp_7"
+        android:textColor="#FFFFFF"
+        />
+
+    <TextView
+        android:id="@+id/tvYinSi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_15"
+        android:text="隐私政策"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvHe"
+        app:layout_constraintTop_toBottomOf="@+id/tvForgetPwd"
+        android:textSize="@dimen/sp_7"
+        android:textColor="#FFEA00"
+        android:layout_marginLeft="2dp"
+        />
+
+    <ImageView
+        android:id="@+id/ivSubmit"
+        android:layout_width="@dimen/dp_21"
+        android:layout_height="@dimen/dp_21"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTongYi"
+        app:layout_constraintVertical_bias="0.16000003"
+        android:src="@mipmap/success_login"
+        />
+
+
+    <TextView
+        android:id="@+id/tvLoginTrouble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="32dp"
+        android:text="登录遇到问题"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="@dimen/sp_7"
+        android:textColor="#FFEA00"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
