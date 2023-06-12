@@ -20,17 +20,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.labo.kaji.relativepopupwindow.RelativePopupWindow;
+import com.xinwo.social.chat.GroupChatContextMenu;
+import com.xinwo.social.chat.IMGroupInputDetector;
+import com.xinwo.social.chat.entity.Link;
+import com.xinwo.xinutil.Constants;
+import com.xinwo.xinutil.MediaManager;
 import com.xjh.xinwo.R;
-import com.xinwo.feed.base.BaseFragment;
+import com.xinwo.base.BaseFragment;
 import com.xjh.xinwo.enity.FullImageInfo;
-import com.xjh.xinwo.enity.ImGroupMessageInfo;
-import com.xjh.xinwo.enity.Link;
-import com.xjh.xinwo.module.chat.activity.FullImageActivity;
+import com.xinwo.social.chat.entity.ImGroupMessageInfo;
+
+import com.xinwo.social.chat.activity.FullImageActivity;
 import com.xjh.xinwo.module.groupchat.adapter.IMGroupAdapter;
-import com.xjh.xinwo.util.Constants;
-import com.xjh.xinwo.util.MediaManager;
-import com.xjh.xinwo.widget.GroupChatContextMenu;
-import com.xjh.xinwo.widget.IMGroupInputDetector;
+
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

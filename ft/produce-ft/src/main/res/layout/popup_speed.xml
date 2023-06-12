@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#000000"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    >
+
+    <ImageView
+        android:id="@+id/ivSpeedLower"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="@dimen/menu_size"
+        android:src="@mipmap/record_speed_lower"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="8dp"
+    />
+
+    <ImageView
+        android:id="@+id/ivSpeedLow"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="@dimen/menu_size"
+        android:src="@mipmap/record_speed_low"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        />
+
+    <ImageView
+        android:id="@+id/ivSpeedNormal"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="@dimen/menu_size"
+        android:src="@mipmap/record_speed"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        />
+
+
+    <ImageView
+        android:id="@+id/ivSpeedFast"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="@dimen/menu_size"
+        android:src="@mipmap/record_speed_fast"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        />
+
+
+    <ImageView
+        android:id="@+id/ivSpeedFaster"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="@dimen/menu_size"
+        android:src="@mipmap/record_speed_faster"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="16dp"
+        />
+
+
+</LinearLayout>

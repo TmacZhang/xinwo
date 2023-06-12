@@ -21,7 +21,12 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':framework:xinresources')
+    implementation project(path: ':framework:xinutil')
     implementation 'androidx.annotation:annotation:1.4.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'com.labo.kaji:relativepopupwindow:0.3.1'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 }
 
 

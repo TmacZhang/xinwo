@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AlertDialog;
 
-import com.xinwo.feed.base.ConstantApp;
+import com.xinwo.base.ConstantApp;
 import com.xjh.xinwo.R;
 
 import java.util.Map;

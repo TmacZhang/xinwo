@@ -1,0 +1,102 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 31
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 31
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters "armeabi-v7a"
+            // DO NOT MODIFY THIS LINE, IT'S UPDATED BY BUILD MACHINE AUTOMATICALLY.
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+}
+
+dependencies {
+    // ktv相关
+    implementation project(path: ':framework:agora-ktv-kit-release')
+    implementation project(path: ':framework:mvp')
+    implementation project(path: ':framework:litesdk')
+    implementation project(path: ':framework:nativesdk')
+    implementation project(path: ':framework:xinview')
+    implementation project(path: ':framework:xinresources')
+    implementation project(path: ':framework:base-framework')
+
+    implementation project(path: ':library:xin-log')
+    implementation project(path: ':library:xin-application')
+    // 各种控件集合
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+
+    implementation 'com.labo.kaji:relativepopupwindow:0.3.1'
+    //Glide
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    // 权限申请？
+    implementation 'com.github.dfqin:grantor:2.5'
+    // adapter
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50'
+    // 圆形ImageView
+    implementation 'com.github.SheHuan:NiceImageView:1.0.5'
+    // 沉浸式状态栏
+    implementation 'com.jaeger.statusbarutil:library:1.5.1'
+    // 微信
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    // jwt
+    implementation 'com.auth0.android:jwtdecode:1.3.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.googlecode.mp4parser:isoparser:1.1.7'
+    implementation 'org.adw.library:discrete-seekbar:1.0.1'
+    implementation 'org.greenrobot:eventbus:3.0.0'
+    implementation 'org.slf4j:slf4j-api:1.7.25'
+
+    // 添加依赖。注意，版本号必须一致。
+    // 基础功能 (必需)
+    implementation 'com.netease.nimlib:basesdk:7.5.0'
+    // 音视频和互动白板服务需要
+    implementation 'com.netease.nimlib:nrtc:7.5.0'
+    // 音视频需要
+    implementation 'com.netease.nimlib:avchat:7.5.0'
+    // 聊天室需要
+    implementation 'com.netease.nimlib:chatroom:7.5.0'
+    // 互动白板服务需要
+    implementation 'com.netease.nimlib:rts:7.5.0'
+    // 全文检索服务需要
+    implementation 'com.netease.nimlib:lucene:7.5.0'
+    // 小米等厂商推送需要
+    implementation 'com.netease.nimlib:push:7.5.0'
+
+    // test相关
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation 'junit:junit:4.12'
+
+    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.7.20"
+}

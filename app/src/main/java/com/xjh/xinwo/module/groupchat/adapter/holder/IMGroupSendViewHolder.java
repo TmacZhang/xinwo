@@ -17,18 +17,17 @@ import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.shehuan.niv.NiceImageView;
+import com.xinwo.social.chat.entity.Link;
+import com.xinwo.xinutil.Constants;
+import com.xinwo.xinutil.FileUtils;
+import com.xinwo.xinutil.Utils;
+import com.xinwo.xinview.BubbleImageView;
+import com.xinwo.xinview.BubbleLinearLayout;
+import com.xinwo.xinview.GifTextView;
 import com.xjh.xinwo.R;
-import com.xjh.xinwo.enity.IMContact;
-import com.xjh.xinwo.enity.ImGroupMessageInfo;
-import com.xjh.xinwo.enity.Link;
+import com.xinwo.social.chat.entity.IMContact;
+import com.xinwo.social.chat.entity.ImGroupMessageInfo;
 import com.xjh.xinwo.module.groupchat.adapter.IMGroupAdapter;
-import com.xjh.xinwo.util.Constants;
-import com.xjh.xinwo.util.FileUtils;
-import com.xjh.xinwo.util.Utils;
-import com.xjh.xinwo.widget.BubbleImageView;
-import com.xjh.xinwo.widget.BubbleLinearLayout;
-import com.xjh.xinwo.widget.GifTextView;
-
 
 public class IMGroupSendViewHolder extends BaseViewHolder<ImGroupMessageInfo> {
     private static final String TAG = "IMGroupSendViewHolder";

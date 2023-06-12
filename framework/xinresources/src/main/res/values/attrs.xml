@@ -1,0 +1,95 @@
+<resources>
+
+    <!-- Declare custom theme attributes that allow changing which styles are
+         used for button bars depending on the API level.
+         ?android:attr/buttonBarStyle is new as of API 11 so this is
+         necessary to support previous API levels. -->
+    <declare-styleable name="ButtonBarContainerTheme">
+        <attr name="metaButtonBarStyle" format="reference" />
+        <attr name="metaButtonBarButtonStyle" format="reference" />
+    </declare-styleable>
+
+    <!-- 按钮自定义属性 -->
+    <declare-styleable name="StateButton">
+        <!--text color-->
+        <attr name="normalTextColor" format="color|reference" />
+        <attr name="pressedTextColor" format="color|reference" />
+        <attr name="unableTextColor" format="color|reference" />
+
+        <!--stroke width and color, dash width, dash gap-->
+        <attr name="strokeDashWidth" format="dimension|reference" />
+        <attr name="strokeDashGap" format="dimension|reference" />
+        <attr name="normalStrokeWidth" format="dimension|reference" />
+        <attr name="pressedStrokeWidth" format="dimension|reference" />
+        <attr name="unableStrokeWidth" format="dimension|reference" />
+        <attr name="normalStrokeColor" format="color|reference" />
+        <attr name="pressedStrokeColor" format="color|reference" />
+        <attr name="unableStrokeColor" format="color|reference" />
+
+        <!--background color-->
+        <attr name="normalBackgroundColor" format="color|reference" />
+        <attr name="pressedBackgroundColor" format="color|reference" />
+        <attr name="unableBackgroundColor" format="color|reference" />
+
+        <!--background radius-->
+        <attr name="radius" format="dimension|reference" />
+        <attr name="roundButton" format="boolean|reference" />
+
+        <!--animation duration-->
+        <attr name="animationDuration" format="integer|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="BubbleView">
+        <attr name="arrowWidth" format="dimension" />
+        <attr name="angle" format="dimension" />
+        <attr name="arrowHeight" format="dimension" />
+        <attr name="arrowPosition" format="dimension" />
+        <attr name="bubbleColor" format="color" />
+        <attr name="arrowLocation" format="enum">
+            <enum name="left" value="0x00" />
+            <enum name="right" value="0x01" />
+            <enum name="top" value="0x02" />
+            <enum name="bottom" value="0x03" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="ButtonStyle">
+        <attr name="corner" format="dimension" />
+        <attr name="press_color" format="reference|color" />
+        <attr name="normal_color" format="reference|color" />
+        <attr name="stroke_width" format="dimension" />
+        <attr name="stroke_color" format="reference|color" />
+        <attr name="type">
+            <enum name="ok" value="1" />
+            <enum name="info" value="2" />
+            <enum name="warning" value="3" />
+            <enum name="error" value="4" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="SectionProgressBar">
+        <attr name="section_firstProgressColor" format="color|reference" />
+        <attr name="section_secondProgressColor" format="color|reference" />
+        <attr name="section_splitLineColor" format="color|reference" />
+        <attr name="section_maxProgress" format="integer" />
+        <attr name="section_splitLineWidth" format="dimension|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="BreatheButton">
+        <attr name="outer_circle_color" format="color|reference" />
+        <attr name="outer_circle_radius" format="dimension" />
+        <attr name="inner_circle_color" format="color|reference" />
+        <attr name="inner_circle_radius" format="dimension" />
+        <attr name="breathe_ratio" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="StatusTextView">
+        <attr name="text" format="string|reference" />
+        <attr name="textSize" format="dimension|reference" />
+        <attr name="unselected_color" format="color|reference" />
+        <attr name="selected_color" format="color|reference" />
+        <attr name="selected" format="boolean" />
+        <attr name="android:gravity" />
+    </declare-styleable>
+
+</resources>

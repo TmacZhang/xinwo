@@ -12,10 +12,11 @@ import androidx.fragment.app.FragmentManager;
 
 import com.github.dfqin.grantor.PermissionListener;
 import com.github.dfqin.grantor.PermissionsUtil;
-import com.xjh.gestureheart.record.FUDualInputToTextureExampleFragment;
+
+import com.xinwo.produce.record.FUDualInputToTextureExampleFragment;
 import com.xjh.xinwo.R;
-import com.xinwo.feed.base.BaseActivity;
-import com.xjh.xinwo.module.chat.fragment.ChatFragment;
+import com.xinwo.base.BaseActivity;
+import com.xinwo.social.chat.fragment.ChatFragment;
 import com.xjh.xinwo.module.groupchat.fragment.GroupChatFragment;
 
 import java.util.Map;

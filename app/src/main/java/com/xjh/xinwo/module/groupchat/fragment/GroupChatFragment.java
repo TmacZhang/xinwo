@@ -34,34 +34,34 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.github.dfqin.grantor.PermissionListener;
 import com.github.dfqin.grantor.PermissionsUtil;
 import com.labo.kaji.relativepopupwindow.RelativePopupWindow;
+import com.xinwo.social.chat.ChatContextMenu;
+import com.xinwo.social.chat.EmotionInputDetector;
+import com.xinwo.social.chat.IMGroupInputDetector;
+import com.xinwo.social.chat.entity.ImMessageInfo;
+import com.xinwo.social.chat.entity.Link;
+import com.xinwo.xinutil.Constants;
+import com.xinwo.xinutil.GlobalOnItemClickManagerUtils;
+import com.xinwo.xinutil.MediaManager;
+import com.xinwo.xinview.NoScrollViewPager;
+import com.xinwo.xinview.StateButton;
 import com.xjh.xinwo.R;
-import com.xjh.xinwo.adapter.ChatAdapter;
-import com.xjh.xinwo.adapter.CommonFragmentPagerAdapter;
-import com.xinwo.feed.base.BaseApplication;
-import com.xjh.xinwo.enity.ChatGameEntity;
+import com.xinwo.social.chat.adapter.ChatAdapterV2;
+import com.xinwo.social.chat.adapter.CommonFragmentPagerAdapter;
+import com.xinwo.base.BaseApplication;
+import com.xinwo.social.chat.entity.ChatGameEntity;
 import com.xjh.xinwo.enity.FullImageInfo;
 import com.xjh.xinwo.enity.FunctionEnvEntity;
-import com.xjh.xinwo.enity.ImMessageInfo;
 import com.xjh.xinwo.enity.KTVPeopleEntity;
-import com.xjh.xinwo.enity.Link;
 import com.xjh.xinwo.module.MainActivity;
-import com.xjh.xinwo.module.chat.activity.FullImageActivity;
-import com.xjh.xinwo.module.chat.fragment.ChatEmotionFragment;
-import com.xjh.xinwo.module.chat.fragment.ChatFunctionFragment;
+import com.xinwo.social.chat.activity.FullImageActivity;
+import com.xinwo.social.chat.fragment.ChatEmotionFragment;
+import com.xinwo.social.chat.fragment.ChatFunctionFragment;
 import com.xjh.xinwo.module.groupchat.adapter.ChatGameAdapter;
 import com.xjh.xinwo.module.groupchat.adapter.FunctionEvnAdapter;
 import com.xjh.xinwo.module.groupchat.adapter.KTVPeopleAdapter;
 import com.xjh.xinwo.module.ktv.BaseAgoraFragment;
-import com.xinwo.feed.base.AGEventHandler;
-import com.xinwo.feed.base.ConstantApp;
-import com.xjh.xinwo.util.Constants;
-import com.xjh.xinwo.util.GlobalOnItemClickManagerUtils;
-import com.xjh.xinwo.util.MediaManager;
-import com.xjh.xinwo.widget.ChatContextMenu;
-import com.xjh.xinwo.widget.EmotionInputDetector;
-import com.xjh.xinwo.widget.IMGroupInputDetector;
-import com.xjh.xinwo.widget.NoScrollViewPager;
-import com.xjh.xinwo.widget.StateButton;
+import com.xinwo.base.AGEventHandler;
+import com.xinwo.base.ConstantApp;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -95,7 +95,7 @@ public class GroupChatFragment extends BaseAgoraFragment implements View.OnClick
     private ChatFunctionFragment chatFunctionFragment;
     private CommonFragmentPagerAdapter adapter;
 
-    private ChatAdapter chatAdapter;
+    private ChatAdapterV2 chatAdapter;
     private LinearLayoutManager layoutManager;
     private List<ImMessageInfo> messageInfos;
     //录音相关
@@ -436,10 +436,7 @@ public class GroupChatFragment extends BaseAgoraFragment implements View.OnClick
 
         imGroupFragment.setDetector(imGroupInputDetector);
 
-        GlobalOnItemClickManagerUtils globalOnItemClickListener = GlobalOnItemClickManagerUtils.getInstance(getContext());
-        globalOnItemClickListener.attachToEditText(editText);
-
-        chatAdapter = new ChatAdapter(messageInfos);
+        chatAdapter = new ChatAdapterV2(messageInfos);
         layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         chatList.setLayoutManager(layoutManager);
@@ -474,7 +471,7 @@ public class GroupChatFragment extends BaseAgoraFragment implements View.OnClick
     /**
      * item点击事件
      */
-    private ChatAdapter.onItemClickListener itemClickListener = new ChatAdapter.onItemClickListener() {
+    private ChatAdapterV2.onItemClickListener itemClickListener = new ChatAdapterV2.onItemClickListener() {
         @Override
         public void onHeaderClick(int position) {
             Toast.makeText(getContext(), "onHeaderClick", Toast.LENGTH_SHORT).show();

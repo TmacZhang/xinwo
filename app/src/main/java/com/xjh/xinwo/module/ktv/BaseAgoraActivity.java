@@ -15,12 +15,12 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.xinwo.feed.base.BaseActivity;
-import com.xinwo.feed.base.ConstantApp;
-import com.xinwo.feed.base.EngineConfig;
-import com.xinwo.feed.base.MyEngineEventHandler;
-import com.xinwo.feed.base.BaseApplication;
-import com.xinwo.feed.base.WorkerThread;
+import com.xinwo.base.BaseActivity;
+import com.xinwo.base.ConstantApp;
+import com.xinwo.base.EngineConfig;
+import com.xinwo.base.MyEngineEventHandler;
+import com.xinwo.base.BaseApplication;
+import com.xinwo.base.WorkerThread;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

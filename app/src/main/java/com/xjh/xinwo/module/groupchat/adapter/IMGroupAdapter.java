@@ -8,13 +8,12 @@ import android.widget.ImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shehuan.niv.NiceImageView;
+import com.xinwo.xinutil.Constants;
 import com.xjh.xinwo.R;
-import com.xjh.xinwo.enity.ImGroupMessageInfo;
-import com.xjh.xinwo.enity.ImMessageInfo;
+import com.xinwo.social.chat.entity.ImGroupMessageInfo;
 import com.xjh.xinwo.module.groupchat.adapter.holder.BaseViewHolder;
 import com.xjh.xinwo.module.groupchat.adapter.holder.IMGroupAcceptViewHolder;
 import com.xjh.xinwo.module.groupchat.adapter.holder.IMGroupSendViewHolder;
-import com.xjh.xinwo.util.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
