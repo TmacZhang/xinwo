@@ -120,10 +120,10 @@
         </activity>
 
         <activity
-            android:theme="@style/AppTheme"
             android:name=".module.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -185,7 +185,7 @@
             android:launchMode="singleTask" />
 
         <activity
-            android:name="com.xjh.gestureheart.activity.PreviewActivity"
+            android:name="com.xinwo.produce.gestureheart.activity.PreviewActivity"
             android:launchMode="singleTask" />
     </application>
 

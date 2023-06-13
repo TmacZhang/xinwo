@@ -350,6 +350,7 @@ public class GroupChatActivity extends AppCompatActivity implements View.OnClick
 //                .bindToAudioVideoButton(ivChatAudioVideo)
                 .build();
 
+        chatEmotionFragment.attachToEditText(editText);
         chatAdapter = new ChatAdapterV2(messageInfos);
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
