@@ -9,7 +9,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="MissingClass">
 
-
+        <activity android:name=".profile.thirdparty.WXEntryActivity"></activity>
     </application>
 
 </manifest>

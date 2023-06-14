@@ -1,4 +1,4 @@
-package com.xjh.xinwo.wxapi;
+package com.xinwo.social.profile.thirdparty;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,6 @@ import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-import com.xjh.xinwo.Constants;
 import com.xinwo.base.BaseActivity;
 import com.xinwo.social.profile.login.LocalPhoneLoginActivity;
 import com.xjh.xinwo.mvp.presenter.TagPresenter;
