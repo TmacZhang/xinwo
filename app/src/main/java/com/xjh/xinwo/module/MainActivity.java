@@ -17,7 +17,7 @@ import com.xinwo.produce.record.FUDualInputToTextureExampleFragment;
 import com.xjh.xinwo.R;
 import com.xinwo.base.BaseActivity;
 import com.xinwo.social.chat.fragment.ChatFragment;
-import com.xjh.xinwo.module.groupchat.fragment.GroupChatFragment;
+import com.xinwo.social.groupchat.fragment.GroupChatFragment;
 
 import java.util.Map;
 

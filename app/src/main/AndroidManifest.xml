@@ -110,7 +110,7 @@
 
 
         <activity
-            android:name=".module.groupchat.activity.TotalGroupChatActivity"
+            android:name="com.xinwo.social.groupchat.activity.TotalGroupChatActivity"
             android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
@@ -130,7 +130,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".module.groupchat.activity.GroupChatActivity" />
+        <activity android:name="com.xinwo.social.groupchat.activity.GroupChatActivity" />
 
         <activity
             android:name="com.xinwo.social.chat.activity.IMActivity"
@@ -171,13 +171,13 @@
             android:theme="@style/FullscreenTheme" />
 
         <activity
-            android:name=".module.ktv.MainAgoraActivity"
+            android:name="com.xinwo.social.ktv.MainAgoraActivity"
             android:launchMode="singleTask">
 
         </activity>
 
         <activity
-            android:name=".module.ktv.LiveRoomAgoraActivity"
+            android:name="com.xinwo.social.ktv.LiveRoomAgoraActivity"
             android:launchMode="singleTask" />
 
         <activity
