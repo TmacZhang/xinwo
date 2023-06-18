@@ -26,10 +26,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private final String[] fragmentTags = {ChatFragment.class.getName(),
             FUDualInputToTextureExampleFragment.class.getName(), GroupChatFragment.class.getName()};
     private Fragment mCurrentFragment;
-    private ImageView ivChat;
-    private ImageView ivCamera;
-    private ImageView ivGroupChat;
-    private View containerMainBottom;
+    private ImageView mIvChat;
+    private ImageView mIvCamera;
+    private ImageView mIvGroupChat;
+    private View mContainerMainBottom;
+    private int mCurrentTab = 0;
+    private int mLastTab = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,20 +40,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         //Log.d("jin", String.valueOf(TestKt.a));
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
         PermissionsUtil.requestPermission(this, new PermissionListener() {
-            @Override
-            public void permissionGranted(@NonNull String[] permission) {
-            }
+                    @Override
+                    public void permissionGranted(@NonNull String[] permission) {
+                    }
 
-            @Override
-            public void permissionDenied(@NonNull String[] permission) {
-                Toast.makeText(MainActivity.this, "权限申请失败", Toast.LENGTH_LONG).show();
-            }
-        }, Manifest.permission.READ_EXTERNAL_STORAGE,
+                    @Override
+                    public void permissionDenied(@NonNull String[] permission) {
+                        Toast.makeText(MainActivity.this, "权限申请失败", Toast.LENGTH_LONG).show();
+                    }
+                }, Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.CAMERA,
                 Manifest.permission.RECORD_AUDIO);
@@ -87,21 +88,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switchFragment(0);
         changeTab(0);
 
-        ivChat = findViewById(R.id.ivChat);
-        ivCamera = findViewById(R.id.ivCamera);
-        ivGroupChat = findViewById(R.id.ivGroupChat);
-        containerMainBottom = findViewById(R.id.containerMainBottom);
+        mIvChat = findViewById(R.id.ivChat);
+        mIvCamera = findViewById(R.id.ivCamera);
+        mIvGroupChat = findViewById(R.id.ivGroupChat);
+        mContainerMainBottom = findViewById(R.id.containerMainBottom);
 
-        ivChat.setOnClickListener(this);
-        ivCamera.setOnClickListener(this);
-        ivGroupChat.setOnClickListener(this);
+        mIvChat.setOnClickListener(this);
+        mIvCamera.setOnClickListener(this);
+        mIvGroupChat.setOnClickListener(this);
     }
 
     @Override
     public void loadData() {
 
     }
-
 
     private void switchFragment(int tabPosition) {
         FragmentManager fm = getSupportFragmentManager();
@@ -124,7 +124,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             mCurrentFragment = fragment;
         } else {
-            //BUG FIX: NullPointerException: Attempt to invoke virtual method 'void androidx.fragment.app.Fragment.setNextAnim(int)' on a null object reference
+            // BUG FIX: NullPointerException: Attempt to invoke virtual method
+            // 'void androidx.fragment.app.Fragment.setNextAnim(int)' on a null object reference
             if (mCurrentFragment != null) {
                 fm.beginTransaction()
                         .hide(mCurrentFragment)
@@ -156,27 +157,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         return fragment;
     }
 
-    private int mCurrentTab = 0;
-    private int mLastTab = -1;
-
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.ivChat:
-                switchFragment(0);
-                changeTab(0);
-                containerMainBottom.setVisibility(View.VISIBLE);
-                break;
-            case R.id.ivCamera:
-                switchFragment(1);
-                changeTab(1);
-                containerMainBottom.setVisibility(View.GONE);
-                break;
-            case R.id.ivGroupChat:
-                switchFragment(2);
-                changeTab(2);
-                containerMainBottom.setVisibility(View.GONE);
-                break;
+        if (v.getId() == R.id.ivChat) {
+            switchFragment(0);
+            changeTab(0);
+            mContainerMainBottom.setVisibility(View.VISIBLE);
+        } else if (v.getId() == R.id.ivCamera) {
+            switchFragment(1);
+            changeTab(1);
+            mContainerMainBottom.setVisibility(View.GONE);
+        } else if (v.getId() == R.id.ivGroupChat) {
+            switchFragment(2);
+            changeTab(2);
+            mContainerMainBottom.setVisibility(View.GONE);
         }
     }
 
@@ -191,13 +185,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void switchToLastTab() {
         switch (mLastTab) {
             case 0:
-                ivChat.performClick();
+                mIvChat.performClick();
                 break;
             case 1:
-                ivCamera.performClick();
+                mIvCamera.performClick();
                 break;
             case 2:
-                ivGroupChat.performClick();
+                mIvGroupChat.performClick();
                 break;
         }
     }
