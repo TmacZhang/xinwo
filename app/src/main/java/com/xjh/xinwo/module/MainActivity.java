@@ -1,9 +1,14 @@
 package com.xjh.xinwo.module;
 
 import android.Manifest;
+import android.content.res.Configuration;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -12,33 +17,53 @@ import androidx.fragment.app.FragmentManager;
 
 import com.github.dfqin.grantor.PermissionListener;
 import com.github.dfqin.grantor.PermissionsUtil;
-
+import com.xinwo.base.BaseActivity;
 import com.xinwo.feed.FeedFragment;
 import com.xinwo.produce.record.FUDualInputToTextureExampleFragment;
-import com.xjh.xinwo.R;
-import com.xinwo.base.BaseActivity;
 import com.xinwo.social.chat.fragment.ChatFragment;
 import com.xinwo.social.groupchat.fragment.GroupChatFragment;
+import com.xjh.xinwo.R;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private final String[] fragmentTags = {FeedFragment.class.getName(), ChatFragment.class.getName(),
             FUDualInputToTextureExampleFragment.class.getName(), GroupChatFragment.class.getName()};
     private Fragment mCurrentFragment;
-    private ImageView mIvFeed;
-    private ImageView mIvChat;
+    private TextView mIvFeed;
+    private TextView mIvChat;
     private ImageView mIvCamera;
-    private ImageView mIvGroupChat;
+    private TextView mIvGroupChat;
     private View mContainerMainBottom;
     private int mCurrentTab = 0;
     private int mLastTab = -1;
+    private List<View> mLists = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Log.d("jin", String.valueOf(TestKt.a));
+        setStatusBarColor();
+    }
+
+    private void setStatusBarColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            boolean isDark = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK)
+                    == Configuration.UI_MODE_NIGHT_YES;
+            View decorView = this.getWindow().getDecorView();
+            if (decorView != null) {
+                int vis = decorView.getSystemUiVisibility();
+                if (!isDark) {
+                    vis |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+                } else {
+                    getWindow().setStatusBarColor(Color.BLACK);
+                    vis &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+                }
+                decorView.setSystemUiVisibility(vis);
+            }
+        }
     }
 
     @Override
@@ -86,9 +111,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void initView() {
-        switchFragment(0);
-        changeTab(0);
-
         mIvFeed = findViewById(R.id.ivFeed);
         mIvChat = findViewById(R.id.ivChat);
         mIvCamera = findViewById(R.id.ivCamera);
@@ -99,6 +121,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mIvChat.setOnClickListener(this);
         mIvCamera.setOnClickListener(this);
         mIvGroupChat.setOnClickListener(this);
+        mLists.add(mIvFeed);
+        mLists.add(mIvChat);
+        mLists.add(mIvCamera);
+        mLists.add(mIvGroupChat);
+        switchFragment(0);
+        changeTab(0);
     }
 
     @Override
@@ -107,6 +135,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void switchFragment(int tabPosition) {
+
+        for (int i = 0; i < mLists.size(); i++) {
+            if (i == tabPosition) {
+                if (mLists.get(tabPosition) instanceof TextView) {
+                    ((TextView) mLists.get(tabPosition)).setTextColor(Color.BLACK);
+                    ((TextView) mLists.get(tabPosition)).setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+                }
+            } else {
+                mLists.get(i).setSelected(false);
+                if (mLists.get(i) instanceof TextView) {
+                    ((TextView) mLists.get(i)).setTextColor(Color.GRAY);
+                    ((TextView) mLists.get(i)).setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+                }
+            }
+        }
+
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentByTag(fragmentTags[tabPosition]);
         if (fragment == null) {
@@ -180,7 +224,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         } else if (v.getId() == R.id.ivGroupChat) {
             switchFragment(3);
             changeTab(3);
-            mContainerMainBottom.setVisibility(View.GONE);
+            mContainerMainBottom.setVisibility(View.VISIBLE);
         }
     }
 
