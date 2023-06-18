@@ -25,8 +25,6 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
  * @since 1.0.0
  */
 public abstract class BaseFragment extends LibRLBaseFragment {
-
-
     protected TagPresenter mPresenter;
     protected final int PAGE_SIZE = 20;
     protected int mPageNo = 0;
@@ -35,7 +33,6 @@ public abstract class BaseFragment extends LibRLBaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRLMode(PtrFrameLayout.Mode.NONE);//设置位没有refresh/loadmore功能, 这样就不会初始化RL控件. 子类可重新设置RL功能
-
     }
 
     @Override

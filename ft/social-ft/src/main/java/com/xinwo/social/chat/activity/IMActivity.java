@@ -65,23 +65,18 @@ import java.util.List;
  */
 public class IMActivity extends AppCompatActivity {
     private static final String TAG = "IMActivity";
-    RecyclerView chatList;
-    ImageView emotionVoice;
-    EditText editText;
-    ImageView emotionButton;
-    ImageView emotionAdd;
-    StateButton emotionSend;
-    NoScrollViewPager viewpager;
-    RelativeLayout emotionLayout;
+    RecyclerView mChatList;
+    ImageView mEmotionVoice;
+    EditText mEditText;
+    ImageView mEmotionButton;
+    ImageView mEmotionAdd;
+    StateButton mEmotionSend;
+    NoScrollViewPager mViewpager;
+    RelativeLayout mEmotionLayout;
 
     private EmotionInputDetector mDetector;
-    private ArrayList<Fragment> fragments;
-    private ChatEmotionFragment chatEmotionFragment;
-    private ChatFunctionFragment chatFunctionFragment;
-    private CommonFragmentPagerAdapter adapter;
 
     private ChatAdapterV2 chatAdapter;
-    private LinearLayoutManager layoutManager;
     private List<ImMessageInfo> messageInfos;
     //录音相关
     int animationRes = 0;
@@ -118,17 +113,17 @@ public class IMActivity extends AppCompatActivity {
         PermissionsUtil.requestPermission(this, new PermissionListener() {
             @Override
             public void permissionGranted(@NonNull String[] permission) {
-                Toast.makeText(IMActivity.this, "权限申请成功", Toast.LENGTH_LONG).show();
+                //Toast.makeText(IMActivity.this, "权限申请成功", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void permissionDenied(@NonNull String[] permission) {
                 Toast.makeText(IMActivity.this, "权限申请失败", Toast.LENGTH_LONG).show();
             }
-        }, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
+        }, Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.CAMERA,
-                Manifest.permission.RECORD_AUDIO});
+                Manifest.permission.RECORD_AUDIO);
 
         Log.e(TAG,"DP_1 = " + getResources().getDimension(R.dimen.dp_1) +
                 "   DP_24 = " + getResources().getDimension(R.dimen.dp_24) +
@@ -138,14 +133,14 @@ public class IMActivity extends AppCompatActivity {
     }
 
     private void findViewByIds() {
-        chatList = (RecyclerView) findViewById(R.id.chat_list);
-        emotionVoice = (ImageView) findViewById(R.id.emotion_voice);
-        editText = (EditText) findViewById(R.id.edit_text);
-        emotionButton = (ImageView) findViewById(R.id.emotion_button);
-        emotionAdd = (ImageView) findViewById(R.id.emotion_add);
-        emotionSend = (StateButton) findViewById(R.id.emotion_send);
-        emotionLayout = (RelativeLayout) findViewById(R.id.emotion_layout);
-        viewpager = (NoScrollViewPager) findViewById(R.id.viewpager);
+        mChatList = (RecyclerView) findViewById(R.id.chat_list);
+        mEmotionVoice = (ImageView) findViewById(R.id.emotion_voice);
+        mEditText = (EditText) findViewById(R.id.edit_text);
+        mEmotionButton = (ImageView) findViewById(R.id.emotion_button);
+        mEmotionAdd = (ImageView) findViewById(R.id.emotion_add);
+        mEmotionSend = (StateButton) findViewById(R.id.emotion_send);
+        mEmotionLayout = (RelativeLayout) findViewById(R.id.emotion_layout);
+        mViewpager = (NoScrollViewPager) findViewById(R.id.viewpager);
 
         ivChatCamera = findViewById(R.id.ivChatCamera);
         ivChatPic = findViewById(R.id.ivChatPic);
@@ -198,24 +193,24 @@ public class IMActivity extends AppCompatActivity {
     }
 
     private void initWidget() {
-        fragments = new ArrayList<>();
-        chatEmotionFragment = new ChatEmotionFragment();
+        ArrayList<Fragment> fragments = new ArrayList<>();
+        ChatEmotionFragment chatEmotionFragment = new ChatEmotionFragment();
         fragments.add(chatEmotionFragment);
-        chatFunctionFragment = new ChatFunctionFragment();
+        ChatFunctionFragment chatFunctionFragment = new ChatFunctionFragment();
         fragments.add(chatFunctionFragment);
-        adapter = new CommonFragmentPagerAdapter(getSupportFragmentManager(), fragments);
-        viewpager.setAdapter(adapter);
-        viewpager.setCurrentItem(0);
+        CommonFragmentPagerAdapter adapter = new CommonFragmentPagerAdapter(getSupportFragmentManager(), fragments);
+        mViewpager.setAdapter(adapter);
+        mViewpager.setCurrentItem(0);
 
         mDetector = EmotionInputDetector.with(this)
-                .setEmotionView(emotionLayout)
-                .setViewPager(viewpager)
-                .bindToContent(chatList)
-                .bindToEditText(editText)
-                .bindToEmotionButton(emotionButton)
-                .bindToAddButton(emotionAdd)
-                .bindToSendButton(emotionSend)
-                .bindToVoiceButton(emotionVoice)
+                .setEmotionView(mEmotionLayout)
+                .setViewPager(mViewpager)
+                .bindToContent(mChatList)
+                .bindToEditText(mEditText)
+                .bindToEmotionButton(mEmotionButton)
+                .bindToAddButton(mEmotionAdd)
+                .bindToSendButton(mEmotionSend)
+                .bindToVoiceButton(mEmotionVoice)
                 .bindToCameraButton(ivChatCamera)
                 .bindToPicButton(ivChatPic)
                 .bindToGameButton(ivChatGame)
@@ -223,14 +218,14 @@ public class IMActivity extends AppCompatActivity {
                 .bindToAudioVideoButton(ivChatAudioVideo)
                 .build();
 
-       chatEmotionFragment.attachToEditText(editText);
+       chatEmotionFragment.attachToEditText(mEditText);
 
         chatAdapter = new ChatAdapterV2(messageInfos);
-        layoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
-        chatList.setLayoutManager(layoutManager);
-        chatList.setAdapter(chatAdapter);
-        chatList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        mChatList.setLayoutManager(layoutManager);
+        mChatList.setAdapter(chatAdapter);
+        mChatList.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 switch (newState) {
@@ -421,7 +416,7 @@ public class IMActivity extends AppCompatActivity {
         messageInfos.add(messageInfo);
         chatAdapter.notifyItemInserted(messageInfos.size() - 1);
 //        chatAdapter.add(messageInfo);
-        chatList.scrollToPosition(chatAdapter.getItemCount() - 1);
+        mChatList.scrollToPosition(chatAdapter.getItemCount() - 1);
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 messageInfo.setSendState(Constants.CHAT_ITEM_SEND_SUCCESS);
@@ -437,7 +432,7 @@ public class IMActivity extends AppCompatActivity {
                 message.setHeader("http://img0.imgtn.bdimg.com/it/u=401967138,750679164&fm=26&gp=0.jpg");
                 messageInfos.add(message);
                 chatAdapter.notifyItemInserted(messageInfos.size() - 1);
-                chatList.scrollToPosition(chatAdapter.getItemCount() - 1);
+                mChatList.scrollToPosition(chatAdapter.getItemCount() - 1);
             }
         }, 3000);
     }
@@ -471,6 +466,5 @@ public class IMActivity extends AppCompatActivity {
         EventBus.getDefault().removeStickyEvent(this);
         EventBus.getDefault().unregister(this);
     }
-
 
 }

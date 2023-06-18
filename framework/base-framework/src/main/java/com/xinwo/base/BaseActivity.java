@@ -73,9 +73,6 @@ public abstract class BaseActivity extends LibRLBaseActivity {
     }
 
     private void beforeError(Throwable e, int tag) {
-//        if(BuildConfig.DEBUG){
-//            e.printStackTrace();
-//        }
         if (isLoadingMore() && mPageNo > 0) {
             --mPageNo;
         }

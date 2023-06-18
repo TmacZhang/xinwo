@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import com.github.dfqin.grantor.PermissionListener;
 import com.github.dfqin.grantor.PermissionsUtil;
 
+import com.xinwo.feed.FeedFragment;
 import com.xinwo.produce.record.FUDualInputToTextureExampleFragment;
 import com.xjh.xinwo.R;
 import com.xinwo.base.BaseActivity;
@@ -21,11 +22,11 @@ import com.xinwo.social.groupchat.fragment.GroupChatFragment;
 
 import java.util.Map;
 
-
 public class MainActivity extends BaseActivity implements View.OnClickListener {
-    private final String[] fragmentTags = {ChatFragment.class.getName(),
+    private final String[] fragmentTags = {FeedFragment.class.getName(), ChatFragment.class.getName(),
             FUDualInputToTextureExampleFragment.class.getName(), GroupChatFragment.class.getName()};
     private Fragment mCurrentFragment;
+    private ImageView mIvFeed;
     private ImageView mIvChat;
     private ImageView mIvCamera;
     private ImageView mIvGroupChat;
@@ -88,11 +89,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switchFragment(0);
         changeTab(0);
 
+        mIvFeed = findViewById(R.id.ivFeed);
         mIvChat = findViewById(R.id.ivChat);
         mIvCamera = findViewById(R.id.ivCamera);
         mIvGroupChat = findViewById(R.id.ivGroupChat);
         mContainerMainBottom = findViewById(R.id.containerMainBottom);
 
+        mIvFeed.setOnClickListener(this);
         mIvChat.setOnClickListener(this);
         mIvCamera.setOnClickListener(this);
         mIvGroupChat.setOnClickListener(this);
@@ -145,12 +148,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Fragment fragment = null;
         switch (tabPosition) {
             case 0:
-                fragment = new ChatFragment();
+                fragment = new FeedFragment();
                 break;
             case 1:
-                fragment = new FUDualInputToTextureExampleFragment();
+                fragment = new ChatFragment();
                 break;
             case 2:
+                fragment = new FUDualInputToTextureExampleFragment();
+                break;
+            case 3:
                 fragment = new GroupChatFragment();
                 break;
         }
@@ -159,17 +165,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.ivChat) {
+        if (v.getId() == R.id.ivFeed) {
             switchFragment(0);
             changeTab(0);
             mContainerMainBottom.setVisibility(View.VISIBLE);
-        } else if (v.getId() == R.id.ivCamera) {
+        } else if (v.getId() == R.id.ivChat) {
             switchFragment(1);
             changeTab(1);
-            mContainerMainBottom.setVisibility(View.GONE);
-        } else if (v.getId() == R.id.ivGroupChat) {
+            mContainerMainBottom.setVisibility(View.VISIBLE);
+        } else if (v.getId() == R.id.ivCamera) {
             switchFragment(2);
             changeTab(2);
+            mContainerMainBottom.setVisibility(View.GONE);
+        } else if (v.getId() == R.id.ivGroupChat) {
+            switchFragment(3);
+            changeTab(3);
             mContainerMainBottom.setVisibility(View.GONE);
         }
     }
@@ -185,12 +195,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void switchToLastTab() {
         switch (mLastTab) {
             case 0:
-                mIvChat.performClick();
+                mIvFeed.performClick();
                 break;
             case 1:
-                mIvCamera.performClick();
+                mIvChat.performClick();
                 break;
             case 2:
+                mIvCamera.performClick();
+                break;
+            case 3:
                 mIvGroupChat.performClick();
                 break;
         }

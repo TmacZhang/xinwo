@@ -39,6 +39,7 @@ dependencies {
     implementation project(path: ':framework:agora-ktv-kit-release')
     implementation project(path: ':framework:mvp')
     implementation project(path: ':framework:litesdk')
+    implementation project(path: ':framework:base-framework')
     implementation project(path: ':framework:nativesdk')
     implementation project(path: ':framework:xinview')
 

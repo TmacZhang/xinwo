@@ -22,6 +22,21 @@
         android:orientation="horizontal"
         android:gravity="center_vertical"
         >
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            >
+
+            <ImageView
+                android:id="@+id/ivFeed"
+                android:layout_width="@dimen/dp_18"
+                android:layout_height="@dimen/dp_18"
+                android:src="@mipmap/bottom_button_chat_selected"
+                />
+
+        </RelativeLayout>
         
         <RelativeLayout
             android:layout_width="0dp"

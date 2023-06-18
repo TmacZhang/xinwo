@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.Map;
 
 public class ChatFragment extends BaseFragment {
-
     private StoryAdapter mStoryAdapter;
     private RecyclerView rvStory;
     private ChatAdapter mChatAdapter;
