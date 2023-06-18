@@ -1,6 +1,6 @@
 # compiler: R8
 # compiler_version: 2.1.62
-# pg_map_id: f098340
+# pg_map_id: 65a48ed
 # common_typos_disable
 com.cavalry.androidlib.LibApplication -> com.cavalry.androidlib.LibApplication:
     10:10:void <init>() -> <init>
@@ -85,6 +85,7 @@ com.cavalry.androidlib.view.stateview.view.PageStateLayout -> com.cavalry.androi
     77:87:android.view.View initLoadingView() -> initLoadingView
     47:73:void show(com.cavalry.androidlib.view.stateview.view.PageStateLayout$PageState,android.view.View$OnClickListener) -> show
 com.cavalry.androidlib.view.stateview.view.PageStateLayout$PageState -> com.cavalry.androidlib.view.stateview.view.PageStateLayout$PageState:
+    116:116:com.cavalry.androidlib.view.stateview.view.PageStateLayout$PageState[] $values() -> $values
     116:117:void <clinit>() -> <clinit>
     116:116:void <init>(java.lang.String,int) -> <init>
     116:116:com.cavalry.androidlib.view.stateview.view.PageStateLayout$PageState valueOf(java.lang.String) -> valueOf
@@ -134,6 +135,7 @@ com.cavalry.androidlib.view.stateview.view.RippleView$2 -> com.cavalry.androidli
     122:122:boolean onSingleTapConfirmed(android.view.MotionEvent) -> onSingleTapConfirmed
     127:127:boolean onSingleTapUp(android.view.MotionEvent) -> onSingleTapUp
 com.cavalry.androidlib.view.stateview.view.RippleView$RippleType -> com.cavalry.androidlib.view.stateview.view.RippleView$RippleType:
+    461:461:com.cavalry.androidlib.view.stateview.view.RippleView$RippleType[] $values() -> $values
     461:464:void <clinit>() -> <clinit>
     469:471:void <init>(java.lang.String,int,int) -> <init>
     461:461:com.cavalry.androidlib.view.stateview.view.RippleView$RippleType valueOf(java.lang.String) -> valueOf

@@ -4,73 +4,96 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F6FA"
-    tools:context=".module.MainActivity"
     android:orientation="vertical"
-    >
-    
+    tools:context=".module.MainActivity">
+
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        />
+        android:layout_weight="1" />
 
     <LinearLayout
         android:id="@+id/containerMainBottom"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_24"
-        android:orientation="horizontal"
         android:gravity="center_vertical"
-        >
-        
+        android:orientation="horizontal">
+
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            >
-            
-            <ImageView
-                android:id="@+id/ivChat"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/ivFeed"
                 android:layout_width="@dimen/dp_18"
                 android:layout_height="@dimen/dp_18"
-                android:src="@mipmap/bottom_button_chat_selected"
-                />
-            
+                android:gravity="center"
+                android:text="首页" />
+
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            >
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/ivChat"
+                android:layout_width="@dimen/dp_18"
+                android:layout_height="@dimen/dp_18"
+                android:gravity="center"
+                android:text="消息" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
 
             <ImageView
                 android:id="@+id/ivCamera"
                 android:layout_width="@dimen/dp_18"
                 android:layout_height="@dimen/dp_18"
-                android:src="@mipmap/bottom_button_camera_unselected"
-                />
+                android:layout_centerInParent="true"
+                android:src="@mipmap/bottom_button_camera_unselected" />
 
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            >
+            android:layout_weight="1"
+            android:gravity="center">
 
-            <ImageView
+            <TextView
                 android:id="@+id/ivGroupChat"
                 android:layout_width="@dimen/dp_18"
                 android:layout_height="@dimen/dp_18"
-                android:src="@mipmap/bottom_button_group_chat_unselected"
-                />
+                android:gravity="center"
+                android:text="群聊" />
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/ivProfile"
+                android:layout_width="@dimen/dp_18"
+                android:layout_height="@dimen/dp_18"
+                android:gravity="center"
+                android:text="我" />
+
+        </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>
