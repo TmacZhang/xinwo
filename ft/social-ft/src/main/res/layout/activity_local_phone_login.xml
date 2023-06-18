@@ -44,7 +44,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
 
-    <com.xjh.xinwo.view.ButtonStyle
+    <com.xinwo.xinview.ButtonStyle
         android:id="@+id/btnLocalPhoneLogin"
         android:layout_width="0dp"
         android:layout_height="@dimen/dp_22"
@@ -65,7 +65,7 @@
         app:stroke_width="0dp"
         />
 
-    <com.xjh.xinwo.view.ButtonStyle
+    <com.xinwo.xinview.ButtonStyle
         android:id="@+id/btnOtherPhoneLogin"
         android:layout_width="0dp"
         android:layout_height="@dimen/dp_22"
