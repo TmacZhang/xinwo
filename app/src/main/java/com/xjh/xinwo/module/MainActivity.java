@@ -146,7 +146,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void switchFragment(int tabPosition) {
-
         for (int i = 0; i < mLists.size(); i++) {
             if (i == tabPosition) {
                 if (mLists.get(tabPosition) instanceof TextView) {
