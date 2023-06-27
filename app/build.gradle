@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 import com.xinwo.version.deps;
+
 android {
     compileSdkVersion 31
     defaultConfig {
@@ -38,24 +39,24 @@ android {
 dependencies {
     //业务相关
     implementation project(deps.library.xin.feed_ft)
+    implementation project(deps.library.xin.social_ft)
+    implementation project(deps.library.xin.produce_ft)
 
-    implementation project(path: ':ft:produce-ft')
-    implementation project(path: ':ft:social-ft')
     // framework相关
-    implementation project(path: ':framework:agora-ktv-kit-release')
-    implementation project(path: ':framework:mvp')
-    implementation project(path: ':framework:litesdk')
-    implementation project(path: ':framework:nativesdk')
-    implementation project(path: ':framework:xinview')
-    implementation project(path: ':framework:xinresources')
-    implementation project(path: ':framework:base-framework')
-    implementation project(path: ':framework:xinutil')
+    implementation deps.library.xin.agora_ktv_framework
+    implementation deps.library.xin.mvp_framework
+    implementation deps.library.xin.litesdk_framework
+    implementation deps.library.xin.nativesdk_framework
+    implementation deps.library.xin.xinview_framework
+    implementation deps.library.xin.xinresources_framework
+    implementation deps.library.xin.base_framework
+    implementation deps.library.xin.xinutil_framework
 
-    implementation project(path: ':library:xin-network')
-    implementation project(path: ':library:xin-log')
+    implementation deps.library.xin.xin_network
+    implementation deps.library.xin.xin_log
 
-    implementation 'com.github.dfqin:grantor:2.5'
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-    implementation 'androidx.core:core-ktx:1.0.2'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.7.20"
+    implementation deps.library.third_party.dfqin
+    implementation deps.library.third_party.appcompat
+    implementation deps.library.third_party.core_ktx
+    implementation deps.library.third_party.kotlin_lib
 }
