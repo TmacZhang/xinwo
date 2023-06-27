@@ -43,17 +43,17 @@ dependencies {
     implementation project(deps.library.xin.produce_ft)
 
     // framework相关
-    implementation deps.library.xin.agora_ktv_framework
-    implementation deps.library.xin.mvp_framework
-    implementation deps.library.xin.litesdk_framework
-    implementation deps.library.xin.nativesdk_framework
-    implementation deps.library.xin.xinview_framework
-    implementation deps.library.xin.xinresources_framework
-    implementation deps.library.xin.base_framework
-    implementation deps.library.xin.xinutil_framework
+    implementation project(deps.library.xin.agora_ktv_framework)
+    implementation project(deps.library.xin.mvp_framework)
+    implementation project(deps.library.xin.litesdk_framework)
+    implementation project(deps.library.xin.nativesdk_framework)
+    implementation project(deps.library.xin.xinview_framework)
+    implementation project(deps.library.xin.xinresources_framework)
+    implementation project(deps.library.xin.base_framework)
+    implementation project(deps.library.xin.xinutil_framework)
 
-    implementation deps.library.xin.xin_network
-    implementation deps.library.xin.xin_log
+    implementation project(deps.library.xin.xin_network)
+    implementation project(deps.library.xin.xin_log)
 
     implementation deps.library.third_party.dfqin
     implementation deps.library.third_party.appcompat

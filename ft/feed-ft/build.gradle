@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+import com.xinwo.version.deps;
 
 android {
     compileSdkVersion 31
@@ -35,16 +36,21 @@ android {
 }
 
 dependencies {
-    // ktv相关
-    implementation project(path: ':framework:agora-ktv-kit-release')
-    implementation project(path: ':framework:mvp')
-    implementation project(path: ':framework:litesdk')
-    implementation project(path: ':framework:base-framework')
-    implementation project(path: ':framework:nativesdk')
-    implementation project(path: ':framework:xinview')
+    //业务相关
+    implementation project(deps.library.xin.feed_ft)
+    implementation project(deps.library.xin.social_ft)
+    implementation project(deps.library.xin.produce_ft)
 
-    implementation project(path: ':library:xin-log')
-    implementation project(path: ':library:xin-application')
+    // framework相关
+    implementation project(deps.library.xin.agora_ktv_framework)
+    implementation project(deps.library.xin.mvp_framework)
+    implementation project(deps.library.xin.litesdk_framework)
+    implementation project(deps.library.xin.nativesdk_framework)
+    implementation project(deps.library.xin.xinview_framework)
+    implementation project(deps.library.xin.xinresources_framework)
+    implementation project(deps.library.xin.base_framework)
+    implementation project(deps.library.xin.xinutil_framework)
+    implementation project(deps.library.xin.xin_application)
     // 各种控件集合
 
     implementation 'androidx.appcompat:appcompat:1.1.0'

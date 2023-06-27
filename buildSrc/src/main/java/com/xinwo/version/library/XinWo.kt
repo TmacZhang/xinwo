@@ -5,8 +5,6 @@ class XinWo {
     val produce_ft = ":ft:produce-ft"
     val social_ft = ":ft:social-ft"
 
-
-
     val agora_ktv_framework = ":framework:agora-ktv-kit-release"
     val mvp_framework = ":framework:mvp"
     val litesdk_framework = ":framework:litesdk"
@@ -18,4 +16,5 @@ class XinWo {
 
     val xin_network = ":library:xin-network"
     val xin_log = ":library:xin-log"
+    val xin_application = ":library:xin-application"
 }
