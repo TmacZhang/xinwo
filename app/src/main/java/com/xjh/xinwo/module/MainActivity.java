@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private final String[] fragmentTags = {FeedFragment.class.getName(), ChatFragment.class.getName(),
             FUDualInputToTextureExampleFragment.class.getName(), GroupChatFragment.class.getName()};
     private Fragment mCurrentFragment;
+
+    private RelativeLayout mRelativeFeed;
+    private RelativeLayout mRelativeChat;
+    private RelativeLayout mRelativeCamera;
+    private RelativeLayout mRelativeGroupChat;
+
     private TextView mIvFeed;
     private TextView mIvChat;
     private ImageView mIvCamera;
@@ -111,16 +118,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void initView() {
+        mRelativeFeed  =findViewById(R.id.relativeFeed);
+        mRelativeChat = findViewById(R.id.relativeChat);
+        mRelativeCamera = findViewById(R.id.relativeCamera);
+        mRelativeGroupChat = findViewById(R.id.relativeGroupChat);
         mIvFeed = findViewById(R.id.ivFeed);
         mIvChat = findViewById(R.id.ivChat);
         mIvCamera = findViewById(R.id.ivCamera);
         mIvGroupChat = findViewById(R.id.ivGroupChat);
         mContainerMainBottom = findViewById(R.id.containerMainBottom);
 
-        mIvFeed.setOnClickListener(this);
-        mIvChat.setOnClickListener(this);
-        mIvCamera.setOnClickListener(this);
-        mIvGroupChat.setOnClickListener(this);
+        mRelativeFeed.setOnClickListener(this);
+        mRelativeChat.setOnClickListener(this);
+        mRelativeCamera.setOnClickListener(this);
+        mRelativeGroupChat.setOnClickListener(this);
         mLists.add(mIvFeed);
         mLists.add(mIvChat);
         mLists.add(mIvCamera);
@@ -135,7 +146,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void switchFragment(int tabPosition) {
-
         for (int i = 0; i < mLists.size(); i++) {
             if (i == tabPosition) {
                 if (mLists.get(tabPosition) instanceof TextView) {
@@ -209,19 +219,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.ivFeed) {
+        if (v.getId() == R.id.relativeFeed) {
             switchFragment(0);
             changeTab(0);
             mContainerMainBottom.setVisibility(View.VISIBLE);
-        } else if (v.getId() == R.id.ivChat) {
+        } else if (v.getId() == R.id.relativeChat) {
             switchFragment(1);
             changeTab(1);
             mContainerMainBottom.setVisibility(View.VISIBLE);
-        } else if (v.getId() == R.id.ivCamera) {
+        } else if (v.getId() == R.id.relativeCamera) {
             switchFragment(2);
             changeTab(2);
             mContainerMainBottom.setVisibility(View.GONE);
-        } else if (v.getId() == R.id.ivGroupChat) {
+        } else if (v.getId() == R.id.relativeGroupChat) {
             switchFragment(3);
             changeTab(3);
             mContainerMainBottom.setVisibility(View.VISIBLE);
@@ -239,16 +249,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void switchToLastTab() {
         switch (mLastTab) {
             case 0:
-                mIvFeed.performClick();
+                mRelativeFeed.performClick();
                 break;
             case 1:
-                mIvChat.performClick();
+                mRelativeChat.performClick();
                 break;
             case 2:
-                mIvCamera.performClick();
+                mRelativeCamera.performClick();
                 break;
             case 3:
-                mIvGroupChat.performClick();
+                mRelativeGroupChat.performClick();
                 break;
         }
     }
