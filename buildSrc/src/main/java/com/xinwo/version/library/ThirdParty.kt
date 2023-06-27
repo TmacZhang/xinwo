@@ -26,5 +26,18 @@ class ThirdParty {
     val appcompat = "androidx.appcompat:appcompat:1.0.0"
     val core_ktx = "androidx.core:core-ktx:1.0.2"
     val kotlin_lib = "org.jetbrains.kotlin:kotlin-stdlib:1.7.20"
+    val constraintlayout = "androidx.constraintlayout:constraintlayout:1.1.3"
+    val support_v4 = "androidx.legacy:legacy-support-v4:1.0.0"
+    val recyclerview = "androidx.recyclerview:recyclerview:1.1.0"
 
+    val relativepopupwindow = "com.labo.kaji:relativepopupwindow:0.3.1"
+    val glide_compiler = "com.github.bumptech.glide:compiler:4.10.0"
+    val glide = "com.github.bumptech.glide:glide:4.10.0"
+    val dfqin_grantor = "com.github.dfqin:grantor:2.5"
+    val base_recyclerview_helper = "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50"
+    val nice_imageview = "com.github.SheHuan:NiceImageView:1.0.5"
+    val wechat_sdk = "com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+"
+    val statusbar_util = "com.jaeger.statusbarutil:library:1.5.1"
+    val jwtdecode = "com.auth0.android:jwtdecode:1.3.0"
+    val material = "com.google.android.material:material:1.0.0"
 }
