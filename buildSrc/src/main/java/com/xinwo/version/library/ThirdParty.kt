@@ -40,4 +40,7 @@ class ThirdParty {
     val statusbar_util = "com.jaeger.statusbarutil:library:1.5.1"
     val jwtdecode = "com.auth0.android:jwtdecode:1.3.0"
     val material = "com.google.android.material:material:1.0.0"
+    val seekbar = "org.adw.library:discrete-seekbar:1.0.1"
+    val isoparcer = "com.googlecode.mp4parser:isoparser:1.1.7"
+    val log4j = "org.slf4j:slf4j-api:1.7.25"
 }
