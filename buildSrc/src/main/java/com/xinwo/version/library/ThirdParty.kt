@@ -43,4 +43,13 @@ class ThirdParty {
     val seekbar = "org.adw.library:discrete-seekbar:1.0.1"
     val isoparcer = "com.googlecode.mp4parser:isoparser:1.1.7"
     val log4j = "org.slf4j:slf4j-api:1.7.25"
+
+    val fastjson = "com.alibaba:fastjson:1.2.60"
+    val okhttp = "com.squareup.okhttp3:okhttp:4.1.1"
+    val retrofit =  "com.squareup.retrofit2:retrofit:2.6.1"
+    val retrofit_adpter = "com.squareup.retrofit2:adapter-rxjava:2.6.1"
+
+    val ijkplayer = "tv.danmaku.ijk.media:ijkplayer-java:0.8.8"
+    val ijkplayer_armv7a = "tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8"
+    val ijkplayer_arm64a = "tv.danmaku.ijk.media:ijkplayer-arm64:0.8.8"
 }
