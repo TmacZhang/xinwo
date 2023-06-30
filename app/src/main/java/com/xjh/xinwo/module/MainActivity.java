@@ -53,6 +53,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setStatusBarColor();
+
+        System.loadLibrary("native-lib");
+        registerSignal();
     }
 
     private void setStatusBarColor() {
@@ -262,4 +265,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
         }
     }
+
+
+
+    public native void registerSignal();
 }
