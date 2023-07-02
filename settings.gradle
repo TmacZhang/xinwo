@@ -18,5 +18,7 @@ include ':app',
         ':library:xin-log',
         ':library:xin-image',
         ':library:xin-application',
-        ':library:xin-cache'
+        ':library:xin-cache',
+        ':library:xin-apm:xin-unwind',
+        ':library:xin-apm:xin-base'
 
