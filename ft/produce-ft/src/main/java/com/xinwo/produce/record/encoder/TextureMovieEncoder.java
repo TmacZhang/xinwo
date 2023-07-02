@@ -16,6 +16,8 @@
 
 package com.xinwo.produce.record.encoder;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.graphics.SurfaceTexture;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
@@ -29,8 +31,10 @@ import android.os.Message;
 import android.util.Log;
 
 import androidx.annotation.IntDef;
+import androidx.core.app.ActivityCompat;
 
 
+import com.xinwo.application.XinApplicationUtil;
 import com.xinwo.produce.record.gles.FullFrameRect;
 import com.xinwo.produce.record.gles.EglCore;
 import com.xinwo.produce.record.gles.Texture2dProgram;
@@ -42,6 +46,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.ref.WeakReference;
 import java.nio.ByteBuffer;
+import java.util.Objects;
 
 /**
  * Encode a movie from frames rendered from an texture.
@@ -81,7 +86,6 @@ public class TextureMovieEncoder {
     private static final int MSG_PAUSE_RECORDING = 6;
     private static final int MSG_RESUME_RECORDING = 7;
     private static final int MSG_QUIT = 8;
-
 
 
     // ----- accessed exclusively by encoder thread -----
@@ -124,7 +128,7 @@ public class TextureMovieEncoder {
     private int mRecordAudioCount;
     private float mVideoFrameInterval = 1000f / 30f;
     private final int AUDIO_SAMPLE_RATE = 44100;
-    private float mAudioSmapleInterval = 1024*1_000_000.0f / AUDIO_SAMPLE_RATE;
+    private float mAudioSmapleInterval = 1024 * 1_000_000.0f / AUDIO_SAMPLE_RATE;
     private boolean mResumed;
 
 
@@ -132,15 +136,13 @@ public class TextureMovieEncoder {
         return mRecordingStatus == recordingStatus;
     }
 
-    public void setRecordingStatus(int recordingStatus){
+    public void setRecordingStatus(int recordingStatus) {
         mRecordingStatus = recordingStatus;
     }
 
     public TextureMovieEncoder() {
         mRecordingStatus = START_RECORDING;
     }
-
-
 
 
     /**
@@ -254,14 +256,14 @@ public class TextureMovieEncoder {
     }
 
     public void pauseRecording() {
-        Log.i(TAG,"PRPR -->  pauseRecording before handler");
+        Log.i(TAG, "PRPR -->  pauseRecording before handler");
         mRecordingStatus = PAUSE_RECORDING;
         mHandler.removeMessages(MSG_FRAME_AVAILABLE);   //不清除的话，会有几帧静止的画面
         mHandler.sendMessage(mHandler.obtainMessage(MSG_PAUSE_RECORDING));
     }
 
     public void resumeRecording() {
-        Log.i(TAG,"PRPR -->  resumeRecording before handler");
+        Log.i(TAG, "PRPR -->  resumeRecording before handler");
         mRecordingStatus = IN_RECORDING;
         mResumed = true;
         mHandler.sendMessage(mHandler.obtainMessage(MSG_RESUME_RECORDING));
@@ -441,8 +443,6 @@ public class TextureMovieEncoder {
     }
 
 
-
-
     private EncoderConfig config = null;
 
     /**
@@ -456,7 +456,6 @@ public class TextureMovieEncoder {
                 config.mOutputFile);
         mRequestStop = false;
     }
-
 
 
     private int mAvailableFrameCount;
@@ -475,7 +474,7 @@ public class TextureMovieEncoder {
             if (VERBOSE) Log.e(TAG, "8899 --> handleFrameAvailable " + timestampNanos);
             if (VERBOSE) Log.d(TAG, "handleFrameAvailable tr=" + transform);
             try {
-                    mVideoEncoder.drainEncoder(false);
+                mVideoEncoder.drainEncoder(false);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -488,7 +487,7 @@ public class TextureMovieEncoder {
 
             long ptsus = generateVideoTimestamp(mDecodeVideoCount++) * 1000L;
 //            long ptsus = getPTSUs() * 1000L;
-            Log.e(TAG,"8899 --> SYNC sample ============= presentationTimeUS001 = " + ptsus);
+            Log.e(TAG, "8899 --> SYNC sample ============= presentationTimeUS001 = " + ptsus);
             mInputWindowSurface.setPresentationTime(ptsus);
             mInputWindowSurface.swapBuffers();
         }
@@ -563,11 +562,11 @@ public class TextureMovieEncoder {
     }
 
     private void handlePauseRecording() {
-        Log.i(TAG,"PRPR --> handlePauseRecording");
+        Log.i(TAG, "PRPR --> handlePauseRecording");
     }
 
-    private void handleResumeRecording(){
-        Log.i(TAG,"PRPR --> handleResumeRecording");
+    private void handleResumeRecording() {
+        Log.i(TAG, "PRPR --> handleResumeRecording");
 
     }
 
@@ -575,6 +574,7 @@ public class TextureMovieEncoder {
     private boolean prepareEncoderReady = false;
     private final Object stopEncoderFence = new Object();
     private boolean stopEncoderSuccess = false;
+
     /**
      * For drawing texture to hw encode, init egl related.
      *
@@ -680,6 +680,18 @@ public class TextureMovieEncoder {
                 AudioRecord audioRecord = null;
                 for (final int source : AUDIO_SOURCES) {
                     try {
+                        if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(XinApplicationUtil.Companion.getInstance().getMApplication()),
+                                Manifest.permission.RECORD_AUDIO)
+                                != PackageManager.PERMISSION_GRANTED) {
+                            // TODO: Consider calling
+                            //    ActivityCompat#requestPermissions
+                            // here to request the missing permissions, and then overriding
+                            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                            //                                          int[] grantResults)
+                            // to handle the case where the user grants the permission. See the documentation
+                            // for ActivityCompat#requestPermissions for more details.
+                            return;
+                        }
                         audioRecord = new AudioRecord(
                                 source, SAMPLE_RATE,
                                 AudioFormat.CHANNEL_IN_MONO,
@@ -710,7 +722,7 @@ public class TextureMovieEncoder {
                                 buf.clear();
                                 readBytes = audioRecord.read(buf, SAMPLES_PER_FRAME);
                                 if (readBytes > 0) {
-                                    if(checkRecordingStatus(IN_RECORDING)){
+                                    if (checkRecordingStatus(IN_RECORDING)) {
                                         ++mRecordAudioCount;
                                         // set audio data to encoder
                                         encodeAudio(buf, readBytes, mSpeed);
@@ -743,20 +755,20 @@ public class TextureMovieEncoder {
         }
 
         private void encodeAudio(ByteBuffer buf, int readBytes, int speed) throws Exception {
-            if(speed == SPEED_NORMAL){
+            if (speed == SPEED_NORMAL) {
                 encodeAudio(buf, readBytes);
-            }else if(speed == SPEED_FAST){
-                if(mRecordAudioCount % SPEED_FAST == 0){
+            } else if (speed == SPEED_FAST) {
+                if (mRecordAudioCount % SPEED_FAST == 0) {
                     encodeAudio(buf, readBytes);
                 }
-            }else if(speed == SPEED_FASTER){
-                if(mRecordAudioCount % SPEED_FASTER == 0){
+            } else if (speed == SPEED_FASTER) {
+                if (mRecordAudioCount % SPEED_FASTER == 0) {
                     encodeAudio(buf, readBytes);
                 }
-            }else if(speed == SPEED_LOW){
+            } else if (speed == SPEED_LOW) {
                 encodeAudio(buf, readBytes);
                 encodeAudio(buf, readBytes);
-            }else if(speed == SPEED_LOWER){
+            } else if (speed == SPEED_LOWER) {
                 encodeAudio(buf, readBytes);
                 encodeAudio(buf, readBytes);
                 encodeAudio(buf, readBytes);
@@ -814,7 +826,8 @@ public class TextureMovieEncoder {
 
     @IntDef({SPEED_LOWER, SPEED_LOW, SPEED_NORMAL, SPEED_FAST, SPEED_FASTER})
     @Retention(RetentionPolicy.SOURCE)
-    public @interface Speed {}
+    public @interface Speed {
+    }
 
     public static final int SPEED_LOWER = -2;
     public static final int SPEED_LOW = -1;
@@ -823,53 +836,55 @@ public class TextureMovieEncoder {
     public static final int SPEED_FASTER = 4;
 
 
-    public void setSpeed(@Speed int speed){
+    public void setSpeed(@Speed int speed) {
         mSpeed = speed;
-        if(mVideoEncoder != null){
+        if (mVideoEncoder != null) {
             mVideoEncoder.setSpeed(mSpeed);
             mAudioEncoder.setSpeed(mSpeed);
-        }else{
+        } else {
             mHandler.sendMessage(mHandler.obtainMessage(MSG_SET_SPEED, mSpeed, 0));
         }
 
     }
 
     /**
-     *  生成的视频的Timestamp，从0开始计算
+     * 生成的视频的Timestamp，从0开始计算
+     *
      * @param decodeVideoCount
      * @return
      */
     private long generateVideoTimestamp(int decodeVideoCount) {
 //        return (long) (mVideoFrameInterval * decodeVideoCount * 1000);
 
-        if(mLastNanoTime == -1){
+        if (mLastNanoTime == -1) {
             mLastNanoTime = mCurrentNanoTime = System.nanoTime();
-        }else{
+        } else {
             mCurrentNanoTime = System.nanoTime();
         }
 
-        if(!mResumed){
+        if (!mResumed) {
             mNanoTimeDiff = mCurrentNanoTime - mLastNanoTime;
-        }else{//如果是继续录制，使用的就是上一次的mNanoTimeDiff
+        } else {//如果是继续录制，使用的就是上一次的mNanoTimeDiff
             mResumed = false;
         }
         mLastNanoTime = mCurrentNanoTime;
 
 
-        mCurrentTimestamp += mNanoTimeDiff/1000;
+        mCurrentTimestamp += mNanoTimeDiff / 1000;
 
-        Log.e(TAG,"mCurrentTimestamp = " + mCurrentTimestamp  +"    mNanoTimeDiff = " + mNanoTimeDiff);
+        Log.e(TAG, "mCurrentTimestamp = " + mCurrentTimestamp + "    mNanoTimeDiff = " + mNanoTimeDiff);
         return mCurrentTimestamp;
     }
 
-    private long generateAudioTimestamp(int decodeAudioCount){
+    private long generateAudioTimestamp(int decodeAudioCount) {
         long audioTimestamp = (long) (mAudioSmapleInterval * decodeAudioCount);
-        Log.e(TAG,"SYNC sample Audio audioTimestamp = " + audioTimestamp);
+        Log.e(TAG, "SYNC sample Audio audioTimestamp = " + audioTimestamp);
         return audioTimestamp;
     }
 
     public interface OnEncoderStatusUpdateListener {
         void onStartSuccess();
+
         void onStopSuccess();
     }
 
