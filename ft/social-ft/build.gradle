@@ -95,5 +95,6 @@ dependencies {
     // 小米等厂商推送需要
     implementation 'com.netease.nimlib:push:7.5.0'
 
-
+    implementation deps.library.third_party.android_ktx
+    implementation deps.library.third_party.android_lifecycle
 }
