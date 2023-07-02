@@ -52,4 +52,7 @@ class ThirdParty {
     val ijkplayer = "tv.danmaku.ijk.media:ijkplayer-java:0.8.8"
     val ijkplayer_armv7a = "tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8"
     val ijkplayer_arm64a = "tv.danmaku.ijk.media:ijkplayer-arm64:0.8.8"
+
+    val android_ktx= "androidx.activity:activity-ktx:1.5.1"
+    val android_lifecycle= "androidx.lifecycle:lifecycle-extensions:2.1.0"
 }
