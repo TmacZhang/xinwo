@@ -68,7 +68,6 @@ class ProfileFragment : BaseFragment() {
         }
     }
 
-
     fun setViewModel() {
         mProfileViewModel = ViewModelProviders.of(this).get(ProfilerViewModel::class.java)
         mProfileViewModel?.getMutableLiveData()?.value = ProfilerModel()
