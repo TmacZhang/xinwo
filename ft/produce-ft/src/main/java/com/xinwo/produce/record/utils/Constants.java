@@ -1,15 +1,13 @@
 package com.xinwo.produce.record.utils;
 
-import android.os.Environment;
-
-/**
- * Created by 25623 on 2018/8/23.
- */
+import android.content.Context;
 
 public class Constants {
-    public static final String VIDEO_PATH = Environment.getExternalStorageDirectory() + "/Codec";
+    public static String getVideoRecordPath(Context context){
+        return context.getFilesDir() + "/record";
+    }
 
-    public static final String VIDEO_RECORD_PATH = VIDEO_PATH + "/record";
-
-    public static final String VIDEO_REACORD_TMP_PATH = VIDEO_RECORD_PATH + "/tmp";
+    public static String getVideoRecordTmpPath(Context context){
+        return getVideoRecordPath(context) + "/tmp";
+    }
 }

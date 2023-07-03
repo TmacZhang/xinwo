@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.faceunity.wrapper.faceunity;
+import com.xinwo.application.XinApplicationUtil;
 import com.xinwo.produce.R;
 import com.xinwo.produce.gestureheart.activity.PreviewActivity;
 import com.xinwo.produce.music.ui.MusicActivity;
@@ -46,6 +47,7 @@ import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -295,7 +297,7 @@ public abstract class FUExampleFragment extends FUBaseUIFragment
 
             float[] coordinates;
 
-            if(widthRatio > heightRatio){
+            if (widthRatio > heightRatio) {
                 float yExtra = ((widthRatio * picHeight - viewHeight) / viewHeight) / 2;
                 coordinates = new float[]{
                         -1.0f, -1.0f - yExtra,   // 0 bottom left
@@ -303,15 +305,15 @@ public abstract class FUExampleFragment extends FUBaseUIFragment
                         -1.0f, 1.0f + yExtra,   // 2 top left
                         1.0f, 1.0f + yExtra,   // 3 top right
                 };
-            }else if(heightRatio > widthRatio){
+            } else if (heightRatio > widthRatio) {
                 float xExtra = ((heightRatio * picWidth - viewWidth) / viewWidth) / 2;
                 coordinates = new float[]{
                         -1.0f - xExtra, -1.0f,   // 0 bottom left
                         1.0f + xExtra, -1.0f,   // 1 bottom right
                         -1.0f - xExtra, 1.0f,   // 2 top left
-                        1.0f  + xExtra, 1.0f,   // 3 top right
+                        1.0f + xExtra, 1.0f,   // 3 top right
                 };
-            }else{
+            } else {
                 coordinates = new float[]{
                         -1.0f, -1.0f,   // 0 bottom left
                         1.0f, -1.0f,   // 1 bottom right
@@ -320,8 +322,8 @@ public abstract class FUExampleFragment extends FUBaseUIFragment
                 };
             }
 
-            for(int i=0; i<4; ++i){
-                Log.e(TAG,"COORDINATES -->  " + coordinates[2*i] + ", " + coordinates[2*i+1]);
+            for (int i = 0; i < 4; ++i) {
+                Log.e(TAG, "COORDINATES -->  " + coordinates[2 * i] + ", " + coordinates[2 * i + 1]);
             }
 
             final int BYTES_PER_FLOAT = 4;
@@ -360,11 +362,11 @@ public abstract class FUExampleFragment extends FUBaseUIFragment
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                       if (isTracking == 0) {
-                            Log.e(TAG,"未检测到人脸");
+                        if (isTracking == 0) {
+                            Log.e(TAG, "未检测到人脸");
                             Arrays.fill(landmarksData, 0);
                         } else {
-                           Log.i(TAG,"检测到人脸");
+                            Log.i(TAG, "检测到人脸");
                         }
                     }
                 });
@@ -387,7 +389,7 @@ public abstract class FUExampleFragment extends FUBaseUIFragment
                 mCreateItemHandler.sendMessage(Message.obtain(mCreateItemHandler, CreateItemHandler.HANDLE_CREATE_ITEM, mEffectFileName));
             }
 
-            if(mBeauty){
+            if (mBeauty) {
                 faceunity.fuItemSetParam(mFaceBeautyItem, "filter_level", mFilterLevel);
                 faceunity.fuItemSetParam(mFaceBeautyItem, "color_level", mFaceBeautyColorLevel);
                 faceunity.fuItemSetParam(mFaceBeautyItem, "blur_level", mFaceBeautyBlurLevel);
@@ -398,7 +400,7 @@ public abstract class FUExampleFragment extends FUBaseUIFragment
                 faceunity.fuItemSetParam(mFaceBeautyItem, "face_shape", mFaceShape);
                 faceunity.fuItemSetParam(mFaceBeautyItem, "face_shape_level", mFaceShapeLevel);
                 faceunity.fuItemSetParam(mFaceBeautyItem, "red_level", mFaceBeautyRedLevel);
-            }else{
+            } else {
                 faceunity.fuItemSetParam(mFaceBeautyItem, "filter_level", 0);
                 faceunity.fuItemSetParam(mFaceBeautyItem, "color_level", 0);
                 faceunity.fuItemSetParam(mFaceBeautyItem, "blur_level", 0);
@@ -427,7 +429,7 @@ public abstract class FUExampleFragment extends FUBaseUIFragment
                 fuTex = draw(mCameraNV21Byte, mFuImgNV21Bytes, mCameraTextureId, mCameraWidth, mCameraHeight, mFrameId++, new int[]{mFaceBeautyItem, mEffectItem}, mCurrentCameraType);
             }
 
-            mFullScreenFUDisplay.drawFrame(fuTex,projectionMatrix, mtx, vertexArray);
+            mFullScreenFUDisplay.drawFrame(fuTex, projectionMatrix, mtx, vertexArray);
 
             /**
              * 绘制Avatar模式下的镜头内容以及landmarks
@@ -461,10 +463,11 @@ public abstract class FUExampleFragment extends FUBaseUIFragment
             }
 
             if (mTextureMovieEncoder != null && mTextureMovieEncoder.checkRecordingStatus(TextureMovieEncoder.START_RECORDING)) {
-                mVideoFileName = VideoUtils.createTempOutputFile4Video(Constants.VIDEO_REACORD_TMP_PATH, tmpVideoPathList.size());
+                mVideoFileName = VideoUtils.createTempOutputFile4Video(Constants.getVideoRecordTmpPath(XinApplicationUtil.Companion.getInstance().getMApplication()),
+                        tmpVideoPathList.size());
                 tmpVideoPathList.add(mVideoFileName);
                 File outFile = new File(mVideoFileName);
-                if(outFile.exists()){
+                if (outFile.exists()) {
                     outFile.delete();
                 }
 
@@ -508,27 +511,26 @@ public abstract class FUExampleFragment extends FUBaseUIFragment
 
             if (mTextureMovieEncoder != null && mTextureMovieEncoder.checkRecordingStatus(TextureMovieEncoder.IN_RECORDING)) {
                 ++frameAvailableCount;
-                Log.e(TAG,"PRPR --> frameAvailable  = " + frameAvailableCount);
+                Log.e(TAG, "PRPR --> frameAvailable  = " + frameAvailableCount);
                 mTextureMovieEncoder.setTextureId(mFullScreenFUDisplay, fuTex, mtx);
                 mTextureMovieEncoder.frameAvailable(mCameraSurfaceTexture);
             }
 
             mGLSurfaceView.requestRender();
 
-            if(mTextureMovieEncoder != null && mTextureMovieEncoder.isRecording() && mIsRecording){
+            if (mTextureMovieEncoder != null && mTextureMovieEncoder.isRecording() && mIsRecording) {
 
                 long startTimeMillis = SectionRecordTool.getInstance().getCurrentStartRecrodTimeMillis();
                 long currentTimeMillis = System.currentTimeMillis();
                 SectionRecordTool.getInstance().setCurrentTotalRecordTimeMillis(currentTimeMillis - startTimeMillis + SectionRecordTool.getInstance().getLastSectionIndex());
 
-                Log.e(TAG,"startTimeMillis = " + startTimeMillis
+                Log.e(TAG, "startTimeMillis = " + startTimeMillis
                         + "      currentTimeMillis = " + currentTimeMillis
                         + "     差值 = " + (currentTimeMillis - startTimeMillis)
                         + "     TotalRecordTimeMillis = " + SectionRecordTool.getInstance().getCurrentTotalRecordTimeMillis());
 
 
-
-                if(SectionRecordTool.getInstance().getCurrentTotalRecordTimeMillis() >= MAX_RECORD_DURATION_MILLIS){
+                if (SectionRecordTool.getInstance().getCurrentTotalRecordTimeMillis() >= MAX_RECORD_DURATION_MILLIS) {
                     SectionRecordTool.getInstance().setCurrentTotalRecordTimeMillis(MAX_RECORD_DURATION_MILLIS);
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
@@ -537,7 +539,7 @@ public abstract class FUExampleFragment extends FUBaseUIFragment
                             mRecordingBtn.performClick();
                         }
                     });
-                }else{
+                } else {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -601,7 +603,7 @@ public abstract class FUExampleFragment extends FUBaseUIFragment
                     expressionData,
                     rotationData,
                     rotationModeData,
-                        /*flags*/0,
+                    /*flags*/0,
                     mCameraWidth,
                     mCameraHeight,
                     mFrameId++,
@@ -731,7 +733,7 @@ public abstract class FUExampleFragment extends FUBaseUIFragment
                 @Override
                 public void run() {
                     Toast.makeText(getContext(),
-                            "Open Camera Failed! Make sure it is not locked!", Toast.LENGTH_SHORT)
+                                    "Open Camera Failed! Make sure it is not locked!", Toast.LENGTH_SHORT)
                             .show();
                 }
             });
@@ -752,8 +754,8 @@ public abstract class FUExampleFragment extends FUBaseUIFragment
         int fps[] = new int[2];
         parameters.getPreviewFpsRange(fps);
         parameters.setRecordingHint(true);
-        Log.e(TAG,"CameraInfo desiredWidth = " + desiredWidth + "   desireHeight = " + desiredHeight + " mCameraWidth = " + mCameraWidth + "   mCameraHeight = " + mCameraHeight
-                +"    minFPS = " + fps[0] + "   maxFPS = " + fps[1]);
+        Log.e(TAG, "CameraInfo desiredWidth = " + desiredWidth + "   desireHeight = " + desiredHeight + " mCameraWidth = " + mCameraWidth + "   mCameraHeight = " + mCameraHeight
+                + "    minFPS = " + fps[0] + "   maxFPS = " + fps[1]);
 
         getActivity().runOnUiThread(new Runnable() {
             @Override
@@ -834,7 +836,6 @@ public abstract class FUExampleFragment extends FUBaseUIFragment
             }
         });
     }
-
 
 
     @Override
@@ -976,11 +977,11 @@ public abstract class FUExampleFragment extends FUBaseUIFragment
 
     @Override
     protected void onToggleFlash() {
-        if(mCamera != null){
+        if (mCamera != null) {
             Camera.Parameters parameters = mCamera.getParameters();
-            if(Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())){
+            if (Camera.Parameters.FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
                 parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
-            }else{
+            } else {
                 parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
             }
 
@@ -990,9 +991,9 @@ public abstract class FUExampleFragment extends FUBaseUIFragment
 
     @Override
     protected void onToggleBeauty() {
-        if(mBeauty){
+        if (mBeauty) {
             mBeauty = false;
-        }else{
+        } else {
             mBeauty = true;
         }
     }
@@ -1000,7 +1001,7 @@ public abstract class FUExampleFragment extends FUBaseUIFragment
     @Override
     protected void onChangeSpeed(@TextureMovieEncoder.Speed int speed) {
         mSpeed = speed;
-        if(mTextureMovieEncoder != null){
+        if (mTextureMovieEncoder != null) {
             mTextureMovieEncoder.setSpeed(mSpeed);
         }
     }
@@ -1013,8 +1014,8 @@ public abstract class FUExampleFragment extends FUBaseUIFragment
 
     @Override
     protected void onNextClick() {
-        if(tmpVideoPathList != null && tmpVideoPathList.size() > 0){
-            String mergePath = VideoUtils.createOutputFile4Video(Constants.VIDEO_RECORD_PATH);
+        if (tmpVideoPathList != null && tmpVideoPathList.size() > 0) {
+            String mergePath = VideoUtils.createOutputFile4Video(Constants.getVideoRecordPath(Objects.requireNonNull(XinApplicationUtil.Companion.getInstance().getMApplication())));
             VideoUtils.merge(tmpVideoPathList, mergePath);
             VideoUtils.deleteTmpVideo(tmpVideoPathList);
 
@@ -1022,15 +1023,15 @@ public abstract class FUExampleFragment extends FUBaseUIFragment
 
             Toast.makeText(getContext(), "合并成功", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getContext(), PreviewActivity.class);
-            intent.putExtra(MERGE_PATH,mergePath);
+            intent.putExtra(MERGE_PATH, mergePath);
             startActivity(intent);
         }
     }
 
     @Override
     protected void onDeleteClick() {
-        Log.e(TAG,"onDeleteClick  tmpVideoPathList.size() = " + tmpVideoPathList.size());
-        if(tmpVideoPathList.size() > 0){
+        Log.e(TAG, "onDeleteClick  tmpVideoPathList.size() = " + tmpVideoPathList.size());
+        if (tmpVideoPathList.size() > 0) {
             tmpVideoPathList.remove(tmpVideoPathList.size() - 1);
             SectionRecordTool.getInstance().removeCurrentSectionIndex();
             sectionProgressBar.removeLastSection();
