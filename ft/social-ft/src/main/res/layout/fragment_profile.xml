@@ -15,6 +15,7 @@
             android:src="@drawable/bg_surname" />
 
         <LinearLayout
+            android:layout_marginStart="30dp"
             android:layout_width="@dimen/dp_80"
             android:layout_height="@dimen/dp_80"
             android:layout_toEndOf="@id/profile_avatar"
@@ -39,9 +40,9 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp">
 
         <LinearLayout
             android:id="@+id/linear_guanzhu"
@@ -103,18 +104,86 @@
         </LinearLayout>
 
         <Button
-            android:layout_marginHorizontal="10dp"
             android:id="@+id/bianji"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             android:layout_toEndOf="@id/linear_shoucang"
             android:text="编辑资料" />
 
         <Button
-            android:layout_marginHorizontal="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
             android:layout_toEndOf="@id/bianji"
             android:text="设置" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/linear_gouwuche"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="购物车" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="查看推荐好物" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_chuangzuo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_toEndOf="@id/linear_gouwuche"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="创作灵感" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="学创作找灵感" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linear_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_toEndOf="@id/linear_chuangzuo"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="历史" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="查看历史记录" />
+        </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

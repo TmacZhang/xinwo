@@ -9,6 +9,7 @@ include ':app',
         ':framework:xinresources',
         ':framework:base-framework',
         ':framework:xinutil',
+        ":framework:xin-staggerd-recyclerView",
 
         "ft:feed-ft",
         "ft:social-ft",
