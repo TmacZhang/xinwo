@@ -15,7 +15,7 @@ import java.util.List;
 public abstract class StaggedAdapter<T extends StaggedModel> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public List<T>datas = new ArrayList<>();
-    private Context c;
+    public Context c;
     public StaggedAdapter(Context c){
         this.c = c;
     }
@@ -59,7 +59,7 @@ public abstract class StaggedAdapter<T extends StaggedModel> extends RecyclerVie
      */
     public void loadMore(List<T> datas){
 
-        int startPos = this.datas.size() - 1;
+        int startPos = this.datas.size();
 
         notifyItemRangeInserted(startPos, datas.size());
 

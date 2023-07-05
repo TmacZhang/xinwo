@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.atech.staggedrv.StaggerdRecyclerView
+import com.atech.staggedrv.callbacks.LoadMoreAndRefresh
 import com.xinwo.base.BaseFragment
-import com.xjh.xinwo.mvp.model.BaseBean
+import com.xinwo.feed.model.FeedModel
+import java.util.ArrayList
 
 class FeedFragment : BaseFragment() {
-    var mRecycleView: RecyclerView? = null;
+    var mRecycleView: StaggerdRecyclerView? = null;
     var mFeedApdater: FeedAdapter? = null
 
     override fun onCreateView(
@@ -31,18 +32,38 @@ class FeedFragment : BaseFragment() {
     override fun initView() {
         mRecycleView = view?.findViewById(R.id.feed_rv)
         if (mFeedApdater == null) {
-            val baseBeanList: MutableList<BaseBean> = ArrayList()
-            for (i in 0 .. 100)  {
-                baseBeanList.add(BaseBean())
-            }
-
-            mFeedApdater = FeedAdapter(R.layout.item_feed, baseBeanList)
-
-            mRecycleView?.apply {
-                this.setLayoutManager(GridLayoutManager(context, 2))
-                this.adapter = mFeedApdater
-            }
+            mFeedApdater = FeedAdapter(this.context)
+            mRecycleView?.link(mFeedApdater, 2)
         }
+
+
+        mFeedApdater?.datas?.add(FeedModel(500, 500, R.drawable.a2))
+        mFeedApdater?.datas?.add(FeedModel(500, 1000, R.drawable.a2))
+        mFeedApdater?.datas?.add(FeedModel(500, 750, R.drawable.a3))
+        mFeedApdater?.datas?.add(FeedModel(500, 530, R.drawable.a4))
+        mFeedApdater?.datas?.add(FeedModel(500, 400, R.drawable.a5))
+        mFeedApdater?.datas?.add(FeedModel(500, 980, R.drawable.a6))
+        mFeedApdater?.datas?.add(FeedModel(500, 600, R.drawable.a7))
+        mFeedApdater?.datas?.add(FeedModel(500, 620, R.drawable.a8))
+        mFeedApdater?.datas?.add(FeedModel(500, 680, R.drawable.c1))
+        mFeedApdater?.datas?.add(FeedModel(500, 705, R.drawable.c2))
+        mFeedApdater?.datas?.add(FeedModel(500, 885, R.drawable.c3))
+
+        mRecycleView?.addCallbackListener(object : LoadMoreAndRefresh {
+            override fun onLoadMore() {
+                //模拟加载更多
+                val datas = ArrayList<FeedModel>();
+                datas.add(FeedModel(500, 840, R.drawable.girl_photo_01_small))
+                datas.add(FeedModel(500, 712, R.drawable.c5))
+                datas.add(FeedModel(500, 624, R.drawable.c6))
+                datas.add(FeedModel(500, 888, R.drawable.c7))
+                mFeedApdater?.loadMore(datas)
+            }
+
+            override fun onRefresh() {
+
+            }
+        })
     }
 
     override fun loadData() {

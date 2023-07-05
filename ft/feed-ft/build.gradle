@@ -47,6 +47,7 @@ dependencies {
     implementation project(deps.library.xin.base_framework)
     implementation project(deps.library.xin.xinutil_framework)
     implementation project(deps.library.xin.xin_application)
+    implementation project(deps.library.xin.xin_staggerdRecycleView)
     // 各种控件集合
 
     implementation deps.library.third_party.appcompat
