@@ -16,7 +16,10 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.atech.staggedrv.callbacks.LoadMoreAndRefresh;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
+import com.scwang.smartrefresh.layout.api.RefreshFooter;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
@@ -72,7 +75,6 @@ public class StaggerdRecyclerView extends LinearLayout {
 
         smartRefreshLayout = root.findViewById(R.id.refresh);
         rv = root.findViewById(R.id.rv);
-
     }
 
     /**
@@ -100,6 +102,10 @@ public class StaggerdRecyclerView extends LinearLayout {
             }
         });
 
+
+        ClassicsFooter classicsFooter = new ClassicsFooter(getContext());
+        classicsFooter.setFinishDuration(0);
+        smartRefreshLayout.setRefreshFooter(classicsFooter);
         smartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {

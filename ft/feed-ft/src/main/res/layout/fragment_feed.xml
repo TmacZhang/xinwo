@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.atech.staggedrv.StaggerdRecyclerView
         android:id="@+id/feed_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
