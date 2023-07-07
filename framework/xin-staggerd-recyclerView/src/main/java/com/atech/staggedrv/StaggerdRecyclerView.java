@@ -82,14 +82,10 @@ public class StaggerdRecyclerView extends LinearLayout {
      */
 
     public void link(StaggedAdapter staggedAdapter, int spanCount) {
-
         this.staggedAdapter = staggedAdapter;
         layoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
         rv.setLayoutManager(layoutManager);
         rv.setAdapter(staggedAdapter);
-
-
-
     }
 
     public void addCallbackListener(final LoadMoreAndRefresh refreshCallback) {
