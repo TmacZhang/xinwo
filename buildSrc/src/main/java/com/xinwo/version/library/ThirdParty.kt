@@ -46,13 +46,25 @@ class ThirdParty {
 
     val fastjson = "com.alibaba:fastjson:1.2.60"
     val okhttp = "com.squareup.okhttp3:okhttp:4.1.1"
-    val retrofit =  "com.squareup.retrofit2:retrofit:2.6.1"
+    val retrofit = "com.squareup.retrofit2:retrofit:2.6.1"
     val retrofit_adpter = "com.squareup.retrofit2:adapter-rxjava:2.6.1"
 
     val ijkplayer = "tv.danmaku.ijk.media:ijkplayer-java:0.8.8"
     val ijkplayer_armv7a = "tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8"
     val ijkplayer_arm64a = "tv.danmaku.ijk.media:ijkplayer-arm64:0.8.8"
 
-    val android_ktx= "androidx.activity:activity-ktx:1.5.1"
-    val android_lifecycle= "androidx.lifecycle:lifecycle-extensions:2.1.0"
+    val android_ktx = "androidx.activity:activity-ktx:1.5.1"
+    val android_lifecycle = "androidx.lifecycle:lifecycle-extensions:2.1.0"
+
+    val agora_sdk_version = "3.1.2"
+    val agora_rtc_voice = "io.agora.rtc:voice-sdk:${agora_sdk_version}"
+
+    val netease_version = "9.12.0"
+    val netease_basesdk = "com.netease.nimlib:basesdk:${netease_version}"
+    val netease_nrtc = "com.netease.nimlib:nrtc:${netease_version}"
+    val netease_avchat = "com.netease.nimlib:avchat:${netease_version}"
+    val netease_chatroom = "com.netease.nimlib:chatroom:${netease_version}"
+    val netease_rts = "com.netease.nimlib:rts:${netease_version}"
+    val netease_lucene = "com.netease.nimlib:lucene:${netease_version}"
+    val netease_push = "com.netease.nimlib:push:${netease_version}"
 }

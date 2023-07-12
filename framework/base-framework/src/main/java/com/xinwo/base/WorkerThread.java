@@ -17,10 +17,6 @@ import android.view.SurfaceView;
 
 import java.io.File;
 
-import io.agora.rtc.Constants;
-import io.agora.rtc.RtcEngine;
-import io.agora.rtc.video.VideoCanvas;
-
 /**
  * Created by zhanxiaochao on 2018/9/3.
  */
@@ -98,17 +94,11 @@ public class WorkerThread extends Thread {
 
     @Override
     public void run() {
-        log.trace("start to run");
         Looper.prepare();
         mWorkerHandler = new WorkerThreadHandler(this);
-        ensureRtcEngineReadyLock();
         mReady = true;
-        log.debug(" SDKVERSION " + mRtcEngine.getSdkVersion());
         Looper.loop();
-
     }
-
-    private RtcEngine mRtcEngine;
 
     public final void joinChannel(final String channel, int uid) {
         if (Thread.currentThread() != this) {
@@ -120,8 +110,7 @@ public class WorkerThread extends Thread {
             mWorkerHandler.sendMessage(envelop);
             return;
         }
-        ensureRtcEngineReadyLock();
-        mRtcEngine.joinChannel(null, channel, "OpenLive", uid);
+
         mEngineConfig.mChannel = channel;
         log.debug("joinChannel" + channel + " " + uid);
 
@@ -134,16 +123,7 @@ public class WorkerThread extends Thread {
             envelop.what = ACTION_WORKER_PREVIEW;
             envelop.obj = new Object[]{start, view, uid};
             mWorkerHandler.sendMessage(envelop);
-            return;
         }
-        ensureRtcEngineReadyLock();
-        if (start) {
-            mRtcEngine.setupLocalVideo(new VideoCanvas(view, VideoCanvas.RENDER_MODE_HIDDEN, uid));
-            mRtcEngine.startPreview();
-        } else {
-            mRtcEngine.stopPreview();
-        }
-
     }
 
     public final void leaveChannel(String channel) {
@@ -155,8 +135,6 @@ public class WorkerThread extends Thread {
             mWorkerHandler.sendMessage(envelop);
             return;
         }
-        if (mRtcEngine != null)
-            mRtcEngine.leaveChannel();
         int clientRole = mEngineConfig.mClientRole;
         mEngineConfig.reset();
         log.debug("leave channel " + channel + " " + clientRole);
@@ -179,44 +157,13 @@ public class WorkerThread extends Thread {
             mWorkerHandler.sendMessage(envelop);
             return;
         }
-        ensureRtcEngineReadyLock();
+
         mEngineConfig.mClientRole = cRole;
         mEngineConfig.mVideoProfile = vProfile;
-        mRtcEngine.setVideoProfile(mEngineConfig.mVideoProfile, false);
-        mRtcEngine.setRecordingAudioFrameParameters(48000, 2, Constants.RAW_AUDIO_FRAME_OP_MODE_READ_WRITE, 960);
-        mRtcEngine.setExternalVideoSource(true, false, true);
-        mRtcEngine.setClientRole(cRole);
-        log.debug("configEngine " + cRole + " " + mEngineConfig.mVideoProfile);
     }
 
     public MyEngineEventHandler eventHandler() {
         return mEngineEventHandler;
-    }
-
-    private RtcEngine ensureRtcEngineReadyLock() {
-        if (mRtcEngine == null) {
-            String appId = mContext.getString(R.string.agora_app_id);
-            if (TextUtils.isEmpty(appId)) {
-                throw new RuntimeException("NEED TO use your App ID ,get your own ID at https://dashboard.agora.io");
-            }
-            try {
-                mRtcEngine = RtcEngine.create(mContext, appId, mEngineEventHandler.mRtcEventHandler);
-            } catch (Exception e) {
-                log.error(Log.getStackTraceString(e));
-                throw new RuntimeException("NEED TO CHECK rtc sdk init fatal error\n" + Log.getStackTraceString(e));
-            }
-            mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
-            mRtcEngine.enableVideo();
-            mRtcEngine.enableAudio();
-            mRtcEngine.setLogFile(Environment.getExternalStorageDirectory() + File.separator + mContext.getPackageName() + "/log/agora-rtc.log");
-            mRtcEngine.enableDualStreamMode(true);
-        }
-
-        return mRtcEngine;
-    }
-
-    public RtcEngine getRtcEngine() {
-        return mRtcEngine;
     }
 
     public final void exit() {

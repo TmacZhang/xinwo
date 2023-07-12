@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+import com.xinwo.version.deps
 
 android {
     compileSdkVersion 31
@@ -35,14 +36,6 @@ android {
 }
 
 dependencies {
-
-
-    def agora_sdk_version = "3.1.2"
-    // case 1: full single lib with voice only
-    implementation "io.agora.rtc:voice-sdk:${agora_sdk_version}"
-
-//    // ktv相关
-//    implementation project(path: ':framework:agora-ktv-kit-release')
     implementation project(path: ':framework:mvp')
     implementation project(path: ':framework:litesdk')
     implementation project(path: ':framework:nativesdk')
@@ -80,21 +73,15 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.0.0'
     implementation 'org.slf4j:slf4j-api:1.7.25'
 
-    // 添加依赖。注意，版本号必须一致。
-    // 基础功能 (必需)
-    implementation 'com.netease.nimlib:basesdk:9.12.0'
-    // 音视频和互动白板服务需要
-    implementation 'com.netease.nimlib:nrtc:9.12.0'
-    // 音视频需要
-    implementation 'com.netease.nimlib:avchat:9.12.0'
-    // 聊天室需要
-    implementation 'com.netease.nimlib:chatroom:9.12.0'
-    // 互动白板服务需要
-    implementation 'com.netease.nimlib:rts:9.12.0'
-    // 全文检索服务需要
-    implementation 'com.netease.nimlib:lucene:9.12.0'
-    // 小米等厂商推送需要
-    implementation 'com.netease.nimlib:push:9.12.0'
+
+    implementation deps.library.third_party.netease_avchat
+    implementation deps.library.third_party.netease_basesdk
+    implementation deps.library.third_party.netease_chatroom
+    implementation deps.library.third_party.netease_lucene
+    implementation deps.library.third_party.netease_nrtc
+    implementation deps.library.third_party.netease_push
+    implementation deps.library.third_party.netease_rts
+
 
     implementation 'androidx.core:core-ktx:1.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.7.20"

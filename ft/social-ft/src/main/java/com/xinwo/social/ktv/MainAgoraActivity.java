@@ -15,9 +15,6 @@ import com.xinwo.base.ConstantApp;
 import com.xinwo.social.R;
 
 import java.util.Map;
-
-import io.agora.rtc.Constants;
-
 public class MainAgoraActivity extends BaseAgoraActivity {
 
 
@@ -232,31 +229,18 @@ public class MainAgoraActivity extends BaseAgoraActivity {
         // show dialog to choose role
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.msg_choose_role);
-        builder.setNegativeButton(R.string.label_audience, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                MainAgoraActivity.this.forwardToLiveRoom(Constants.CLIENT_ROLE_AUDIENCE);
-            }
-        });
-        builder.setPositiveButton(R.string.label_broadcaster, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                MainAgoraActivity.this.forwardToLiveRoom(Constants.CLIENT_ROLE_BROADCASTER);
-            }
-        });
-
         AlertDialog dialog = builder.create();
         dialog.show();
     }
     public void forwardToLiveRoom(int cRole) {
         final EditText v_room = (EditText) findViewById(R.id.room_name);
         String room = v_room.getText().toString();
-
-        Intent i = new Intent(MainAgoraActivity.this, LiveRoomAgoraActivity.class);
-        i.putExtra(ConstantApp.ACTION_KEY_CROLE, cRole);
-        i.putExtra(ConstantApp.ACTION_KEY_ROOM_NAME, room);
-
-        startActivity(i);
+//
+//        Intent i = new Intent(MainAgoraActivity.this, LiveRoomAgoraActivity.class);
+//        i.putExtra(ConstantApp.ACTION_KEY_CROLE, cRole);
+//        i.putExtra(ConstantApp.ACTION_KEY_ROOM_NAME, room);
+//
+//        startActivity(i);
     }
 
     @Override

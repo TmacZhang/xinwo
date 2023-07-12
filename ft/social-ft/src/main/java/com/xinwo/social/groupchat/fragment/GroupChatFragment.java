@@ -71,12 +71,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import io.agora.ktvkit.IKTVKitEventHandler;
-import io.agora.ktvkit.KTVKit;
-import io.agora.ktvkit.VideoPlayerView;
-import io.agora.rtc.RtcEngine;
-import io.agora.rtc.video.VideoCanvas;
-
 public class GroupChatFragment extends BaseAgoraFragment implements View.OnClickListener, AGEventHandler {
     private static final String TAG = "IMActivity";
     RecyclerView chatList;
@@ -126,7 +120,6 @@ public class GroupChatFragment extends BaseAgoraFragment implements View.OnClick
     private RecyclerView rvFunctionEnvironment;
     private ViewGroup containerFunctionBg;
     private ImageView ivChatBack;
-    private TextView tvGroupName;
     private ViewGroup containerGroupOwner;
     private ViewGroup containerTableLeft;
     private ViewGroup containerTableRight;
@@ -142,47 +135,11 @@ public class GroupChatFragment extends BaseAgoraFragment implements View.OnClick
     private FrameLayout containerAgoraKTV;
     private ImageView ivKTVPic;
 
-    private KTVKit mKTVKit;
-    private VideoPlayerView xPlayerView;
-    private boolean isBroadcast;
-    private FrameLayout containerIMGroup;
     private IMGroupFragment imGroupFragment;
-    private IMGroupInputDetector imGroupInputDetector;
-    //    private ImageView ivChatAudioVideo;
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try {
-            mKTVKit = KTVKit.create(worker().getRtcEngine(), BaseApplication.getInstance(), new IKTVKitEventHandler() {
-
-                @Override
-                public void onPlayerPrepared() {
-                    super.onPlayerPrepared();
-                    Log.e(TAG,"onCreate --> onPlayerPrepared");
-                }
-
-                @Override
-                public void onPlayerStopped() {
-//                    runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//
-//                            int duration = (mKTVKit.getDuration() / 1000);
-//
-//                            mMediaMetaArea.setText("Done, " + (int) Math.floor(mKTVKit.getCurrentPosition() * duration) + " " + duration);
-//                        }
-//                    });
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e(TAG,"onCreate --> " + e.toString());
-        }
-
-        Log.e(TAG,"onCreate --> mKTVKit = " + mKTVKit);
-
     }
 
     @Nullable
@@ -301,7 +258,7 @@ public class GroupChatFragment extends BaseAgoraFragment implements View.OnClick
         //顶部
         ivChatBack = getView().findViewById(R.id.ivChatBack);
         ivMoreFunction = getView().findViewById(R.id.ivMoreFunction);
-        tvGroupName = getView().findViewById(R.id.tvGroupName);
+        TextView tvGroupName = getView().findViewById(R.id.tvGroupName);
 
         ivChatBack.setOnClickListener(this);
         ivMoreFunction.setOnClickListener(this);
@@ -340,7 +297,7 @@ public class GroupChatFragment extends BaseAgoraFragment implements View.OnClick
 
         //中间聊天框
         //TODO 聊天框
-        containerIMGroup = getView().findViewById(R.id.containerIMGroup);
+        FrameLayout containerIMGroup = getView().findViewById(R.id.containerIMGroup);
         imGroupFragment = new IMGroupFragment();
         FragmentManager fm = getFragmentManager();
         fm.beginTransaction()
@@ -413,7 +370,8 @@ public class GroupChatFragment extends BaseAgoraFragment implements View.OnClick
         viewpager.setAdapter(adapter);
         viewpager.setCurrentItem(0);
 
-        imGroupInputDetector = IMGroupInputDetector.with(getActivity())
+        //                .bindToAudioVideoButton(ivChatAudioVideo)
+        IMGroupInputDetector imGroupInputDetector = IMGroupInputDetector.with(getActivity())
                 .setEmotionView(emotionLayout)
                 .setViewPager(viewpager)
                 .bindToContent(chatList)
@@ -518,7 +476,6 @@ public class GroupChatFragment extends BaseAgoraFragment implements View.OnClick
 
         @Override
         public void onFileClick(View view, int position) {
-
             ImMessageInfo messageInfo = messageInfos.get(position);
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.addCategory(Intent.CATEGORY_DEFAULT);
@@ -681,8 +638,7 @@ public class GroupChatFragment extends BaseAgoraFragment implements View.OnClick
             // 底部上面
         } else if (id == R.id.containerKTVMicroGetSing) {
         } else if (id == R.id.containerKTVChooseMusic) {
-            Log.e(TAG, "onClick --> containerKTVChooseMusic --> mKTVKit = " + mKTVKit);
-            mKTVKit.openAndPlayVideoFile("http://download.agora.io/usecase/ktv01.mp4");
+            //mKTVKit.openAndPlayVideoFile("http://download.agora.io/usecase/ktv01.mp4");
             ivKTVPic.setVisibility(View.INVISIBLE);
 
             //MoreFunction
@@ -737,18 +693,12 @@ public class GroupChatFragment extends BaseAgoraFragment implements View.OnClick
 
         doConfigEngine(cRole);
 
+        boolean isBroadcast;
         if (isBroadcaster(cRole)) {//广播者
-            addXplayView();
             isBroadcast = false;
         } else {//听众
             isBroadcast = true;
         }
-
-        worker().getRtcEngine().setParameters(String.format(Locale.US, "{\"che.audio.profile\":{\"scenario\":%d}}", 1));
-        worker().getRtcEngine().setParameters(String.format(Locale.US, "{\"che.audio.headset.monitoring,true\"}"));
-        worker().getRtcEngine().setParameters(String.format(Locale.US, "{\"che.audio.enable.androidlowlatencymode,true\"}"));
-        worker().getRtcEngine().enableInEarMonitoring(true);
-        worker().joinChannel(roomName, config().mUid);
 
     }
 
@@ -767,13 +717,12 @@ public class GroupChatFragment extends BaseAgoraFragment implements View.OnClick
             @Override
             public void run() {
                 if (isDetached()) {
-                    return;
                 }
-                SurfaceView surfaceView = RtcEngine.CreateRendererView(BaseApplication.getInstance());
-                containerAgoraKTV.addView(surfaceView);
-                surfaceView.setZOrderOnTop(true);
-                surfaceView.setZOrderMediaOverlay(true);
-                rtcEngine().setupRemoteVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_ADAPTIVE, uid));
+//                SurfaceView surfaceView = RtcEngine.CreateRendererView(BaseApplication.getInstance());
+//                containerAgoraKTV.addView(surfaceView);
+//                surfaceView.setZOrderOnTop(true);
+//                surfaceView.setZOrderMediaOverlay(true);
+                //rtcEngine().setupRemoteVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_ADAPTIVE, uid));
             }
         });
     }
@@ -789,10 +738,10 @@ public class GroupChatFragment extends BaseAgoraFragment implements View.OnClick
         int count = containerAgoraKTV.getChildCount();
         for (int i = 0; i < count; i++) {
             View v = containerAgoraKTV.getChildAt(i);
-            if (!(v instanceof VideoPlayerView)) {
-                index = i;
-                break;
-            }
+//            if (!(v instanceof VideoPlayerView)) {
+//                index = i;
+//                break;
+//            }
         }
         if (index != -1) {
             containerAgoraKTV.removeViewAt(index);
@@ -805,25 +754,18 @@ public class GroupChatFragment extends BaseAgoraFragment implements View.OnClick
     }
 
     private boolean isBroadcaster(int cRole) {
-        return cRole == io.agora.rtc.Constants.CLIENT_ROLE_BROADCASTER;
+        //return cRole == io.agora.rtc.Constants.CLIENT_ROLE_BROADCASTER;
+        return false;
     }
 
     private void doConfigEngine(int cRole) {
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
-        int prefIndex = pref.getInt(ConstantApp.PrefManager.PREF_PROPERTY_PROFILE_IDX, ConstantApp.DEFAULT_PROFILE_IDX);
-        if (prefIndex > ConstantApp.VIDEO_PROFILES.length - 1) {
-            prefIndex = ConstantApp.DEFAULT_PROFILE_IDX;
-        }
-        int vProfile = ConstantApp.VIDEO_PROFILES[prefIndex];
-
-        worker().configEngine(cRole, vProfile);
     }
 
     // 添加显示 view
-    private void addXplayView() {
-        xPlayerView = new VideoPlayerView(getContext(), mKTVKit);
-        xPlayerView.setZOrderOnTop(true);
-        xPlayerView.setZOrderMediaOverlay(true);
-        containerAgoraKTV.addView(xPlayerView);
-    }
+//    private void addXplayView() {
+//        xPlayerView = new VideoPlayerView(getContext(), mKTVKit);
+//        xPlayerView.setZOrderOnTop(true);
+//        xPlayerView.setZOrderMediaOverlay(true);
+//        containerAgoraKTV.addView(xPlayerView);
+//    }
 }

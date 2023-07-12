@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+import com.xinwo.version.deps
 
 android {
     compileSdkVersion 31
@@ -30,7 +31,7 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.0.0'
     implementation 'org.slf4j:slf4j-api:1.7.25'
 
-    implementation 'com.netease.nimlib:basesdk:7.5.0'
+    implementation deps.library.third_party.netease_basesdk
     implementation project(path: ':library:xin-application')
     implementation project(path: ':framework:xinresources')
     implementation project(path: ':library:xin-log')

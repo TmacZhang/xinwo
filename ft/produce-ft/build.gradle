@@ -37,7 +37,6 @@ android {
 
 dependencies {
     // framework相关
-    implementation project(deps.library.xin.agora_ktv_framework)
     implementation project(deps.library.xin.mvp_framework)
     implementation project(deps.library.xin.litesdk_framework)
     implementation project(deps.library.xin.nativesdk_framework)

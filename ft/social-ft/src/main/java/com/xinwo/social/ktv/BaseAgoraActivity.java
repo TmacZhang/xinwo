@@ -26,10 +26,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
-
-
-import io.agora.rtc.RtcEngine;
-
 public abstract class BaseAgoraActivity extends BaseActivity {
     private final static Logger log = LoggerFactory.getLogger(BaseAgoraActivity.class);
     @Override
@@ -117,9 +113,6 @@ public abstract class BaseAgoraActivity extends BaseActivity {
         super.onDestroy();
         deInitUIandEvent();
 
-    }
-    protected RtcEngine rtcEngine() {
-        return ((BaseApplication) getApplication()).getWorkerThread().getRtcEngine();
     }
 
     protected final WorkerThread worker() {
