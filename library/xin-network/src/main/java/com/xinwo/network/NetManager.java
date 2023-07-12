@@ -10,6 +10,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -23,7 +24,6 @@ public class NetManager {
         if(mClient == null){
             synchronized (DefaultNetManager.class){
                 if(mClient ==null){
-//                    mClient = new OkHttpClient();
                     mClient = getUnsafeOkHttpClient();
                 }
             }
@@ -31,13 +31,10 @@ public class NetManager {
         return mClient;
     }
 
-
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
 
-    String post(String url, String json) throws IOException {
-//        OkHttpClient client = new OkHttpClient();
-
+    public String post(String url, String json) throws IOException {
         OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(20000L, TimeUnit.MILLISECONDS)
                 .readTimeout(20000L, TimeUnit.MILLISECONDS)
@@ -59,6 +56,53 @@ public class NetManager {
         }
     }
 
+    public String postForm(String url) throws IOException {
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(20000L, TimeUnit.MILLISECONDS)
+                .readTimeout(20000L, TimeUnit.MILLISECONDS)
+                .hostnameVerifier(new HostnameVerifier() {
+                    @Override
+                    public boolean verify(String hostname, SSLSession session) {
+                        return true;
+                    }
+                })
+                .build();
+
+        RequestBody body = new MultipartBody.Builder()
+                .addFormDataPart("username","admin")
+                .addFormDataPart("password","123456")
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            return response.body().string();
+        }
+    }
+
+
+    public String get(String url) throws IOException {
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(20000L, TimeUnit.MILLISECONDS)
+                .readTimeout(20000L, TimeUnit.MILLISECONDS)
+                .hostnameVerifier(new HostnameVerifier() {
+                    @Override
+                    public boolean verify(String hostname, SSLSession session) {
+                        return true;
+                    }
+                })
+                .build();
+
+
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            return response.body().string();
+        }
+    }
 
     public static OkHttpClient getUnsafeOkHttpClient() {
 
