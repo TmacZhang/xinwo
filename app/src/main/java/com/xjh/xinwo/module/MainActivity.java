@@ -23,7 +23,7 @@ import com.xinwo.feed.FeedFragment;
 import com.xinwo.produce.record.FUDualInputToTextureExampleFragment;
 import com.xinwo.social.chat.fragment.ChatFragment;
 import com.xinwo.social.groupchat.fragment.GroupChatFragment;
-import com.xinwo.social.profile.ProfileFragment;
+import com.xinwo.social.profile.fragment.ProfileFragment;
 import com.xjh.xinwo.R;
 
 import java.util.ArrayList;

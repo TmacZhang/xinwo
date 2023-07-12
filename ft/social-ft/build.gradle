@@ -87,4 +87,6 @@ dependencies {
 
     implementation deps.library.third_party.android_ktx
     implementation deps.library.third_party.android_lifecycle
+
+    implementation project(deps.library.xin.xin_staggerdRecycleView)
 }
