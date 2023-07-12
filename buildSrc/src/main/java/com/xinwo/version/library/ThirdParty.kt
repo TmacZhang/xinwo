@@ -45,7 +45,7 @@ class ThirdParty {
     val log4j = "org.slf4j:slf4j-api:1.7.25"
 
     val fastjson = "com.alibaba:fastjson:1.2.60"
-    val okhttp = "com.squareup.okhttp3:okhttp:4.1.1"
+    val okhttp = "com.squareup.okhttp3:okhttp:4.9.3"
     val retrofit = "com.squareup.retrofit2:retrofit:2.6.1"
     val retrofit_adpter = "com.squareup.retrofit2:adapter-rxjava:2.6.1"
 

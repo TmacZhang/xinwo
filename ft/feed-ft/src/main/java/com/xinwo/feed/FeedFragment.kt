@@ -1,6 +1,7 @@
 package com.xinwo.feed
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import com.atech.staggedrv.StaggerdRecyclerView
 import com.atech.staggedrv.callbacks.LoadMoreAndRefresh
 import com.xinwo.base.BaseFragment
 import com.xinwo.feed.model.FeedModel
+import com.xinwo.network.NetManager
 import java.util.ArrayList
 
 class FeedFragment : BaseFragment() {
@@ -61,6 +63,13 @@ class FeedFragment : BaseFragment() {
             }
 
             override fun onRefresh() {
+                //测试下网络接口
+                Thread {
+                    val netManager = NetManager()
+                    val url = "http://180.76.242.204:18101/test/user?speed=8"
+                    val result = netManager.get(url)
+                    Log.i("jin", "ss = " + result)
+                }.start()
 
             }
         })
