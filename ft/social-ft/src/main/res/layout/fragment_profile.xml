@@ -15,9 +15,9 @@
             android:src="@drawable/bg_surname" />
 
         <LinearLayout
-            android:layout_marginStart="30dp"
             android:layout_width="@dimen/dp_80"
             android:layout_height="@dimen/dp_80"
+            android:layout_marginStart="30dp"
             android:layout_toEndOf="@id/profile_avatar"
             android:gravity="center_vertical"
             android:orientation="vertical">
@@ -186,4 +186,11 @@
                 android:text="查看历史记录" />
         </LinearLayout>
     </RelativeLayout>
+
+
+    <com.atech.staggedrv.StaggerdRecyclerView
+        android:id="@+id/profile_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp" />
 </LinearLayout>
