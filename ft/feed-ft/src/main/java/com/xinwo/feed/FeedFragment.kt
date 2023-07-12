@@ -1,10 +1,12 @@
 package com.xinwo.feed
 
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.atech.staggedrv.StaggerdRecyclerView
 import com.atech.staggedrv.callbacks.LoadMoreAndRefresh
 import com.xinwo.base.BaseFragment
@@ -68,6 +70,11 @@ class FeedFragment : BaseFragment() {
                     val netManager = NetManager()
                     val url = "http://180.76.242.204:18101/test/user?speed=8"
                     val result = netManager.get(url)
+                    val activity = context as Activity
+                    activity.runOnUiThread {
+                        Toast.makeText(activity, "从服务端拿数据了 ： " + result, Toast.LENGTH_LONG)
+                            .show()
+                    }
                     Log.i("jin", "ss = " + result)
                 }.start()
 
