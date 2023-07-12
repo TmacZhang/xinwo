@@ -2,17 +2,13 @@ package com.xinwo.feed.model
 
 import com.atech.staggedrv.model.StaggedModel
 
-class FeedModel(width: Int, height: Int, resourceId: Int) : StaggedModel {
-    private val mWidth = width
-    private val mHeight = height
-    private val mResourceId = resourceId
-
+data class FeedModel(private val width: Int, private val height: Int, val resourceId: Int) : StaggedModel {
     override fun getWidth(): Int {
-        return mWidth
+        return width
     }
 
     override fun getHeight(): Int {
-        return mHeight
+        return height
     }
 
     override fun getTitle(): String {
@@ -24,7 +20,7 @@ class FeedModel(width: Int, height: Int, resourceId: Int) : StaggedModel {
     }
 
     override fun localResorce(): Int {
-        return mResourceId
+        return resourceId
     }
 
 }

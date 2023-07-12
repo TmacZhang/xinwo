@@ -1,8 +1,6 @@
 include ':app',
         ':framework:pull-refresh-ui',
         ':framework:mvp',
-        ':framework:agora-ktv-kit-release',
-        ':framework:agota',
         ':framework:litesdk',
         ':framework:nativesdk',
         ':framework:xinview',

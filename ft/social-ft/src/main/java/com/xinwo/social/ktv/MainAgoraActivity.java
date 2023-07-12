@@ -15,48 +15,8 @@ import com.xinwo.base.ConstantApp;
 import com.xinwo.social.R;
 
 import java.util.Map;
-
-import io.agora.rtc.Constants;
-
 public class MainAgoraActivity extends BaseAgoraActivity {
-//    Button playBtn;
-//    Button pauseBtn;
-//    Button changeAudioBtn;
-//    private static final String LOG_TAG = MainAgoraActivity.class.getSimpleName();
-//    private RtcEngine mRtcEngine;
-//    private final IKTVKitEventHandler mRtcEventHandler = new IKTVKitEventHandler() { // Tutorial Step 1
-//        @Override
-//        public void onFirstRemoteVideoDecoded(final int uid, int width, int height, int elapsed) { // Tutorial Step 5
-//            runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    setupRemoteVideo(uid);
-//                }
-//            });
-//        }
-//
-//        @Override
-//        public void onUserOffline(int uid, int reason) { // Tutorial Step 7
-//            runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    onRemoteUserLeft();
-//                }
-//            });
-//        }
-//
-//        @Override
-//        public void onUserMuteVideo(final int uid, final boolean muted) { // Tutorial Step 10
-//            runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    onRemoteUserVideoMuted(uid, muted);
-//                }
-//            });
-//        }
-//    };
 
-        // private static final String LOG_TAG = MainAgoraActivity.class.getSimpleName();
 
     private static final int PERMISSION_REQ_ID_RECORD_AUDIO = 22;
     private static final int PERMISSION_REQ_ID_CAMERA = PERMISSION_REQ_ID_RECORD_AUDIO + 1;
@@ -269,31 +229,18 @@ public class MainAgoraActivity extends BaseAgoraActivity {
         // show dialog to choose role
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.msg_choose_role);
-        builder.setNegativeButton(R.string.label_audience, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                MainAgoraActivity.this.forwardToLiveRoom(Constants.CLIENT_ROLE_AUDIENCE);
-            }
-        });
-        builder.setPositiveButton(R.string.label_broadcaster, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                MainAgoraActivity.this.forwardToLiveRoom(Constants.CLIENT_ROLE_BROADCASTER);
-            }
-        });
-
         AlertDialog dialog = builder.create();
         dialog.show();
     }
     public void forwardToLiveRoom(int cRole) {
         final EditText v_room = (EditText) findViewById(R.id.room_name);
         String room = v_room.getText().toString();
-
-        Intent i = new Intent(MainAgoraActivity.this, LiveRoomAgoraActivity.class);
-        i.putExtra(ConstantApp.ACTION_KEY_CROLE, cRole);
-        i.putExtra(ConstantApp.ACTION_KEY_ROOM_NAME, room);
-
-        startActivity(i);
+//
+//        Intent i = new Intent(MainAgoraActivity.this, LiveRoomAgoraActivity.class);
+//        i.putExtra(ConstantApp.ACTION_KEY_CROLE, cRole);
+//        i.putExtra(ConstantApp.ACTION_KEY_ROOM_NAME, room);
+//
+//        startActivity(i);
     }
 
     @Override

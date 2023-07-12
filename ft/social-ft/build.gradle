@@ -14,7 +14,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
-            abiFilters "armeabi-v7a"
+            abiFilters "arm64-v8a", "armeabi-v7a"
             // DO NOT MODIFY THIS LINE, IT'S UPDATED BY BUILD MACHINE AUTOMATICALLY.
         }
     }
@@ -38,9 +38,7 @@ android {
 
 dependencies {
     // framework相关
-    implementation project(deps.library.xin.agora_ktv_framework)
     implementation project(deps.library.xin.mvp_framework)
-    implementation project(deps.library.xin.litesdk_framework)
     implementation project(deps.library.xin.nativesdk_framework)
     implementation project(deps.library.xin.xinview_framework)
     implementation project(deps.library.xin.xinresources_framework)
@@ -79,21 +77,13 @@ dependencies {
     implementation deps.library.third_party.eventbus
     implementation deps.library.third_party.log4j
 
-    // 添加依赖。注意，版本号必须一致。
-    // 基础功能 (必需)
-    implementation 'com.netease.nimlib:basesdk:7.5.0'
-    // 音视频和互动白板服务需要
-    implementation 'com.netease.nimlib:nrtc:7.5.0'
-    // 音视频需要
-    implementation 'com.netease.nimlib:avchat:7.5.0'
-    // 聊天室需要
-    implementation 'com.netease.nimlib:chatroom:7.5.0'
-    // 互动白板服务需要
-    implementation 'com.netease.nimlib:rts:7.5.0'
-    // 全文检索服务需要
-    implementation 'com.netease.nimlib:lucene:7.5.0'
-    // 小米等厂商推送需要
-    implementation 'com.netease.nimlib:push:7.5.0'
+    implementation deps.library.third_party.netease_avchat
+    implementation deps.library.third_party.netease_basesdk
+    implementation deps.library.third_party.netease_chatroom
+    implementation deps.library.third_party.netease_lucene
+    implementation deps.library.third_party.netease_nrtc
+    implementation deps.library.third_party.netease_push
+    implementation deps.library.third_party.netease_rts
 
     implementation deps.library.third_party.android_ktx
     implementation deps.library.third_party.android_lifecycle

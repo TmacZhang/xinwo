@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+import com.xinwo.version.deps
 
 android {
     compileSdkVersion 31
@@ -12,7 +13,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
-            abiFilters "armeabi-v7a"
+            abiFilters "arm64-v8a", "armeabi-v7a"
             // DO NOT MODIFY THIS LINE, IT'S UPDATED BY BUILD MACHINE AUTOMATICALLY.
         }
     }
@@ -35,8 +36,6 @@ android {
 }
 
 dependencies {
-    // ktv相关
-    implementation project(path: ':framework:agora-ktv-kit-release')
     implementation project(path: ':framework:mvp')
     implementation project(path: ':framework:litesdk')
     implementation project(path: ':framework:nativesdk')
@@ -74,26 +73,15 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.0.0'
     implementation 'org.slf4j:slf4j-api:1.7.25'
 
-    // 添加依赖。注意，版本号必须一致。
-    // 基础功能 (必需)
-    implementation 'com.netease.nimlib:basesdk:7.5.0'
-    // 音视频和互动白板服务需要
-    implementation 'com.netease.nimlib:nrtc:7.5.0'
-    // 音视频需要
-    implementation 'com.netease.nimlib:avchat:7.5.0'
-    // 聊天室需要
-    implementation 'com.netease.nimlib:chatroom:7.5.0'
-    // 互动白板服务需要
-    implementation 'com.netease.nimlib:rts:7.5.0'
-    // 全文检索服务需要
-    implementation 'com.netease.nimlib:lucene:7.5.0'
-    // 小米等厂商推送需要
-    implementation 'com.netease.nimlib:push:7.5.0'
 
-    // test相关
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    testImplementation 'junit:junit:4.12'
+    implementation deps.library.third_party.netease_avchat
+    implementation deps.library.third_party.netease_basesdk
+    implementation deps.library.third_party.netease_chatroom
+    implementation deps.library.third_party.netease_lucene
+    implementation deps.library.third_party.netease_nrtc
+    implementation deps.library.third_party.netease_push
+    implementation deps.library.third_party.netease_rts
+
 
     implementation 'androidx.core:core-ktx:1.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.7.20"

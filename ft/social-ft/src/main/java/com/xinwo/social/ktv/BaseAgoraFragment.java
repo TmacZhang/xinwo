@@ -24,8 +24,6 @@ import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 import java.util.Map;
 
-import io.agora.rtc.RtcEngine;
-
 public abstract class BaseAgoraFragment extends BaseFragment {
     private final static Logger log = LoggerFactory.getLogger(BaseAgoraFragment.class);
     private boolean mIsFirstResume = true;
@@ -170,10 +168,6 @@ public abstract class BaseAgoraFragment extends BaseFragment {
 
     }
 
-    protected RtcEngine rtcEngine() {
-        return BaseApplication.getInstance().getWorkerThread().getRtcEngine();
-    }
-
     protected final WorkerThread worker() {
         return BaseApplication.getInstance().getWorkerThread();
     }
@@ -204,10 +198,6 @@ public abstract class BaseAgoraFragment extends BaseFragment {
 
                 }
             }, permission);
-            //
-            // AppCompatActivity.requestPermissions(getContext(),
-            //         new String[]{permission},
-            //         requestCode);
             return false;
         }
 
