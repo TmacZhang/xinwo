@@ -72,11 +72,6 @@ public class MyEngineEventHandler {
         }
 
         @Override
-        public void onFirstLocalVideoFrame(int width, int height, int elapsed) {
-            super.onFirstLocalVideoFrame(width, height, elapsed);
-        }
-
-        @Override
         public void onFirstRemoteVideoDecoded(int uid, int width, int height, int elapsed) {
             super.onFirstRemoteVideoDecoded(uid, width, height, elapsed);
             Iterator<AGEventHandler> it = mEventHandleList.keySet().iterator();

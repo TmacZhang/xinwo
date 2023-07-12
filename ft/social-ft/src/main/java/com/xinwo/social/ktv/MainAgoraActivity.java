@@ -19,44 +19,7 @@ import java.util.Map;
 import io.agora.rtc.Constants;
 
 public class MainAgoraActivity extends BaseAgoraActivity {
-//    Button playBtn;
-//    Button pauseBtn;
-//    Button changeAudioBtn;
-//    private static final String LOG_TAG = MainAgoraActivity.class.getSimpleName();
-//    private RtcEngine mRtcEngine;
-//    private final IKTVKitEventHandler mRtcEventHandler = new IKTVKitEventHandler() { // Tutorial Step 1
-//        @Override
-//        public void onFirstRemoteVideoDecoded(final int uid, int width, int height, int elapsed) { // Tutorial Step 5
-//            runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    setupRemoteVideo(uid);
-//                }
-//            });
-//        }
-//
-//        @Override
-//        public void onUserOffline(int uid, int reason) { // Tutorial Step 7
-//            runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    onRemoteUserLeft();
-//                }
-//            });
-//        }
-//
-//        @Override
-//        public void onUserMuteVideo(final int uid, final boolean muted) { // Tutorial Step 10
-//            runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    onRemoteUserVideoMuted(uid, muted);
-//                }
-//            });
-//        }
-//    };
 
-        // private static final String LOG_TAG = MainAgoraActivity.class.getSimpleName();
 
     private static final int PERMISSION_REQ_ID_RECORD_AUDIO = 22;
     private static final int PERMISSION_REQ_ID_CAMERA = PERMISSION_REQ_ID_RECORD_AUDIO + 1;

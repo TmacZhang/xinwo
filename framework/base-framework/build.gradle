@@ -12,7 +12,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
-            abiFilters "armeabi-v7a"
+            abiFilters "arm64-v8a", "armeabi-v7a"
             // DO NOT MODIFY THIS LINE, IT'S UPDATED BY BUILD MACHINE AUTOMATICALLY.
         }
     }
@@ -35,8 +35,14 @@ android {
 }
 
 dependencies {
-    // ktv相关
-    implementation project(path: ':framework:agora-ktv-kit-release')
+
+
+    def agora_sdk_version = "3.1.2"
+    // case 1: full single lib with voice only
+    implementation "io.agora.rtc:voice-sdk:${agora_sdk_version}"
+
+//    // ktv相关
+//    implementation project(path: ':framework:agora-ktv-kit-release')
     implementation project(path: ':framework:mvp')
     implementation project(path: ':framework:litesdk')
     implementation project(path: ':framework:nativesdk')

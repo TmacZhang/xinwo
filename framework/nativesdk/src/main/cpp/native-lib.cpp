@@ -36,14 +36,14 @@ int test() {
     sa.sa_handler = signalHandler;
     sa.sa_flags = SA_ONSTACK;
     sigemptyset(&sa.sa_mask);
-    if (sigaction(SIGSEGV, &sa, NULL) == -1) {
-        ALOGW("sigaction");
-        exit(EXIT_FAILURE);
-    }
-
-    // 发送信号
-    ALOGW("Sending signal...\n");
-    kill(getpid(), SIGSEGV);
+//    if (sigaction(SIGSEGV, &sa, NULL) == -1) {
+//        ALOGW("sigaction");
+//        exit(EXIT_FAILURE);
+//    }
+//
+//    // 发送信号
+//    ALOGW("Sending signal...\n");
+//    kill(getpid(), SIGSEGV);
     return 0;
 }
 
