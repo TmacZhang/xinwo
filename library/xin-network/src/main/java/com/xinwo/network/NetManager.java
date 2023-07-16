@@ -21,9 +21,9 @@ public class NetManager {
     private static OkHttpClient mClient;
 
     public static OkHttpClient getOkHttpClient() {
-        if(mClient == null){
-            synchronized (DefaultNetManager.class){
-                if(mClient ==null){
+        if (mClient == null) {
+            synchronized (DefaultNetManager.class) {
+                if (mClient == null) {
                     mClient = getUnsafeOkHttpClient();
                 }
             }
@@ -69,8 +69,8 @@ public class NetManager {
                 .build();
 
         RequestBody body = new MultipartBody.Builder()
-                .addFormDataPart("username","admin")
-                .addFormDataPart("password","123456")
+                .addFormDataPart("username", "admin")
+                .addFormDataPart("password", "123456")
                 .build();
 
         Request request = new Request.Builder()
@@ -100,8 +100,11 @@ public class NetManager {
                 .url(url)
                 .build();
         try (Response response = client.newCall(request).execute()) {
-            return response.body().string();
+            if (response.body() != null) {
+                return response.body().string();
+            }
         }
+        return "";
     }
 
     public static OkHttpClient getUnsafeOkHttpClient() {

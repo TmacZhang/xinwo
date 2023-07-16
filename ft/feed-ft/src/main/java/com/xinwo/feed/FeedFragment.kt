@@ -74,7 +74,6 @@ class FeedFragment : BaseFragment() {
     }
 
     private fun initRecyclerView(recyclerView: StaggerdRecyclerView) {
-
         var feedApdater: FeedAdapter?
         feedApdater = FeedAdapter(this.context)
         recyclerView?.link(feedApdater, 2)
