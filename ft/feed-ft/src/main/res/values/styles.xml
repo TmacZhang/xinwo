@@ -3,7 +3,7 @@
 
     <style name="MyTablayoutstyle" parent="Base.Widget.Design.TabLayout">
         <item name="tabBackground">@color/white</item>
-        <item name="tabIndicatorColor">@color/payeco_textColorWhite</item>
+        <item name="tabIndicatorColor">@color/faceunityGreen</item>
         <item name="tabIndicatorHeight">2dp</item>
         <item name="tabSelectedTextColor">@color/faceunityGreen</item>
         <item name="android:textSize">16sp</item>
