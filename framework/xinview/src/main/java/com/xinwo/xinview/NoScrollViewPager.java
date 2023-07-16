@@ -6,7 +6,6 @@ import android.view.MotionEvent;
 
 import androidx.viewpager.widget.ViewPager;
 
-
 public class NoScrollViewPager extends ViewPager {
 
     public NoScrollViewPager(Context context) {
