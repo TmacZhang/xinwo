@@ -44,6 +44,7 @@ class FeedFragment : BaseFragment() {
         initRecyclerView(mRecyclerView1!!)
         initRecyclerView(mRecyclerView2!!)
         initRecyclerView(mRecyclerView3!!)
+        mViewPager?.setCurrentItem(1)
     }
 
     private fun initViewPager() {
