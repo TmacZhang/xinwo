@@ -18,7 +18,7 @@ class FeedAdapter(c: Context?) : StaggedAdapter<FeedModel>(c) {
 
         //绑定自定义的viewholder
         val v: View = LayoutInflater.from(c)
-            .inflate(R.layout.item_feed, viewGroup, false)
+            .inflate(R.layout.feed_item, viewGroup, false)
         return FeedViewHolder(v)
     }
 
