@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="MyTablayoutstyle" parent="Base.Widget.Design.TabLayout">
+    <style name="FeedTablayoutstyle" parent="Base.Widget.Design.TabLayout">
         <item name="tabBackground">@color/white</item>
         <item name="tabIndicatorColor">@color/faceunityGreen</item>
         <item name="tabIndicatorHeight">2dp</item>
