@@ -1,5 +1,7 @@
 package com.xinwo.network;
 
+import com.xinwo.log.LibLog;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -17,13 +19,13 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class NetManager {
-
+    public static final String TAG = "NetManager";
     private static OkHttpClient mClient;
 
     public static OkHttpClient getOkHttpClient() {
-        if(mClient == null){
-            synchronized (DefaultNetManager.class){
-                if(mClient ==null){
+        if (mClient == null) {
+            synchronized (DefaultNetManager.class) {
+                if (mClient == null) {
                     mClient = getUnsafeOkHttpClient();
                 }
             }
@@ -69,8 +71,8 @@ public class NetManager {
                 .build();
 
         RequestBody body = new MultipartBody.Builder()
-                .addFormDataPart("username","admin")
-                .addFormDataPart("password","123456")
+                .addFormDataPart("username", "admin")
+                .addFormDataPart("password", "123456")
                 .build();
 
         Request request = new Request.Builder()
@@ -100,8 +102,13 @@ public class NetManager {
                 .url(url)
                 .build();
         try (Response response = client.newCall(request).execute()) {
-            return response.body().string();
+            if (response.body() != null) {
+                return response.body().string();
+            }
+        } catch (Exception e) {
+            LibLog.e(TAG, e.getMessage());
         }
+        return "";
     }
 
     public static OkHttpClient getUnsafeOkHttpClient() {
