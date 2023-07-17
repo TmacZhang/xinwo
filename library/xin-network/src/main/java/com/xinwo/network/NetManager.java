@@ -1,5 +1,7 @@
 package com.xinwo.network;
 
+import com.xinwo.log.LibLog;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -17,7 +19,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class NetManager {
-
+    public static final String TAG = "NetManager";
     private static OkHttpClient mClient;
 
     public static OkHttpClient getOkHttpClient() {
@@ -103,6 +105,8 @@ public class NetManager {
             if (response.body() != null) {
                 return response.body().string();
             }
+        } catch (Exception e) {
+            LibLog.e(TAG, e.getMessage());
         }
         return "";
     }
