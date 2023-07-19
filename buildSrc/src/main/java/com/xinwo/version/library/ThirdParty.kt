@@ -1,8 +1,6 @@
 package com.xinwo.version.library
 
 class ThirdParty {
-    val gson = "com.google.code.gson:gson:2.8.2"
-
     val aspectjrt = "org.aspectj:aspectjrt:1.8.11"
 
     val kotlin_version = "1.3.41"
@@ -20,7 +18,11 @@ class ThirdParty {
     val rxjava = "io.reactivex.rxjava2:rxjava:2.2.0"
     val rxandroid = "io.reactivex.rxjava2:rxandroid:2.0.1"
     val rxrelay = "com.jakewharton.rxrelay2:rxrelay:2.0.0"
-
+    val retrofit = "com.squareup.retrofit2:retrofit:2.6.1"
+    val retrofit_adpter = "com.squareup.retrofit2:adapter-rxjava:2.6.1"
+    val gson = "com.google.code.gson:gson:2.8.2"
+    val retrofit_gson_converter = "com.squareup.retrofit2:converter-gson:2.6.1"
+    val retrofit_rxjava_adapter= "com.squareup.retrofit2:adapter-rxjava:2.6.1"
 
     val dfqin = "com.github.dfqin:grantor:2.5"
     val appcompat = "androidx.appcompat:appcompat:1.0.0"
@@ -46,8 +48,7 @@ class ThirdParty {
 
     val fastjson = "com.alibaba:fastjson:1.2.60"
     val okhttp = "com.squareup.okhttp3:okhttp:4.9.3"
-    val retrofit = "com.squareup.retrofit2:retrofit:2.6.1"
-    val retrofit_adpter = "com.squareup.retrofit2:adapter-rxjava:2.6.1"
+
 
     val ijkplayer = "tv.danmaku.ijk.media:ijkplayer-java:0.8.8"
     val ijkplayer_armv7a = "tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8"

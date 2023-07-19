@@ -27,11 +27,12 @@ dependencies {
     implementation project(path: ':library:xin-application')
 
     api deps.library.third_party.okhttp
-    api 'com.squareup.retrofit2:retrofit:2.6.1'
-    api 'com.squareup.retrofit2:adapter-rxjava:2.6.1'
-
-    api 'io.reactivex:rxjava:1.3.0'
-    api 'io.reactivex:rxandroid:1.2.1'
+    api deps.library.third_party.retrofit
+    api deps.library.third_party.retrofit_adpter
+    api deps.library.third_party.retrofit_gson_converter
+    api deps.library.third_party.retrofit_rxjava_adapter
+    api deps.library.third_party.rxjava
+    api deps.library.third_party.rxandroid
 }
 
 
