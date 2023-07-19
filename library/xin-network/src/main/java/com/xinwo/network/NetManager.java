@@ -1,6 +1,7 @@
 package com.xinwo.network;
 
 import com.xinwo.log.LibLog;
+import com.xinwo.network.interceptor.BasicParamsInterceptor;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -17,10 +18,15 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetManager {
     public static final String TAG = "NetManager";
     private static OkHttpClient mClient;
+    private static volatile Retrofit sRetrofit;
+    private final static long DEFAULT_TIME_OUT = 10;
 
     public static OkHttpClient getOkHttpClient() {
         if (mClient == null) {
@@ -148,6 +154,36 @@ public class NetManager {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
+
+    public static Retrofit getRetrofit() {
+        if (sRetrofit == null) {
+            synchronized (NetManager.class) {
+                if (sRetrofit == null) {
+                    OkHttpClient.Builder builder = new OkHttpClient.Builder();
+                    builder.connectTimeout(DEFAULT_TIME_OUT, TimeUnit.SECONDS);//连接超时时间
+                    builder.writeTimeout(DEFAULT_TIME_OUT, TimeUnit.SECONDS);//写操作 超时时间
+                    builder.readTimeout(DEFAULT_TIME_OUT, TimeUnit.SECONDS);//读操作超时时间
+
+                    // 添加公共参数拦截器
+                    BasicParamsInterceptor basicParamsInterceptor = new BasicParamsInterceptor()
+                            .addHeaderParam("userName", "")//添加公共参数
+                            .addHeaderParam("device", "");
+
+                    builder.addInterceptor(basicParamsInterceptor);
+
+                    sRetrofit = new Retrofit.Builder()
+                            .client(builder.build())
+                            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .baseUrl("")
+                            .build();
+                }
+            }
+        }
+
+        return sRetrofit;
+    }
+
+
 }
