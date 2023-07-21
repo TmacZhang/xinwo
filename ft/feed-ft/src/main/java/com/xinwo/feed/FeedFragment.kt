@@ -105,7 +105,7 @@ class FeedFragment : BaseFragment() {
                 //测试下网络接口
                 Thread {
                     val netManager = NetManager()
-                    val url = "http://180.76.242.204:18101/test/user?speed=8"
+                    val url = "http://180.76.242.204:18080/minio/fileList?pageNum=1&pageSize=10&bucketName=img"
                     val result = netManager.get(url)
                     val activity = context as Activity
                     activity.runOnUiThread {
