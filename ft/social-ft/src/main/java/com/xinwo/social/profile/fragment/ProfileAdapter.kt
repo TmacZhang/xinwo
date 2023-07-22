@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.atech.staggedrv.StaggedAdapter
 import com.xinwo.social.R
 
-class ProfileAdapter(c: Context?) : StaggedAdapter<ProfileModel>(c) {
+class ProfileAdapter(c: Context?) : StaggedAdapter<ProfileItemModel>(c) {
 
     override fun getItemCount(): Int {
         return datas.size

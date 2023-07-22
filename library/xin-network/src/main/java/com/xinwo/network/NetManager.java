@@ -156,7 +156,7 @@ public class NetManager {
         }
     }
 
-    public static Retrofit getRetrofit() {
+    public static Retrofit getRetrofit(String url) {
         if (sRetrofit == null) {
             synchronized (NetManager.class) {
                 if (sRetrofit == null) {
@@ -176,7 +176,7 @@ public class NetManager {
                             .client(builder.build())
                             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create())
-                            .baseUrl("")
+                            .baseUrl(url)
                             .build();
                 }
             }

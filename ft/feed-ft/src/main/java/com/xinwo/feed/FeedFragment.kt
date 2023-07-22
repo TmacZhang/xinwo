@@ -13,8 +13,12 @@ import com.atech.staggedrv.callbacks.LoadMoreAndRefresh
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.Tab
 import com.xinwo.base.BaseFragment
+import com.xinwo.feed.api.IGetHostService
 import com.xinwo.feed.model.FeedModel
 import com.xinwo.network.NetManager
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.observers.DisposableObserver
+import io.reactivex.schedulers.Schedulers
 import java.util.ArrayList
 
 class FeedFragment : BaseFragment() {
@@ -74,9 +78,9 @@ class FeedFragment : BaseFragment() {
     }
 
     private fun initRecyclerView(recyclerView: StaggerdRecyclerView) {
-        var feedApdater: FeedAdapter?
+        val feedApdater: FeedAdapter?
         feedApdater = FeedAdapter(this.context)
-        recyclerView?.link(feedApdater, 2)
+        recyclerView.link(feedApdater, 2)
 
         feedApdater.datas?.add(FeedModel(500, 500, R.drawable.a2))
         feedApdater.datas?.add(FeedModel(500, 1000, R.drawable.a2))
@@ -90,7 +94,7 @@ class FeedFragment : BaseFragment() {
         feedApdater.datas?.add(FeedModel(500, 705, R.drawable.c2))
         feedApdater.datas?.add(FeedModel(500, 885, R.drawable.c3))
 
-        recyclerView?.addCallbackListener(object : LoadMoreAndRefresh {
+        recyclerView.addCallbackListener(object : LoadMoreAndRefresh {
             override fun onLoadMore() {
                 //模拟加载更多
                 val datas = ArrayList<FeedModel>();
@@ -103,9 +107,31 @@ class FeedFragment : BaseFragment() {
 
             override fun onRefresh() {
                 //测试下网络接口
+
+    //                val retrofit = NetManager.getRetrofit("http://180.76.242.204:18080")
+    //                retrofit.create(IGetHostService::class.java)
+    //                    .getData(1, 10, "img")
+    //                    .subscribeOn(Schedulers.io())
+    //                    .observeOn(AndroidSchedulers.mainThread())
+    //                    .subscribe(object : DisposableObserver<FeedModel>() {
+    //                        override fun onNext(data: FeedModel) {
+    //
+    //                        }
+    //
+    //                        override fun onError(e: Throwable) {
+    //
+    //                        }
+    //
+    //                        override fun onComplete() {
+    //
+    //                        }
+    //                    })
                 Thread {
+
+
                     val netManager = NetManager()
-                    val url = "http://180.76.242.204:18080/minio/fileList?pageNum=1&pageSize=10&bucketName=img"
+                    val url =
+                        "http://180.76.242.204:18080/minio/fileList?pageNum=1&pageSize=10&bucketName=img"
                     val result = netManager.get(url)
                     val activity = context as Activity
                     activity.runOnUiThread {
