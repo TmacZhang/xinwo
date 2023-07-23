@@ -107,7 +107,7 @@ class FeedFragment : BaseFragment() {
                 override fun onNext(data: FeedListModel) {
                     Log.i("jin", data.toString())
                     val newData = data.listModel.filter {
-                        it.bucketName.equals("img")
+                        !it.bucketName.equals("mall")
                     }
                     if (refresh) {
                         feedApdater.refresh(newData)
