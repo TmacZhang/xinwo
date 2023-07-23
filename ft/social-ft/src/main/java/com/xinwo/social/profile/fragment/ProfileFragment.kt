@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.atech.staggedrv.StaggerdRecyclerView
 import com.atech.staggedrv.callbacks.LoadMoreAndRefresh
@@ -47,26 +46,26 @@ class ProfileFragment : BaseFragment() {
             mRecycleView?.link(mProfileAdapter, 2)
         }
 
-        mProfileAdapter?.datas?.add(ProfileModel(500, 500, R.drawable.a2))
-        mProfileAdapter?.datas?.add(ProfileModel(500, 1000, R.drawable.a2))
-        mProfileAdapter?.datas?.add(ProfileModel(500, 750, R.drawable.a3))
-        mProfileAdapter?.datas?.add(ProfileModel(500, 530, R.drawable.a4))
-        mProfileAdapter?.datas?.add(ProfileModel(500, 400, R.drawable.a5))
-        mProfileAdapter?.datas?.add(ProfileModel(500, 980, R.drawable.a6))
-        mProfileAdapter?.datas?.add(ProfileModel(500, 600, R.drawable.a7))
-        mProfileAdapter?.datas?.add(ProfileModel(500, 620, R.drawable.a8))
-        mProfileAdapter?.datas?.add(ProfileModel(500, 680, R.drawable.c1))
-        mProfileAdapter?.datas?.add(ProfileModel(500, 705, R.drawable.c2))
-        mProfileAdapter?.datas?.add(ProfileModel(500, 885, R.drawable.c3))
+        mProfileAdapter?.datas?.add(ProfileItemModel(500, 500, R.drawable.a2))
+        mProfileAdapter?.datas?.add(ProfileItemModel(500, 1000, R.drawable.a2))
+        mProfileAdapter?.datas?.add(ProfileItemModel(500, 750, R.drawable.a3))
+        mProfileAdapter?.datas?.add(ProfileItemModel(500, 530, R.drawable.a4))
+        mProfileAdapter?.datas?.add(ProfileItemModel(500, 400, R.drawable.a5))
+        mProfileAdapter?.datas?.add(ProfileItemModel(500, 980, R.drawable.a6))
+        mProfileAdapter?.datas?.add(ProfileItemModel(500, 600, R.drawable.a7))
+        mProfileAdapter?.datas?.add(ProfileItemModel(500, 620, R.drawable.a8))
+        mProfileAdapter?.datas?.add(ProfileItemModel(500, 680, R.drawable.c1))
+        mProfileAdapter?.datas?.add(ProfileItemModel(500, 705, R.drawable.c2))
+        mProfileAdapter?.datas?.add(ProfileItemModel(500, 885, R.drawable.c3))
 
         mRecycleView?.addCallbackListener(object : LoadMoreAndRefresh {
             override fun onLoadMore() {
                 //模拟加载更多
-                val datas = ArrayList<ProfileModel>();
-                datas.add(ProfileModel(500, 840, R.drawable.girl_photo_01_small))
-                datas.add(ProfileModel(500, 712, R.drawable.c5))
-                datas.add(ProfileModel(500, 624, R.drawable.c6))
-                datas.add(ProfileModel(500, 888, R.drawable.c7))
+                val datas = ArrayList<ProfileItemModel>();
+                datas.add(ProfileItemModel(500, 840, R.drawable.girl_photo_01_small))
+                datas.add(ProfileItemModel(500, 712, R.drawable.c5))
+                datas.add(ProfileItemModel(500, 624, R.drawable.c6))
+                datas.add(ProfileItemModel(500, 888, R.drawable.c7))
                 mProfileAdapter?.loadMore(datas)
             }
 
@@ -113,10 +112,10 @@ class ProfileFragment : BaseFragment() {
     fun setViewModel() {
         mProfileViewModel = ViewModelProviders.of(this).get(ProfilerViewModel::class.java)
         mProfileViewModel?.getMutableLiveData()?.value = ProfilerModel()
-        mProfileViewModel?.getMutableLiveData()?.observe(this, Observer { model ->
+        mProfileViewModel?.getMutableLiveData()?.observe(this) { model ->
             mNameView?.setText(model.mName)
             mIdView?.setText(model.mId.toString())
 
-        })
+        }
     }
 }

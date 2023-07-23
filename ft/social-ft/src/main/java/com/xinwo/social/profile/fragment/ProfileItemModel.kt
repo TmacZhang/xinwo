@@ -2,7 +2,7 @@ package com.xinwo.social.profile.fragment
 
 import com.atech.staggedrv.model.StaggedModel
 
-data class ProfileModel(private val width: Int, private val height: Int, val resourceId: Int) : StaggedModel {
+data class ProfileItemModel(private val width: Int, private val height: Int, val resourceId: Int) : StaggedModel {
     override fun getWidth(): Int {
         return width
     }

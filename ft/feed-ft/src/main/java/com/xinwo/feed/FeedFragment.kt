@@ -1,21 +1,23 @@
 package com.xinwo.feed
 
-import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
 import com.atech.staggedrv.StaggerdRecyclerView
 import com.atech.staggedrv.callbacks.LoadMoreAndRefresh
+import com.bumptech.glide.Glide
+import com.bumptech.glide.MemoryCategory
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.Tab
 import com.xinwo.base.BaseFragment
-import com.xinwo.feed.model.FeedModel
+import com.xinwo.feed.api.IGetHostService
+import com.xinwo.feed.model.FeedListModel
 import com.xinwo.network.NetManager
-import java.util.ArrayList
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.observers.DisposableObserver
+import io.reactivex.schedulers.Schedulers
 
 class FeedFragment : BaseFragment() {
     var mViewPager: ViewPager? = null
@@ -45,6 +47,9 @@ class FeedFragment : BaseFragment() {
         initRecyclerView(mRecyclerView2!!)
         initRecyclerView(mRecyclerView3!!)
         mViewPager?.setCurrentItem(1)
+
+        // 初始化Glide
+        context?.let { Glide.get(it).setMemoryCategory(MemoryCategory.HIGH) };
     }
 
     private fun initViewPager() {
@@ -74,49 +79,51 @@ class FeedFragment : BaseFragment() {
     }
 
     private fun initRecyclerView(recyclerView: StaggerdRecyclerView) {
-        var feedApdater: FeedAdapter?
+        val feedApdater: FeedAdapter?
         feedApdater = FeedAdapter(this.context)
-        recyclerView?.link(feedApdater, 2)
+        recyclerView.link(feedApdater, 2)
+        getHotFeed(feedApdater, false)
 
-        feedApdater.datas?.add(FeedModel(500, 500, R.drawable.a2))
-        feedApdater.datas?.add(FeedModel(500, 1000, R.drawable.a2))
-        feedApdater.datas?.add(FeedModel(500, 750, R.drawable.a3))
-        feedApdater.datas?.add(FeedModel(500, 530, R.drawable.a4))
-        feedApdater.datas?.add(FeedModel(500, 400, R.drawable.a5))
-        feedApdater.datas?.add(FeedModel(500, 980, R.drawable.a6))
-        feedApdater.datas?.add(FeedModel(500, 600, R.drawable.a7))
-        feedApdater.datas?.add(FeedModel(500, 620, R.drawable.a8))
-        feedApdater.datas?.add(FeedModel(500, 680, R.drawable.c1))
-        feedApdater.datas?.add(FeedModel(500, 705, R.drawable.c2))
-        feedApdater.datas?.add(FeedModel(500, 885, R.drawable.c3))
-
-        recyclerView?.addCallbackListener(object : LoadMoreAndRefresh {
+        recyclerView.addCallbackListener(object : LoadMoreAndRefresh {
             override fun onLoadMore() {
                 //模拟加载更多
-                val datas = ArrayList<FeedModel>();
-                datas.add(FeedModel(500, 840, R.drawable.girl_photo_01_small))
-                datas.add(FeedModel(500, 712, R.drawable.c5))
-                datas.add(FeedModel(500, 624, R.drawable.c6))
-                datas.add(FeedModel(500, 888, R.drawable.c7))
-                feedApdater.loadMore(datas)
+                getHotFeed(feedApdater, false)
             }
 
             override fun onRefresh() {
                 //测试下网络接口
-                Thread {
-                    val netManager = NetManager()
-                    val url = "http://180.76.242.204:18101/test/user?speed=8"
-                    val result = netManager.get(url)
-                    val activity = context as Activity
-                    activity.runOnUiThread {
-                        Toast.makeText(activity, "从服务端拿数据了 ： " + result, Toast.LENGTH_LONG)
-                            .show()
-                    }
-                    Log.i("jin", "ss = " + result)
-                }.start()
-
+                getHotFeed(feedApdater, true)
             }
         })
+    }
+
+    private fun getHotFeed(feedApdater: FeedAdapter, refresh: Boolean) {
+        val retrofit = NetManager.getRetrofit("http://180.76.242.204:18080")
+        retrofit.create(IGetHostService::class.java)
+            .getData(1, 10, "img")
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : DisposableObserver<FeedListModel>() {
+                override fun onNext(data: FeedListModel) {
+                    Log.i("jin", data.toString())
+                    val newData = data.listModel.filter {
+                        it.bucketName.equals("img")
+                    }
+                    if (refresh) {
+                        feedApdater.refresh(newData)
+                    } else {
+                        feedApdater.loadMore(newData)
+                    }
+                }
+
+                override fun onError(e: Throwable) {
+
+                }
+
+                override fun onComplete() {
+
+                }
+            })
     }
 
     override fun loadData() {

@@ -1,14 +1,21 @@
 package com.xinwo.feed.model
 
 import com.atech.staggedrv.model.StaggedModel
+import com.google.gson.annotations.SerializedName
+import java.io.Serializable
+import java.util.Random
 
-data class FeedModel(private val width: Int, private val height: Int, val resourceId: Int) : StaggedModel {
+data class FeedModel(
+    @SerializedName("bucketName") val bucketName: String,
+    @SerializedName("fileName") val fileName: String
+) : StaggedModel, Serializable {
+
     override fun getWidth(): Int {
-        return width
+        return 300 + Random().nextInt(300)
     }
 
     override fun getHeight(): Int {
-        return height
+        return 500 + Random().nextInt(400)
     }
 
     override fun getTitle(): String {
@@ -19,8 +26,17 @@ data class FeedModel(private val width: Int, private val height: Int, val resour
         return ""
     }
 
-    override fun localResorce(): Int {
-        return resourceId
-    }
+    fun getUrl(): String {
+        bucketName.apply {
+            if (this.isNotEmpty()) {
+                fileName.apply {
+                    if (this.isNotEmpty()) {
+                        return "http://180.76.242.204:19000/$bucketName/$fileName"
+                    }
+                }
+            }
+        }
 
+        return ""
+    }
 }
