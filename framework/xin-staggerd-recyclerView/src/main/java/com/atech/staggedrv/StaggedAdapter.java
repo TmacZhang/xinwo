@@ -45,12 +45,8 @@ public abstract class StaggedAdapter<T extends StaggedModel> extends RecyclerVie
      * @param datas
      */
     public void refresh(List<T> datas){
-
-        this.datas = datas;
-
+        this.datas.addAll(0, datas);
         notifyItemRangeChanged(0, datas.size());
-
-
     }
 
     /**
