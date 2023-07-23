@@ -22,7 +22,7 @@ class ThirdParty {
     val retrofit_adpter = "com.squareup.retrofit2:adapter-rxjava:2.6.1"
     val gson = "com.google.code.gson:gson:2.8.2"
     val retrofit_gson_converter = "com.squareup.retrofit2:converter-gson:2.6.1"
-    val retrofit_rxjava_adapter= "com.squareup.retrofit2:adapter-rxjava:2.6.1"
+    val retrofit_rxjava_adapter= "com.squareup.retrofit2:adapter-rxjava2:2.6.1"
 
     val dfqin = "com.github.dfqin:grantor:2.5"
     val appcompat = "androidx.appcompat:appcompat:1.0.0"

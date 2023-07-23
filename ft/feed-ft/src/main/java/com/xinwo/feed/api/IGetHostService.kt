@@ -1,6 +1,6 @@
 package com.xinwo.feed.api
 
-import com.xinwo.feed.model.FeedModel
+import com.xinwo.feed.model.FeedListModel
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -11,5 +11,5 @@ interface IGetHostService {
         @Query("pageNum") param1: Int,
         @Query("pageSize") param2: Int,
         @Query("bucketName") param3: String
-    ): Observable<FeedModel>
+    ): Observable<FeedListModel>
 }
