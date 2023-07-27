@@ -27,7 +27,7 @@ repositories {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 25    // Android 7.0
+    compileSdkVersion 33
 
     // Target ABI
     //  - This option controls target platform of module
