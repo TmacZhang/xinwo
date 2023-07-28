@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.media.MediaMetadataRetriever
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,15 +16,25 @@ import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
 import com.bumptech.glide.load.resource.bitmap.VideoDecoder.FRAME_OPTION
 import com.bumptech.glide.request.RequestOptions
-import com.shuyu.gsyvideoplayer.GSYVideoManager
-import com.shuyu.gsyvideoplayer.listener.GSYMediaPlayerListener
-import com.shuyu.gsyvideoplayer.player.IjkPlayerManager
-import com.shuyu.gsyvideoplayer.player.PlayerFactory
+import com.google.android.exoplayer2.ExoPlayerFactory
+import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.database.DatabaseProvider
+import com.google.android.exoplayer2.database.ExoDatabaseProvider
+import com.google.android.exoplayer2.source.ProgressiveMediaSource
+import com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_FILL
+import com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_ZOOM
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
+import com.google.android.exoplayer2.upstream.cache.CacheDataSourceFactory
+import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor
+import com.google.android.exoplayer2.upstream.cache.SimpleCache
+import com.google.android.exoplayer2.util.Util
 import com.xinwo.feed.model.FeedModel
 import java.security.MessageDigest
 
 
 class FeedAdapter(c: Context?) : StaggedAdapter<FeedModel>(c) {
+    val leastRecentlyUsedCacheEvictor = LeastRecentlyUsedCacheEvictor(1024 * 1024 * 1024)
+    val databaseProvider: DatabaseProvider = ExoDatabaseProvider(c)
 
     override fun getItemCount(): Int {
         return datas.size
@@ -40,8 +51,6 @@ class FeedAdapter(c: Context?) : StaggedAdapter<FeedModel>(c) {
     @SuppressLint("CheckResult")
     override fun bindView(viewHolder: RecyclerView.ViewHolder?, i: Int) {
         val feedViewHolder = viewHolder as FeedViewHolder
-
-
         Log.i("jin", datas.get(i).getUrl())
         // 在加载图片之前设定好图片的宽高，防止出现item错乱及闪烁
         if (datas.get(i).bucketName.equals("img")) {
@@ -54,75 +63,53 @@ class FeedAdapter(c: Context?) : StaggedAdapter<FeedModel>(c) {
         } else {
             setVideoFrame(feedViewHolder, i)
 
+            if (simpleCache == null) {
+                Log.i("jin", "simplaecache 111")
+                simpleCache =
+                    SimpleCache(c?.cacheDir, leastRecentlyUsedCacheEvictor, databaseProvider)
+            }
             feedViewHolder.mImageView?.setOnClickListener { v ->
-                PlayerFactory.setPlayManager(IjkPlayerManager::class.java)
+
+                val simplePlayer = ExoPlayerFactory.newSimpleInstance(c)
+                val cacheDataSourceFactory = CacheDataSourceFactory(
+                    simpleCache,
+                    DefaultHttpDataSourceFactory(
+                        Util.getUserAgent(c, "exo")
+                    )
+                )
+
                 feedViewHolder.mImageView?.visibility = View.GONE
                 feedViewHolder.mVideoPlayer?.visibility = View.VISIBLE
-                feedViewHolder.mVideoPlayer?.setUp(datas.get(i).getUrl(), true, "")
-                feedViewHolder.mVideoPlayer?.startPlayLogic()
-                feedViewHolder.mVideoPlayer?.getBackButton()?.setVisibility(View.GONE);
-                feedViewHolder.mVideoPlayer?.getFullscreenButton()?.setOnClickListener {
-                    feedViewHolder.mVideoPlayer?.startWindowFullscreen(c, false, true)
-                }
-                GSYVideoManager.instance().setLastListener(object : GSYMediaPlayerListener {
-                    override fun onPrepared() {
+                feedViewHolder.mVideoPlayer?.player = simplePlayer
+                feedViewHolder.mVideoPlayer?.resizeMode = RESIZE_MODE_ZOOM
+                val uri = Uri.parse(datas.get(i).getUrl())
+                val mediaSource =
+                    ProgressiveMediaSource.Factory(cacheDataSourceFactory).createMediaSource(uri)
+                simplePlayer?.prepare(mediaSource, true, true)
+                simplePlayer?.repeatMode = Player.REPEAT_MODE_ONE
+                simplePlayer?.playWhenReady = true
 
+                simplePlayer?.addListener(object : Player.EventListener {
+                    override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
+                        Log.i("jin", playbackState.toString() + " simplePlayer?.playWhenReady = "+ simplePlayer.playWhenReady)
                     }
 
-                    override fun onAutoCompletion() {
-                        feedViewHolder.mImageView?.visibility = View.VISIBLE
-                        feedViewHolder.mVideoPlayer?.visibility = View.GONE
-                    }
-
-                    override fun onCompletion() {
-                        feedViewHolder.mImageView?.visibility = View.VISIBLE
-                        feedViewHolder.mVideoPlayer?.visibility = View.GONE
-                    }
-
-                    override fun onBufferingUpdate(percent: Int) {
-
-                    }
-
-                    override fun onSeekComplete() {
-
-                    }
-
-                    override fun onError(what: Int, extra: Int) {
-
-                    }
-
-                    override fun onInfo(what: Int, extra: Int) {
-
-                    }
-
-                    override fun onVideoSizeChanged() {
-
-                    }
-
-                    override fun onBackFullscreen() {
-
-                    }
-
-                    override fun onVideoPause() {
-
-                    }
-
-                    override fun onVideoResume() {
-
-                    }
-
-                    override fun onVideoResume(seek: Boolean) {
-
+                    override fun onPlayerError(error: com.google.android.exoplayer2.ExoPlaybackException?) {
+                        super.onPlayerError(error)
                     }
                 })
             }
         }
+
         val layoutParams: ViewGroup.LayoutParams? =
             feedViewHolder.mRelativeLayout?.getLayoutParams()
         layoutParams?.height = datas.get(i).height
         feedViewHolder.mRelativeLayout?.setLayoutParams(layoutParams)
     }
 
+    companion object {
+        var simpleCache: SimpleCache? = null
+    }
     @SuppressLint("CheckResult")
     private fun setVideoFrame(feedViewHolder: FeedViewHolder, i: Int) {
         feedViewHolder.mTextView?.setText("视频")

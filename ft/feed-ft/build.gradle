@@ -76,8 +76,5 @@ dependencies {
     implementation deps.library.third_party.material
     implementation deps.library.third_party.eventbus
 
-    implementation 'com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-java:v8.4.0-release-jitpack'
-    implementation 'com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-arm64:v8.4.0-release-jitpack'
-
-    implementation 'com.google.android.exoplayer:exoplayer:2.19.0'
+    implementation 'com.google.android.exoplayer:exoplayer:2.10.4'
 }
