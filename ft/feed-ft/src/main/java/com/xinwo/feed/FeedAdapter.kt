@@ -32,7 +32,6 @@ class FeedAdapter(c: Context?) : StaggedAdapter<FeedModel>(c) {
         return FeedViewHolder(v)
     }
 
-    @SuppressLint("CheckResult")
     override fun bindView(viewHolder: RecyclerView.ViewHolder?, i: Int) {
         val feedViewHolder = viewHolder as FeedViewHolder
         Log.i("jin", datas.get(i).getUrl())
@@ -47,10 +46,8 @@ class FeedAdapter(c: Context?) : StaggedAdapter<FeedModel>(c) {
         } else {
             setVideoFrame(feedViewHolder, i)
             feedViewHolder.mVideoPlayer?.player = mVideoPlayerManager.initializePlayer(i)
-            feedViewHolder.mImageView?.setOnClickListener { v ->
-                feedViewHolder.mImageView?.visibility = View.GONE
+            feedViewHolder.mImageView?.setOnClickListener {
                 feedViewHolder.mVideoPlayer?.visibility = View.VISIBLE
-
                 feedViewHolder.mVideoPlayer?.resizeMode = RESIZE_MODE_ZOOM
                 feedViewHolder.mVideoPlayer?.setControllerVisibilityListener { visibility ->
                     if (visibility == View.VISIBLE) {
@@ -59,6 +56,7 @@ class FeedAdapter(c: Context?) : StaggedAdapter<FeedModel>(c) {
                 }
                 mVideoPlayerManager.playVideo(datas.get(i).getUrl(), i)
                 feedViewHolder.mVideoPlayer?.hideController()
+                feedViewHolder.mImageView?.visibility = View.GONE
             }
 
             feedViewHolder.mVideoPlayer?.setOnClickListener(object : View.OnClickListener {

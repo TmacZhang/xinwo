@@ -54,10 +54,22 @@ class VideoPlayerManager(context: Context) {
             return
         }
 
-        if (currentPlayingIndex == playerIndex) {
+        if (currentPlayingIndex == playerIndex ) {
             player.playWhenReady = true
             return
         }
+
+        player.addListener(object : Player.EventListener {
+            override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
+                if (playbackState == Player.STATE_ENDED) {
+                    val mediaSource = buildMediaSource(url)
+                    player.prepare(mediaSource)
+                    player.repeatMode = Player.REPEAT_MODE_OFF
+                    player.playWhenReady = false
+                    currentPlayingIndex = playerIndex
+                }
+            }
+        })
 
         val mediaSource = buildMediaSource(url)
         player.prepare(mediaSource)
