@@ -1,10 +1,10 @@
 package com.xinwo.feed
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 import com.atech.staggedrv.StaggerdRecyclerView
 import com.atech.staggedrv.callbacks.LoadMoreAndRefresh
@@ -12,12 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.MemoryCategory
 import com.google.android.material.tabs.TabLayout
 import com.xinwo.base.BaseFragment
-import com.xinwo.feed.api.IGetHostService
-import com.xinwo.feed.model.FeedListModel
-import com.xinwo.network.NetManager
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.observers.DisposableObserver
-import io.reactivex.schedulers.Schedulers
+import com.xinwo.feed.viewmodel.FeedFragmentViewModel
 
 class FeedFragment : BaseFragment() {
     var mViewPager: ViewPager? = null
@@ -25,6 +20,10 @@ class FeedFragment : BaseFragment() {
     var mRecyclerView1: StaggerdRecyclerView? = null
     var mRecyclerView2: StaggerdRecyclerView? = null
     var mRecyclerView3: StaggerdRecyclerView? = null
+    var mRefresh: Boolean = false
+    var mFeedFragmentViewModel1: FeedFragmentViewModel? = null
+    var mFeedFragmentViewModel2: FeedFragmentViewModel? = null
+    var mFeedFragmentViewModel3: FeedFragmentViewModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,11 +42,13 @@ class FeedFragment : BaseFragment() {
 
     override fun initView() {
         initViewPager()
-        initRecyclerView(mRecyclerView1!!)
-        initRecyclerView(mRecyclerView2!!)
-        initRecyclerView(mRecyclerView3!!)
+        mFeedFragmentViewModel1 = ViewModelProviders.of(this).get(FeedFragmentViewModel::class.java)
+        mFeedFragmentViewModel2 = FeedFragmentViewModel()
+        mFeedFragmentViewModel3 = FeedFragmentViewModel()
+        initRecyclerView(mRecyclerView1!!, mFeedFragmentViewModel1!!)
+        initRecyclerView(mRecyclerView2!!, mFeedFragmentViewModel2!!)
+        initRecyclerView(mRecyclerView3!!, mFeedFragmentViewModel3!!)
         mViewPager?.setCurrentItem(1)
-
         // 初始化Glide
         context?.let { Glide.get(it).setMemoryCategory(MemoryCategory.HIGH) };
     }
@@ -78,52 +79,26 @@ class FeedFragment : BaseFragment() {
         mTabLayout?.setupWithViewPager(mViewPager)
     }
 
-    private fun initRecyclerView(recyclerView: StaggerdRecyclerView) {
-        val feedApdater: FeedAdapter?
-        feedApdater = FeedAdapter(this.context)
+    private fun initRecyclerView(
+        recyclerView: StaggerdRecyclerView,
+        feedFragmentViewModel: FeedFragmentViewModel
+    ) {
+        val feedApdater = FeedAdapter(this.context)
         recyclerView.link(feedApdater, 2)
-        getHotFeed(feedApdater, false)
-
+        setViewModel(feedApdater, feedFragmentViewModel)
+        feedFragmentViewModel.getHotFeed()
         recyclerView.addCallbackListener(object : LoadMoreAndRefresh {
             override fun onLoadMore() {
-                //模拟加载更多
-                getHotFeed(feedApdater, false)
+                mRefresh = false
+                //feedFragmentViewModel.getHotFeed()
             }
 
             override fun onRefresh() {
-                //测试下网络接口
-                getHotFeed(feedApdater, true)
+                mRefresh = true
+                //feedFragmentViewModel.getHotFeed()
             }
         })
-    }
 
-    private fun getHotFeed(feedApdater: FeedAdapter, refresh: Boolean) {
-        val retrofit = NetManager.getRetrofit("http://180.76.242.204:18080")
-        retrofit.create(IGetHostService::class.java)
-            .getData(1, 10, "img")
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : DisposableObserver<FeedListModel>() {
-                override fun onNext(data: FeedListModel) {
-                    Log.i("jin", data.toString())
-                    val newData = data.listModel.filter {
-                        !it.bucketName.equals("mall")
-                    }
-                    if (refresh) {
-                        feedApdater.refresh(newData)
-                    } else {
-                        feedApdater.loadMore(newData)
-                    }
-                }
-
-                override fun onError(e: Throwable) {
-
-                }
-
-                override fun onComplete() {
-
-                }
-            })
     }
 
     override fun loadData() {
@@ -133,9 +108,16 @@ class FeedFragment : BaseFragment() {
         return mutableMapOf();
     }
 
-    override fun success(bean: Any?, tag: Int) {
-    }
-
-    override fun error(e: Throwable?, tag: Int) {
+    private fun setViewModel(feedApdater: FeedAdapter, fragmentViewModel: FeedFragmentViewModel) {
+        fragmentViewModel.getMutableLiveData()?.observe(this) { model ->
+            val newData = model.listModel.filter {
+                !it.bucketName.equals("mall")
+            }
+            if (mRefresh) {
+                feedApdater.refresh(newData)
+            } else {
+                feedApdater.loadMore(newData)
+            }
+        }
     }
 }

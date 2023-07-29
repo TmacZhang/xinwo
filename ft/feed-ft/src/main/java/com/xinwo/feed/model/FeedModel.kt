@@ -15,7 +15,7 @@ data class FeedModel(
     }
 
     override fun getHeight(): Int {
-        return 500 + Random().nextInt(400)
+        return 600 + Random().nextInt(400)
     }
 
     override fun getTitle(): String {

@@ -17,7 +17,7 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
 /**
  * <p>1.具有refresh/loadmore功能, 默认为关闭状态, 子类通过{@link #setRLMode(PtrFrameLayout.Mode)}设置</p>
  * <p>2.带有页码mPageNo. 在{@link #onRefreshStart(PtrFrameLayout)}时自动mPageNo=0;
- *      在{@link #onError(Throwable, int)}中, 若isLoadingMore(), 自动 --mPageNo</p>
+ * 在{@link #onError(Throwable, int)}中, 若isLoadingMore(), 自动 --mPageNo</p>
  * <p>3.在{@link #success(Object, int)}之后自动{@link #refreshOrLoadMoreComplete()}</p>
  * <p>4.在{@link #error(Throwable, int)}之前自动{@link #refreshOrLoadMoreComplete()}</p>
  *
@@ -38,7 +38,7 @@ public abstract class BaseFragment extends LibRLBaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(mPresenter!=null)
+        if (mPresenter != null)
             mPresenter.detachView();
     }
 
@@ -46,18 +46,18 @@ public abstract class BaseFragment extends LibRLBaseFragment {
     @Override
     public void onSuccess(Object bean, int tag) {
         BaseBean baseBean = (BaseBean) bean;
-        if(baseBean.message.code == 200){
-            success(bean,tag);
+        if (baseBean.message.code == 200) {
+            success(bean, tag);
 
             afterSuccess(bean, tag);
-        }else{
+        } else {
             onError(new LibException(baseBean.message.code, baseBean.message.msg), tag);
         }
 
     }
 
     private void afterSuccess(Object bean, int tag) {
-        if(isRefreshingOrLoadingMore()){
+        if (isRefreshingOrLoadingMore()) {
             refreshOrLoadMoreComplete();
         }
     }
@@ -65,55 +65,65 @@ public abstract class BaseFragment extends LibRLBaseFragment {
 
     @Override
     public void onError(Throwable e, int tag) {
-        beforeError(e,tag);
-        error(e,tag);
+        beforeError(e, tag);
+        error(e, tag);
     }
 
     private void beforeError(Throwable e, int tag) {
 //        if(BuildConfig.DEBUG){
 //            e.printStackTrace();
 //        }
-        if (isLoadingMore() && mPageNo>0){
+        if (isLoadingMore() && mPageNo > 0) {
             --mPageNo;
         }
-        if(isRefreshingOrLoadingMore()){
+        if (isRefreshingOrLoadingMore()) {
             refreshOrLoadMoreComplete();
         }
     }
 
-    protected abstract void success(Object bean, int tag);
+    protected void success(Object bean, int tag) {
+    }
 
-    protected abstract void error(Throwable e, int tag);
+    protected void error(Throwable e, int tag) {
+    }
 
     //RL的几个方法覆写为非抽象
+
     /**
      * {@inheritDoc}
+     *
      * @return
      */
-    protected View getRLView(){return null;}
+    protected View getRLView() {
+        return null;
+    }
 
     /**
      * 已将mPageNo置为0
+     *
      * @return
      */
-    protected void onRefreshStart(PtrFrameLayout frame){
+    protected void onRefreshStart(PtrFrameLayout frame) {
         mPageNo = 0;
     }
 
     /**
      * {@inheritDoc}
+     *
      * @return
      */
-    protected void onLoadMoreStart(PtrFrameLayout frame){}
+    protected void onLoadMoreStart(PtrFrameLayout frame) {
+    }
 
-    protected Map<String, String> getHeaders(String jwt_code){
+    protected Map<String, String> getHeaders(String jwt_code) {
         ArrayMap<String, String> headers = new ArrayMap<>();
         headers.put("Content-Type", "application/json");
-        if(jwt_code != null){
+        if (jwt_code != null) {
             headers.put("Authorization", jwt_code);
         }
 
         return headers;
     }
+
 
 }
