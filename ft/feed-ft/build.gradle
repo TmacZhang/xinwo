@@ -77,4 +77,5 @@ dependencies {
     implementation deps.library.third_party.eventbus
 
     implementation 'com.google.android.exoplayer:exoplayer:2.10.4'
+    implementation deps.library.third_party.android_lifecycle
 }

@@ -47,6 +47,7 @@ dependencies {
     implementation project(deps.library.xin.xin_application)
     implementation project(deps.library.xin.xin_network)
     implementation project(deps.library.xin.xin_log)
+    implementation project(deps.library.xin.xin_staggerdRecycleView)
     // 各种控件集合
 
     implementation deps.library.third_party.appcompat
@@ -88,5 +89,4 @@ dependencies {
     implementation deps.library.third_party.android_ktx
     implementation deps.library.third_party.android_lifecycle
 
-    implementation project(deps.library.xin.xin_staggerdRecycleView)
 }
