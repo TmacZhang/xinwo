@@ -2,6 +2,7 @@ package com.xinwo.feed.player
 
 import android.content.Context
 import android.net.Uri
+import android.view.View
 import com.google.android.exoplayer2.ExoPlayerFactory
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -22,7 +23,6 @@ class VideoPlayerManager(context: Context) {
     val leastRecentlyUsedCacheEvictor = LeastRecentlyUsedCacheEvictor(1024 * 1024 * 1024)
     val databaseProvider: DatabaseProvider = ExoDatabaseProvider(context)
     var cacheDataSourceFactory: CacheDataSourceFactory? = null
-
 
     fun initializePlayer(index: Int): SimpleExoPlayer {
         val player = ExoPlayerFactory.newSimpleInstance(mContext)
@@ -45,7 +45,6 @@ class VideoPlayerManager(context: Context) {
             return
         }
 
-
         pauseOtherVideo(playerIndex)
 
         val player = players[playerIndex]
@@ -64,6 +63,21 @@ class VideoPlayerManager(context: Context) {
         player.repeatMode = Player.REPEAT_MODE_OFF
         player.playWhenReady = true
         currentPlayingIndex = playerIndex
+    }
+
+    fun resetVideoState(
+        playbackState: Int,
+        url: String,
+        player: SimpleExoPlayer,
+        playerIndex: Int
+    ) {
+        if (playbackState == Player.STATE_ENDED) {
+            val mediaSource = buildMediaSource(url)
+            player.prepare(mediaSource)
+            player.repeatMode = Player.REPEAT_MODE_OFF
+            player.playWhenReady = false
+            currentPlayingIndex = playerIndex
+        }
     }
 
     fun releaseAllPlayers() {

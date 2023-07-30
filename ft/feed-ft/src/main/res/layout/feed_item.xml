@@ -12,17 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/feed_item_iv"
-            android:layout_width="@dimen/dp_95"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
-
         <com.google.android.exoplayer2.ui.PlayerView
             android:id="@+id/feed_item_surfaceview"
             android:layout_width="@dimen/dp_95"
             android:layout_height="match_parent"
             android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/feed_item_iv"
+            android:layout_width="@dimen/dp_95"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
     </RelativeLayout>
 
     <TextView

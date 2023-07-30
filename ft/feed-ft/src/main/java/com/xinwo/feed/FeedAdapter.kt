@@ -15,13 +15,17 @@ import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
 import com.bumptech.glide.load.resource.bitmap.VideoDecoder.FRAME_OPTION
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_ZOOM
+import com.google.android.exoplayer2.video.VideoListener
 import com.xinwo.feed.model.FeedModel
 import com.xinwo.feed.player.VideoPlayerManager
 import java.security.MessageDigest
 
 class FeedAdapter(c: Context?) : StaggedAdapter<FeedModel>(c) {
     private val mVideoPlayerManager = VideoPlayerManager(c!!)
+    private val mViewholders: MutableList<FeedViewHolder> = mutableListOf()
     override fun getItemCount(): Int {
         return datas.size
     }
@@ -32,7 +36,6 @@ class FeedAdapter(c: Context?) : StaggedAdapter<FeedModel>(c) {
         return FeedViewHolder(v)
     }
 
-    @SuppressLint("CheckResult")
     override fun bindView(viewHolder: RecyclerView.ViewHolder?, i: Int) {
         val feedViewHolder = viewHolder as FeedViewHolder
         Log.i("jin", datas.get(i).getUrl())
@@ -45,33 +48,77 @@ class FeedAdapter(c: Context?) : StaggedAdapter<FeedModel>(c) {
             }
             feedViewHolder.mTextView?.setText("去看周杰伦的演唱会不？")
         } else {
-            setVideoFrame(feedViewHolder, i)
-            feedViewHolder.mVideoPlayer?.player = mVideoPlayerManager.initializePlayer(i)
-            feedViewHolder.mImageView?.setOnClickListener { v ->
-                feedViewHolder.mImageView?.visibility = View.GONE
-                feedViewHolder.mVideoPlayer?.visibility = View.VISIBLE
-
-                feedViewHolder.mVideoPlayer?.resizeMode = RESIZE_MODE_ZOOM
-                feedViewHolder.mVideoPlayer?.setControllerVisibilityListener { visibility ->
-                    if (visibility == View.VISIBLE) {
-                        feedViewHolder.mVideoPlayer?.hideController()
-                    }
-                }
-                mVideoPlayerManager.playVideo(datas.get(i).getUrl(), i)
-                feedViewHolder.mVideoPlayer?.hideController()
-            }
-
-            feedViewHolder.mVideoPlayer?.setOnClickListener(object : View.OnClickListener {
-                override fun onClick(view: View?) {
-                    mVideoPlayerManager.playVideo(datas.get(i).getUrl(), i)
-                }
-            })
+            bindVideoItem(i, viewHolder, feedViewHolder)
         }
 
         val layoutParams: ViewGroup.LayoutParams? =
             feedViewHolder.mRelativeLayout?.getLayoutParams()
         layoutParams?.height = datas.get(i).height
         feedViewHolder.mRelativeLayout?.setLayoutParams(layoutParams)
+    }
+
+    private fun bindVideoItem(
+        i: Int,
+        viewHolder: RecyclerView.ViewHolder?,
+        feedViewHolder: FeedViewHolder
+    ) {
+        mViewholders.add(i, viewHolder as FeedViewHolder)
+        setVideoFrame(feedViewHolder, i)
+        feedViewHolder.mVideoPlayer?.player = mVideoPlayerManager.initializePlayer(i)
+        feedViewHolder.mImageView?.setOnClickListener {
+            feedViewHolder.mVideoPlayer?.resizeMode = RESIZE_MODE_ZOOM
+            feedViewHolder.mVideoPlayer?.setControllerVisibilityListener { visibility ->
+                if (visibility == View.VISIBLE) {
+                    feedViewHolder.mVideoPlayer?.hideController()
+                }
+            }
+
+            feedViewHolder.mVideoPlayer?.player?.videoComponent?.addVideoListener(object :
+                VideoListener {
+                override fun onRenderedFirstFrame() {
+                    feedViewHolder.mImageView?.visibility.let {
+                        if (it == View.VISIBLE) {
+                            feedViewHolder.mImageView?.visibility = View.GONE
+                        }
+                    }
+                }
+            })
+            feedViewHolder.mVideoPlayer?.player?.let {
+                it.addListener(object : Player.EventListener {
+                    override fun onPlayerStateChanged(
+                        playWhenReady: Boolean,
+                        playbackState: Int
+                    ) {
+                        if (playbackState == Player.STATE_ENDED) {
+                            mVideoPlayerManager.resetVideoState(
+                                playbackState,
+                                datas.get(i).getUrl(),
+                                it as SimpleExoPlayer,
+                                i
+                            )
+                        }
+                    }
+                })
+            }
+            mVideoPlayerManager.playVideo(datas[i].getUrl(), i)
+            feedViewHolder.mVideoPlayer?.hideController()
+            feedViewHolder.mVideoPlayer?.visibility = View.VISIBLE
+
+            mViewholders.forEach {
+                if (mViewholders.indexOf(it) != i) {
+                    mViewholders[mViewholders.indexOf(it)].mImageView?.visibility =
+                        View.VISIBLE
+                    mViewholders[mViewholders.indexOf(it)].mVideoPlayer?.visibility =
+                        View.GONE
+                }
+            }
+        }
+
+        feedViewHolder.mVideoPlayer?.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View?) {
+                mVideoPlayerManager.playVideo(datas[i].getUrl(), i)
+            }
+        })
     }
 
     @SuppressLint("CheckResult")
