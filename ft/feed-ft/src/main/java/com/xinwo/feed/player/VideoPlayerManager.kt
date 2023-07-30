@@ -2,7 +2,6 @@ package com.xinwo.feed.player
 
 import android.content.Context
 import android.net.Uri
-import android.view.View
 import com.google.android.exoplayer2.ExoPlayerFactory
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -15,24 +14,19 @@ import com.google.android.exoplayer2.upstream.cache.CacheDataSourceFactory
 import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor
 import com.google.android.exoplayer2.upstream.cache.SimpleCache
 import com.google.android.exoplayer2.util.Util
+import com.xinwo.feed.FeedCache
 
 class VideoPlayerManager(context: Context) {
     val mContext = context
     private val players: MutableList<SimpleExoPlayer> = mutableListOf()
     private var currentPlayingIndex: Int? = null
-    val leastRecentlyUsedCacheEvictor = LeastRecentlyUsedCacheEvictor(1024 * 1024 * 1024)
-    val databaseProvider: DatabaseProvider = ExoDatabaseProvider(context)
     var cacheDataSourceFactory: CacheDataSourceFactory? = null
 
     fun initializePlayer(index: Int): SimpleExoPlayer {
         val player = ExoPlayerFactory.newSimpleInstance(mContext)
         players.add(index, player)
-        if (simpleCache == null) {
-            simpleCache =
-                SimpleCache(mContext.cacheDir, leastRecentlyUsedCacheEvictor, databaseProvider)
-        }
         cacheDataSourceFactory = CacheDataSourceFactory(
-            simpleCache,
+            FeedCache.simpleCache,
             DefaultHttpDataSourceFactory(
                 Util.getUserAgent(mContext, "exo")
             )
@@ -101,7 +95,5 @@ class VideoPlayerManager(context: Context) {
             .createMediaSource(Uri.parse(url))
     }
 
-    companion object {
-        var simpleCache: SimpleCache? = null
-    }
+
 }

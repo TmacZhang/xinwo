@@ -4,14 +4,28 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
+import androidx.work.Data
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.atech.staggedrv.StaggerdRecyclerView
 import com.atech.staggedrv.callbacks.LoadMoreAndRefresh
 import com.bumptech.glide.Glide
 import com.bumptech.glide.MemoryCategory
 import com.google.android.material.tabs.TabLayout
 import com.xinwo.base.BaseFragment
+import com.xinwo.feed.hot.Constants
+import com.xinwo.feed.hot.DataRepository
+import com.xinwo.feed.hot.FeedHotViewModel
+import com.xinwo.feed.hot.Mock
+import com.xinwo.feed.hot.PreCachingService
+import com.xinwo.feed.hot.ResultData
+import com.xinwo.feed.hot.StoriesDataModel
+import com.xinwo.feed.hot.StoriesPagerAdapter
 import com.xinwo.feed.viewmodel.FeedFragmentViewModel
 
 class FeedFragment : BaseFragment() {
@@ -19,11 +33,18 @@ class FeedFragment : BaseFragment() {
     var mTabLayout: TabLayout? = null
     var mRecyclerView1: StaggerdRecyclerView? = null
     var mRecyclerView2: StaggerdRecyclerView? = null
-    var mRecyclerView3: StaggerdRecyclerView? = null
-    var mRefresh: Boolean = false
+    var mFeedHotView: View? = null
+    var view_pager_stories :ViewPager2? = null
+    var mRecyclerView4: StaggerdRecyclerView? = null
+
     var mFeedFragmentViewModel1: FeedFragmentViewModel? = null
     var mFeedFragmentViewModel2: FeedFragmentViewModel? = null
-    var mFeedFragmentViewModel3: FeedFragmentViewModel? = null
+    var mFeedFragmentViewModel4: FeedFragmentViewModel? = null
+
+    var mRefresh: Boolean = false
+
+    private var homeViewModel : FeedHotViewModel? = null
+    private lateinit var storiesPagerAdapter: StoriesPagerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,23 +55,40 @@ class FeedFragment : BaseFragment() {
         return root
     }
 
-    override fun initData() {
-    }
-
-    override fun initPresenter() {
-    }
-
     override fun initView() {
         initViewPager()
         mFeedFragmentViewModel1 = ViewModelProviders.of(this).get(FeedFragmentViewModel::class.java)
         mFeedFragmentViewModel2 = FeedFragmentViewModel()
-        mFeedFragmentViewModel3 = FeedFragmentViewModel()
+        mFeedFragmentViewModel4 = FeedFragmentViewModel()
         initRecyclerView(mRecyclerView1!!, mFeedFragmentViewModel1!!)
         initRecyclerView(mRecyclerView2!!, mFeedFragmentViewModel2!!)
-        initRecyclerView(mRecyclerView3!!, mFeedFragmentViewModel3!!)
-        mViewPager?.setCurrentItem(1)
+        initRecyclerView(mRecyclerView4!!, mFeedFragmentViewModel4!!)
+
+        homeViewModel = FeedHotViewModel(dataRepository = DataRepository(Mock(requireContext())))
+        val storiesData = homeViewModel?.getDataList()
+
+        storiesData?.observe(viewLifecycleOwner, Observer { value ->
+            when(value) {
+                is ResultData.Loading -> {
+                }
+                is ResultData.Success -> {
+                    if (!value.data.isNullOrEmpty()) {
+                        val dataList = value.data
+                        storiesPagerAdapter = StoriesPagerAdapter(this, dataList)
+                        view_pager_stories?.adapter = storiesPagerAdapter
+                        startPreCaching(dataList)
+                    }
+                }
+
+                else -> {
+
+                }
+            }
+        })
+
+        mViewPager?.setCurrentItem(2)
         // 初始化Glide
-        context?.let { Glide.get(it).setMemoryCategory(MemoryCategory.HIGH) };
+        context?.let { Glide.get(it).setMemoryCategory(MemoryCategory.HIGH) }
     }
 
     private fun initViewPager() {
@@ -59,22 +97,26 @@ class FeedFragment : BaseFragment() {
             .inflate(R.layout.feed_fragment, null, false) as StaggerdRecyclerView
         mRecyclerView2 = LayoutInflater.from(context)
             .inflate(R.layout.feed_fragment, null, false) as StaggerdRecyclerView
-        mRecyclerView3 = LayoutInflater.from(context)
+        mFeedHotView = LayoutInflater.from(context)
+            .inflate(R.layout.feed_hot, null, false)
+        view_pager_stories = mFeedHotView?.findViewById(R.id.view_pager_stories)
+        mRecyclerView4 = LayoutInflater.from(context)
             .inflate(R.layout.feed_fragment, null, false) as StaggerdRecyclerView
         val list: ArrayList<View> = ArrayList<View>().apply {
             this.add(mRecyclerView1!!)
             this.add(mRecyclerView2!!)
-            this.add(mRecyclerView3!!)
+            this.add(mFeedHotView!!)
+            this.add(mRecyclerView4!!)
         }
 
         val titleList = ArrayList<String>().apply {
             add("关注")
             add("发现")
+            add("热门")
             add("同城")
         }
         val feedPagerAdapter = FeedPagerAdapter(list, titleList)
         mViewPager?.adapter = feedPagerAdapter
-
         mTabLayout = view?.findViewById(R.id.feed_tablayout)
         mTabLayout?.setupWithViewPager(mViewPager)
     }
@@ -101,12 +143,6 @@ class FeedFragment : BaseFragment() {
 
     }
 
-    override fun loadData() {
-    }
-
-    override fun getParams(tag: Int): MutableMap<String, String> {
-        return mutableMapOf();
-    }
 
     private fun setViewModel(feedApdater: FeedAdapter, fragmentViewModel: FeedFragmentViewModel) {
         fragmentViewModel.getMutableLiveData()?.observe(this) { model ->
@@ -120,4 +156,17 @@ class FeedFragment : BaseFragment() {
             }
         }
     }
+
+    private fun startPreCaching(dataList: ArrayList<StoriesDataModel>) {
+        val urlList = arrayOfNulls<String>(dataList.size)
+        dataList.mapIndexed { index, storiesDataModel ->
+            urlList[index] = storiesDataModel.storyUrl
+        }
+        val inputData = Data.Builder().putStringArray(Constants.KEY_STORIES_LIST_DATA, urlList).build()
+        val preCachingWork = OneTimeWorkRequestBuilder<PreCachingService>().setInputData(inputData)
+            .build()
+        WorkManager.getInstance(requireContext())
+            .enqueue(preCachingWork)
+    }
+
 }

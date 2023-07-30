@@ -10,6 +10,7 @@ import com.cavalry.androidlib.ui.fragment.LibRLBaseFragment;
 import com.xjh.xinwo.mvp.model.BaseBean;
 import com.xjh.xinwo.mvp.presenter.TagPresenter;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import in.srain.cube.views.ptr.PtrFrameLayout;
@@ -125,5 +126,24 @@ public abstract class BaseFragment extends LibRLBaseFragment {
         return headers;
     }
 
+    @Override
+    public void initData() {
+
+    }
+
+    @Override
+    public void initPresenter() {
+
+    }
+
+    @Override
+    public void loadData() {
+
+    }
+
+    @Override
+    public Map<String, String> getParams(int tag) {
+        return new HashMap<>();
+    }
 
 }

@@ -19,4 +19,6 @@
     <string name="label_broadcaster">Broadcaster</string>
 
     <string name="label_confirm">Confirm</string>
+
+    <string name="feed_hot_share">分享</string>
 </resources>

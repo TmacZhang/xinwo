@@ -19,7 +19,7 @@ import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_ZOOM
 import com.google.android.exoplayer2.video.VideoListener
-import com.xinwo.feed.model.FeedModel
+import com.xinwo.feed.find.model.FeedModel
 import com.xinwo.feed.player.VideoPlayerManager
 import java.security.MessageDigest
 

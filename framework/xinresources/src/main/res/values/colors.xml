@@ -166,4 +166,5 @@
     <color name="mudColor">#462d1d</color>
     <color name="siennaColor">#a0522d</color>
     <color name="dustColor">#ecd6c5</color>
+    <color name="colorMediaOptions">#FFFFFF</color>
 </resources>
