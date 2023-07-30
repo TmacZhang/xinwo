@@ -1,6 +1,6 @@
 package com.xinwo.feed.api
 
-import com.xinwo.feed.model.FeedListModel
+import com.xinwo.feed.find.model.FeedListModel
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query

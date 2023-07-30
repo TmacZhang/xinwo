@@ -1,4 +1,4 @@
-package com.xinwo.feed.model
+package com.xinwo.feed.find.model
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

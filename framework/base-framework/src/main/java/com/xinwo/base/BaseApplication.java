@@ -2,8 +2,6 @@ package com.xinwo.base;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.os.Environment;
-import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
@@ -12,10 +10,9 @@ import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.SDKOptions;
 import com.netease.nimlib.sdk.auth.LoginInfo;
 import com.netease.nimlib.sdk.util.NIMUtil;
-import com.xinwo.log.LibSPUtils;
 import com.xinwo.application.XinApplicationUtil;
+import com.xinwo.log.LibSPUtils;
 
-import java.io.IOException;
 
 public class BaseApplication extends LibApplication {
     private static BaseApplication mInstance;

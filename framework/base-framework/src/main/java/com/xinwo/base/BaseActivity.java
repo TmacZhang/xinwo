@@ -81,9 +81,9 @@ public abstract class BaseActivity extends LibRLBaseActivity {
         }
     }
 
-    protected abstract void success(Object bean, int tag);
+    protected  void success(Object bean, int tag){}
 
-    protected abstract void error(Throwable e, int tag);
+    protected  void error(Throwable e, int tag){}
 
     //RL的几个方法覆写为非抽象
 
