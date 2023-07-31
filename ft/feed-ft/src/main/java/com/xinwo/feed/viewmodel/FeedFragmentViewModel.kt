@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.xinwo.feed.api.IGetHostService
-import com.xinwo.feed.find.model.FeedListModel
+import com.xinwo.feed.model.FeedListModel
 import com.xinwo.network.NetManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver

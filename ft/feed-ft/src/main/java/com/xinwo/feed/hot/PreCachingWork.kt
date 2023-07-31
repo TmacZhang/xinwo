@@ -5,7 +5,6 @@ import android.net.Uri
 import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.google.android.exoplayer2.database.ExoDatabaseProvider
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DataSpec
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
@@ -13,8 +12,6 @@ import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
 import com.google.android.exoplayer2.upstream.cache.Cache
 import com.google.android.exoplayer2.upstream.cache.CacheDataSourceFactory
 import com.google.android.exoplayer2.upstream.cache.CacheUtil
-import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor
-import com.google.android.exoplayer2.upstream.cache.SimpleCache
 import com.google.android.exoplayer2.util.Util
 import com.xinwo.feed.FeedCache
 import kotlinx.coroutines.async
@@ -27,8 +24,6 @@ class PreCachingService(appContext: Context, params: WorkerParameters) :
     CoroutineWorker(appContext, params) {
     private val mContext = appContext
     private var cacheDataSourceFactory: CacheDataSourceFactory? = null
-
-
 
     override suspend fun doWork(): Result = coroutineScope {
         cacheDataSourceFactory = CacheDataSourceFactory(
