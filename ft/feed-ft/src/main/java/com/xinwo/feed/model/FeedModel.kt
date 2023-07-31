@@ -1,4 +1,4 @@
-package com.xinwo.feed.find.model
+package com.xinwo.feed.model
 
 import com.atech.staggedrv.model.StaggedModel
 import com.google.gson.annotations.SerializedName
