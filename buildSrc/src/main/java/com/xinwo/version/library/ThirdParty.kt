@@ -22,7 +22,7 @@ class ThirdParty {
     val retrofit_adpter = "com.squareup.retrofit2:adapter-rxjava:2.6.1"
     val gson = "com.google.code.gson:gson:2.8.2"
     val retrofit_gson_converter = "com.squareup.retrofit2:converter-gson:2.6.1"
-    val retrofit_rxjava_adapter= "com.squareup.retrofit2:adapter-rxjava2:2.6.1"
+    val retrofit_rxjava_adapter = "com.squareup.retrofit2:adapter-rxjava2:2.6.1"
 
     val dfqin = "com.github.dfqin:grantor:2.5"
     val appcompat = "androidx.appcompat:appcompat:1.0.0"
@@ -41,7 +41,6 @@ class ThirdParty {
     val wechat_sdk = "com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+"
     val statusbar_util = "com.jaeger.statusbarutil:library:1.5.1"
     val jwtdecode = "com.auth0.android:jwtdecode:1.3.0"
-    val material = "com.google.android.material:material:1.0.0"
     val seekbar = "org.adw.library:discrete-seekbar:1.0.1"
     val isoparcer = "com.googlecode.mp4parser:isoparser:1.1.7"
     val log4j = "org.slf4j:slf4j-api:1.7.25"
@@ -68,4 +67,12 @@ class ThirdParty {
     val netease_rts = "com.netease.nimlib:rts:${netease_version}"
     val netease_lucene = "com.netease.nimlib:lucene:${netease_version}"
     val netease_push = "com.netease.nimlib:push:${netease_version}"
+
+    val fragment_ktx = "androidx.fragment:fragment-ktx:1.3.0-alpha06"
+    val activity_ktx = "androidx.activity:activity-ktx:1.2.0-alpha06"
+    val livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-alpha04"
+    val viewpager2 = "androidx.viewpager2:viewpager2:1.1.0-alpha01"
+    val material = "com.google.android.material:material:1.3.0-alpha01"
+    val runtime_ktx = "androidx.work:work-runtime-ktx:2.7.1"
+    val exoplayer = "com.google.android.exoplayer:exoplayer:2.10.4"
 }

@@ -13,7 +13,6 @@ class Mock(private val context: Context) {
         val gson = Gson()
         val storiesType = object : TypeToken<ArrayList<StoriesDataModel>>() {}.type
         val storiesDataModelList = gson.fromJson<ArrayList<StoriesDataModel>>(dataString, storiesType)
-
         return storiesDataModelList
     }
 }
