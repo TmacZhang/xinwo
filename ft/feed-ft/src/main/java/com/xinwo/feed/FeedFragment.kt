@@ -26,6 +26,7 @@ import com.xinwo.feed.hot.PreCachingService
 import com.xinwo.feed.hot.ResultData
 import com.xinwo.feed.hot.StoriesDataModel
 import com.xinwo.feed.hot.StoriesPagerAdapter
+import com.xinwo.feed.util.PreCacheUtil
 import com.xinwo.feed.viewmodel.FeedFragmentViewModel
 
 class FeedFragment : BaseFragment() {
@@ -34,7 +35,7 @@ class FeedFragment : BaseFragment() {
     var mRecyclerView1: StaggerdRecyclerView? = null
     var mRecyclerView2: StaggerdRecyclerView? = null
     var mFeedHotView: View? = null
-    var view_pager_stories :ViewPager2? = null
+    var view_pager_stories: ViewPager2? = null
     var mRecyclerView4: StaggerdRecyclerView? = null
 
     var mFeedFragmentViewModel1: FeedFragmentViewModel? = null
@@ -43,7 +44,7 @@ class FeedFragment : BaseFragment() {
 
     var mRefresh: Boolean = false
 
-    private var homeViewModel : FeedHotViewModel? = null
+    private var homeViewModel: FeedHotViewModel? = null
     private lateinit var storiesPagerAdapter: StoriesPagerAdapter
 
     override fun onCreateView(
@@ -68,15 +69,16 @@ class FeedFragment : BaseFragment() {
         val storiesData = homeViewModel?.getDataList()
 
         storiesData?.observe(viewLifecycleOwner, Observer { value ->
-            when(value) {
+            when (value) {
                 is ResultData.Loading -> {
                 }
+
                 is ResultData.Success -> {
                     if (!value.data.isNullOrEmpty()) {
                         val dataList = value.data
                         storiesPagerAdapter = StoriesPagerAdapter(this, dataList)
                         view_pager_stories?.adapter = storiesPagerAdapter
-                        startPreCaching(dataList)
+                        PreCacheUtil.startPreCaching(requireContext(), dataList)
                     }
                 }
 
@@ -143,7 +145,6 @@ class FeedFragment : BaseFragment() {
 
     }
 
-
     private fun setViewModel(feedApdater: FeedAdapter, fragmentViewModel: FeedFragmentViewModel) {
         fragmentViewModel.getMutableLiveData()?.observe(this) { model ->
             val newData = model.listModel.filter {
@@ -155,18 +156,6 @@ class FeedFragment : BaseFragment() {
                 feedApdater.loadMore(newData)
             }
         }
-    }
-
-    private fun startPreCaching(dataList: ArrayList<StoriesDataModel>) {
-        val urlList = arrayOfNulls<String>(dataList.size)
-        dataList.mapIndexed { index, storiesDataModel ->
-            urlList[index] = storiesDataModel.storyUrl
-        }
-        val inputData = Data.Builder().putStringArray(Constants.KEY_STORIES_LIST_DATA, urlList).build()
-        val preCachingWork = OneTimeWorkRequestBuilder<PreCachingService>().setInputData(inputData)
-            .build()
-        WorkManager.getInstance(requireContext())
-            .enqueue(preCachingWork)
     }
 
 }
