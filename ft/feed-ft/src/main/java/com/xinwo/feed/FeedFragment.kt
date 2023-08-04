@@ -4,27 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
-import androidx.work.Data
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
 import com.atech.staggedrv.StaggerdRecyclerView
 import com.atech.staggedrv.callbacks.LoadMoreAndRefresh
 import com.bumptech.glide.Glide
 import com.bumptech.glide.MemoryCategory
 import com.google.android.material.tabs.TabLayout
 import com.xinwo.base.BaseFragment
-import com.xinwo.feed.hot.Constants
 import com.xinwo.feed.hot.DataRepository
 import com.xinwo.feed.hot.FeedHotViewModel
 import com.xinwo.feed.hot.Mock
-import com.xinwo.feed.hot.PreCachingService
 import com.xinwo.feed.hot.ResultData
-import com.xinwo.feed.hot.StoriesDataModel
 import com.xinwo.feed.hot.StoriesPagerAdapter
 import com.xinwo.feed.util.PreCacheUtil
 import com.xinwo.feed.viewmodel.FeedFragmentViewModel
@@ -134,12 +127,12 @@ class FeedFragment : BaseFragment() {
         recyclerView.addCallbackListener(object : LoadMoreAndRefresh {
             override fun onLoadMore() {
                 mRefresh = false
-                //feedFragmentViewModel.getHotFeed()
+                feedFragmentViewModel.getHotFeed()
             }
 
             override fun onRefresh() {
                 mRefresh = true
-                //feedFragmentViewModel.getHotFeed()
+                feedFragmentViewModel.getHotFeed()
             }
         })
 
