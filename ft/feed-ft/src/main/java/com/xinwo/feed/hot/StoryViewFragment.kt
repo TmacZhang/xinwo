@@ -118,6 +118,8 @@ class StoryViewFragment : Fragment(R.layout.fragment_story_view) {
         return simplePlayer
     }
 
+
+
     private fun prepareMedia(linkUrl: String) {
         val uri = Uri.parse(linkUrl)
         val mediaSource = ProgressiveMediaSource.Factory(cacheDataSourceFactory).createMediaSource(uri)

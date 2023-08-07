@@ -151,4 +151,17 @@ class FeedFragment : BaseFragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (mViewPager?.currentItem == 2) {
+            val adapter = view_pager_stories?.adapter as StoriesPagerAdapter?
+            adapter?.OnFragmentResume()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        val adapter = view_pager_stories?.adapter as StoriesPagerAdapter?
+        adapter?.OnFragmentPause()
+    }
 }
