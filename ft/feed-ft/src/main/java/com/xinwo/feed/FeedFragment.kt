@@ -1,6 +1,7 @@
 package com.xinwo.feed
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -153,6 +154,7 @@ class FeedFragment : BaseFragment(), ViewPager.OnPageChangeListener {
 
     override fun onResume() {
         super.onResume()
+        Log.i("jin", "currentItem = "  +mViewPager?.currentItem)
         if (mViewPager?.currentItem == 2) {
             val adapter = view_pager_stories?.adapter as StoriesPagerAdapter?
             adapter?.OnFragmentResume()
