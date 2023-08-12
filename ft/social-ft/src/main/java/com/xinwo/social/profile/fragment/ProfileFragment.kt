@@ -12,7 +12,6 @@ import com.xinwo.base.BaseFragment
 import com.xinwo.social.R
 import com.xinwo.social.profile.fragment.viewmodel.ProfilerModel
 import com.xinwo.social.profile.fragment.viewmodel.ProfilerViewModel
-import java.util.ArrayList
 
 class ProfileFragment : BaseFragment() {
     var mProfileViewModel: ProfilerViewModel? = null
@@ -115,7 +114,6 @@ class ProfileFragment : BaseFragment() {
         mProfileViewModel?.getMutableLiveData()?.observe(this) { model ->
             mNameView?.setText(model.mName)
             mIdView?.setText(model.mId.toString())
-
         }
     }
 }

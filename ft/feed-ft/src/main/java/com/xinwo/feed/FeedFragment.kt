@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.observe
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.atech.staggedrv.StaggerdRecyclerView
@@ -19,10 +20,9 @@ import com.xinwo.feed.hot.FeedHotViewModel
 import com.xinwo.feed.hot.Mock
 import com.xinwo.feed.hot.ResultData
 import com.xinwo.feed.hot.StoriesPagerAdapter
-import com.xinwo.feed.util.PreCacheUtil
 import com.xinwo.feed.viewmodel.FeedFragmentViewModel
 
-class FeedFragment : BaseFragment() {
+class FeedFragment : BaseFragment(), ViewPager.OnPageChangeListener {
     var mViewPager: ViewPager? = null
     var mTabLayout: TabLayout? = null
     var mRecyclerView1: StaggerdRecyclerView? = null
@@ -60,7 +60,6 @@ class FeedFragment : BaseFragment() {
 
         homeViewModel = FeedHotViewModel(dataRepository = DataRepository(Mock(requireContext())))
         val storiesData = homeViewModel?.getDataList()
-
         storiesData?.observe(viewLifecycleOwner, Observer { value ->
             when (value) {
                 is ResultData.Loading -> {
@@ -71,7 +70,7 @@ class FeedFragment : BaseFragment() {
                         val dataList = value.data
                         storiesPagerAdapter = StoriesPagerAdapter(this, dataList)
                         view_pager_stories?.adapter = storiesPagerAdapter
-                        PreCacheUtil.startPreCaching(requireContext(), dataList)
+                        view_pager_stories?.registerOnPageChangeCallback(storiesPagerAdapter.onPageChangeCallback)
                     }
                 }
 
@@ -112,6 +111,7 @@ class FeedFragment : BaseFragment() {
         }
         val feedPagerAdapter = FeedPagerAdapter(list, titleList)
         mViewPager?.adapter = feedPagerAdapter
+        mViewPager?.addOnPageChangeListener(this)
         mTabLayout = view?.findViewById(R.id.feed_tablayout)
         mTabLayout?.setupWithViewPager(mViewPager)
     }
@@ -163,5 +163,23 @@ class FeedFragment : BaseFragment() {
         super.onPause()
         val adapter = view_pager_stories?.adapter as StoriesPagerAdapter?
         adapter?.OnFragmentPause()
+    }
+
+    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+
+    }
+
+    override fun onPageSelected(position: Int) {
+        if (position == 2) {
+            val adapter = view_pager_stories?.adapter as StoriesPagerAdapter?
+            adapter?.OnFragmentResume()
+        } else {
+            val adapter = view_pager_stories?.adapter as StoriesPagerAdapter?
+            adapter?.OnFragmentPause()
+        }
+    }
+
+    override fun onPageScrollStateChanged(state: Int) {
+
     }
 }
