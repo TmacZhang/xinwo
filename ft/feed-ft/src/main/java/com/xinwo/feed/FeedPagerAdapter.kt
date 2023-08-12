@@ -1,6 +1,5 @@
 package com.xinwo.feed
 
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
@@ -29,6 +28,5 @@ class FeedPagerAdapter(viewList: ArrayList<View>, titleList: ArrayList<String>) 
     override fun getPageTitle(position: Int): CharSequence {
         return mTitleList[position]
     }
-
 
 }

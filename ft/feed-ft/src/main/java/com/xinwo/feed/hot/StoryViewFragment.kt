@@ -76,6 +76,7 @@ class StoryViewFragment : Fragment(R.layout.fragment_story_view) {
 
     override fun onPause() {
         pauseVideo()
+
         super.onPause()
     }
 
