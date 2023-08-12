@@ -10,7 +10,7 @@ class StoriesPagerAdapter(
     fragment: Fragment,
     private val dataList: MutableList<StoriesDataModel> = mutableListOf()
 ) : FragmentStateAdapter(fragment) {
-    private val mFragments = SparseArray<Fragment>()
+    private val mFragments = SparseArray<StoryViewFragment>()
     val onPageChangeCallback = StoriesOnPagrChangeCallback()
 
     override fun getItemCount(): Int {
@@ -24,7 +24,7 @@ class StoriesPagerAdapter(
     }
 
     fun OnFragmentResume() {
-        mFragments.get(onPageChangeCallback.mIndex)?.onResume()
+        mFragments.get(onPageChangeCallback.mIndex)?.onResumeIfPresent()
     }
 
     fun OnFragmentPause() {

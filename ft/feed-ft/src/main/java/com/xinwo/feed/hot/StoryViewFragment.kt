@@ -3,6 +3,7 @@ package com.xinwo.feed.hot
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.google.android.exoplayer2.ExoPlayerFactory
@@ -24,6 +25,7 @@ import kotlinx.android.synthetic.main.layout_story_view.player_view_story
 import kotlinx.android.synthetic.main.layout_story_view.text_view_account_handle
 import kotlinx.android.synthetic.main.layout_story_view.text_view_music_title
 import kotlinx.android.synthetic.main.layout_story_view.text_view_video_description
+import java.lang.Exception
 
 class StoryViewFragment : Fragment(R.layout.fragment_story_view) {
     private var storyUrl: String? = null
@@ -81,8 +83,12 @@ class StoryViewFragment : Fragment(R.layout.fragment_story_view) {
     }
 
     override fun onResume() {
-        restartVideo()
         super.onResume()
+    }
+
+    fun onResumeIfPresent(){
+        restartVideo()
+        Log.i("jin", "onResume = ", Exception())
     }
 
     override fun onDestroy() {
