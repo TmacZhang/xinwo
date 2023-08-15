@@ -2,6 +2,8 @@ package com.xinwo.feed.player
 
 import android.content.Context
 import android.net.Uri
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.google.android.exoplayer2.ExoPlayerFactory
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -18,13 +20,13 @@ import com.xinwo.feed.FeedCache
 
 class VideoPlayerManager(context: Context) {
     val mContext = context
-    private val players: MutableList<SimpleExoPlayer> = mutableListOf()
-    private var currentPlayingIndex: Int? = null
+    private val players: HashMap<Int, SimpleExoPlayer?> = HashMap()
+    private var currentPlayingIndex: Int? = -1
     var cacheDataSourceFactory: CacheDataSourceFactory? = null
 
     fun initializePlayer(index: Int): SimpleExoPlayer {
         val player = ExoPlayerFactory.newSimpleInstance(mContext)
-        players.add(index, player)
+        players[index] = player
         cacheDataSourceFactory = CacheDataSourceFactory(
             FeedCache.simpleCache,
             DefaultHttpDataSourceFactory(
@@ -34,6 +36,7 @@ class VideoPlayerManager(context: Context) {
         return player
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     fun playVideo(url: String, playerIndex: Int) {
         if (playerIndex < 0 || playerIndex >= players.size) {
             return
@@ -42,21 +45,24 @@ class VideoPlayerManager(context: Context) {
         pauseOtherVideo(playerIndex)
 
         val player = players[playerIndex]
-        if (player.playWhenReady) {
-            player.playWhenReady = false
-            return
+        player?.apply {
+            if (this.playWhenReady) {
+                this.playWhenReady = false
+                return
+            }
+
+            if (currentPlayingIndex == playerIndex) {
+                this.playWhenReady = true
+                return
+            }
+
+            val mediaSource = buildMediaSource(url)
+            this.prepare(mediaSource)
+            this.repeatMode = Player.REPEAT_MODE_OFF
+            this.playWhenReady = true
+            currentPlayingIndex = playerIndex
         }
 
-        if (currentPlayingIndex == playerIndex) {
-            player.playWhenReady = true
-            return
-        }
-
-        val mediaSource = buildMediaSource(url)
-        player.prepare(mediaSource)
-        player.repeatMode = Player.REPEAT_MODE_OFF
-        player.playWhenReady = true
-        currentPlayingIndex = playerIndex
     }
 
     fun resetVideoState(
@@ -74,18 +80,20 @@ class VideoPlayerManager(context: Context) {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     fun releaseAllPlayers() {
-        for (player in players) {
-            player.release()
+        players.forEach { index, player ->
+            player?.release()
+            player?.playWhenReady = false
         }
-        players.clear()
-        currentPlayingIndex = null
+        currentPlayingIndex = -1
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun pauseOtherVideo(playerIndex: Int) {
-        players.forEach {
-            if (players.indexOf(it) != playerIndex) {
-                it.playWhenReady = false
+        players.forEach { index, player ->
+            if (index!= playerIndex) {
+                player?.playWhenReady = false
             }
         }
     }

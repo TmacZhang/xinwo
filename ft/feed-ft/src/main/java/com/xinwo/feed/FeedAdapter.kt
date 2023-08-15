@@ -4,10 +4,12 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.media.MediaMetadataRetriever
+import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.atech.staggedrv.StaggedAdapter
 import com.bumptech.glide.Glide
@@ -39,6 +41,7 @@ class FeedAdapter(c: Context?) : StaggedAdapter<FeedModel>(c) {
     override fun bindView(viewHolder: RecyclerView.ViewHolder?, i: Int) {
         val feedViewHolder = viewHolder as FeedViewHolder
         Log.i("jin", datas.get(i).getUrl())
+        mViewholders.add(i, viewHolder as FeedViewHolder)
         // 在加载图片之前设定好图片的宽高，防止出现item错乱及闪烁
         if (datas.get(i).bucketName.equals("img")) {
             feedViewHolder.mImageView?.let {
@@ -62,7 +65,6 @@ class FeedAdapter(c: Context?) : StaggedAdapter<FeedModel>(c) {
         viewHolder: RecyclerView.ViewHolder?,
         feedViewHolder: FeedViewHolder
     ) {
-        mViewholders.add(i, viewHolder as FeedViewHolder)
         setVideoFrame(feedViewHolder, i)
         feedViewHolder.mVideoPlayer?.player = mVideoPlayerManager.initializePlayer(i)
         feedViewHolder.mImageView?.setOnClickListener {
@@ -144,5 +146,11 @@ class FeedAdapter(c: Context?) : StaggedAdapter<FeedModel>(c) {
             Glide.with(c).load(datas.get(i).getUrl()).apply(requestOptions)
                 .into(it)
         }
+    }
+
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun loadMoreOrRefresh(){
+        mVideoPlayerManager.releaseAllPlayers()
     }
 }
