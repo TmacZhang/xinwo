@@ -128,11 +128,13 @@ class FeedFragment : BaseFragment(), ViewPager.OnPageChangeListener {
         recyclerView.addCallbackListener(object : LoadMoreAndRefresh {
             override fun onLoadMore() {
                 mRefresh = false
+                feedApdater.loadMoreOrRefresh()
                 feedFragmentViewModel.getHotFeed()
             }
 
             override fun onRefresh() {
                 mRefresh = true
+                feedApdater.loadMoreOrRefresh()
                 feedFragmentViewModel.getHotFeed()
             }
         })

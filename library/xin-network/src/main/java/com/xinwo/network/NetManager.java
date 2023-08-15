@@ -1,7 +1,11 @@
 package com.xinwo.network;
 
+import android.os.Build;
+
 import com.xinwo.log.LibLog;
 import com.xinwo.network.interceptor.BasicParamsInterceptor;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -12,6 +16,8 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import okhttp3.Call;
+import okhttp3.EventListener;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -168,11 +174,10 @@ public class NetManager {
 
                     // 添加公共参数拦截器
                     BasicParamsInterceptor basicParamsInterceptor = new BasicParamsInterceptor()
-                            .addHeaderParam("userName", "")//添加公共参数
-                            .addHeaderParam("device", "");
+                            .addHeaderParam("userName", "xxx")//添加公共参数
+                            .addHeaderParam("device", Build.MODEL);
 
                     builder.addInterceptor(basicParamsInterceptor);
-
                     sRetrofit = new Retrofit.Builder()
                             .client(builder.build())
                             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
