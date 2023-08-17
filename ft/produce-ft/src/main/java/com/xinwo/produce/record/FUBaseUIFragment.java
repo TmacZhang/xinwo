@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.xinwo.base.BaseActivity;
+import com.xinwo.base.BaseFragment;
 import com.xinwo.produce.R;
 import com.xinwo.produce.record.encoder.TextureMovieEncoder;
 import com.xinwo.produce.record.view.EffectAndFilterSelectAdapter;
@@ -42,7 +43,7 @@ import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
  * Created by lirui on 2017/1/19.
  */
 
-public abstract class FUBaseUIFragment extends Fragment implements View.OnClickListener {
+public abstract class FUBaseUIFragment extends BaseFragment implements View.OnClickListener {
 
     private final String TAG = "FUBaseUIFragment";
     public final long MAX_RECORD_DURATION_MILLIS = 15000;

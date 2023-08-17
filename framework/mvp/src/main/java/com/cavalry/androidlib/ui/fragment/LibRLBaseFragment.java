@@ -161,4 +161,5 @@ public abstract class LibRLBaseFragment extends LibBaseFragment {
 
     protected abstract void onRefreshStart(PtrFrameLayout frame);
     protected abstract void onLoadMoreStart(PtrFrameLayout frame);
+
 }

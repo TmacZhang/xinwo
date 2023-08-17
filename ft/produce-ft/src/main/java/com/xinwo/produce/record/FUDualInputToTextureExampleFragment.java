@@ -38,4 +38,9 @@ public class FUDualInputToTextureExampleFragment extends FUExampleFragment {
         return faceunity.fuDualInputToTexture(fuImgNV21Bytes, cameraTextureId, flags,
                 cameraWidth, cameraHeight, frameId, arrayItems);
     }
+
+    @Override
+    public void initView() {
+
+    }
 }

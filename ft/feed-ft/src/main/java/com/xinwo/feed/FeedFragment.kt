@@ -1,10 +1,12 @@
 package com.xinwo.feed
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
@@ -40,6 +42,7 @@ class FeedFragment : BaseFragment(), ViewPager.OnPageChangeListener {
 
     private var homeViewModel: FeedHotViewModel? = null
     private lateinit var storiesPagerAdapter: StoriesPagerAdapter
+    private var mPostion = -1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -126,12 +129,14 @@ class FeedFragment : BaseFragment(), ViewPager.OnPageChangeListener {
         setViewModel(feedApdater, feedFragmentViewModel)
         feedFragmentViewModel.getHotFeed()
         recyclerView.addCallbackListener(object : LoadMoreAndRefresh {
+            @RequiresApi(Build.VERSION_CODES.N)
             override fun onLoadMore() {
                 mRefresh = false
                 feedApdater.loadMoreOrRefresh()
                 feedFragmentViewModel.getHotFeed()
             }
 
+            @RequiresApi(Build.VERSION_CODES.N)
             override fun onRefresh() {
                 mRefresh = true
                 feedApdater.loadMoreOrRefresh()
@@ -174,16 +179,32 @@ class FeedFragment : BaseFragment(), ViewPager.OnPageChangeListener {
     }
 
     override fun onPageSelected(position: Int) {
-        if (position == 2) {
+        mPostion = position
+        onStateChange()
+    }
+
+    override fun onPageScrollStateChanged(state: Int) {
+
+    }
+
+    override fun OnOtherFragmentClicked() {
+        super.OnOtherFragmentClicked()
+        val adapter = view_pager_stories?.adapter as StoriesPagerAdapter?
+        adapter?.OnFragmentPause()
+    }
+
+    override fun OnFragmentClicked() {
+        super.OnFragmentClicked()
+        onStateChange()
+    }
+
+    private fun onStateChange() {
+        if (mPostion == 2) {
             val adapter = view_pager_stories?.adapter as StoriesPagerAdapter?
             adapter?.OnFragmentResume()
         } else {
             val adapter = view_pager_stories?.adapter as StoriesPagerAdapter?
             adapter?.OnFragmentPause()
         }
-    }
-
-    override fun onPageScrollStateChanged(state: Int) {
-
     }
 }

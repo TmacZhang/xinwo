@@ -78,17 +78,16 @@ class StoryViewFragment : Fragment(R.layout.fragment_story_view) {
 
     override fun onPause() {
         pauseVideo()
-
         super.onPause()
     }
 
     override fun onResume() {
+        playVideo()
         super.onResume()
     }
 
     fun onResumeIfPresent(){
         restartVideo()
-        Log.i("jin", "onResume = ", Exception())
     }
 
     override fun onDestroy() {
