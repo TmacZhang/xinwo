@@ -1,6 +1,5 @@
 package com.xinwo.feed.hot
 
-import android.util.Log
 import android.util.SparseArray
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -35,6 +34,7 @@ class StoriesPagerAdapter(
         var mIndex: Int = 0
         override fun onPageSelected(position: Int) {
             mIndex = position
+
         }
     }
 }

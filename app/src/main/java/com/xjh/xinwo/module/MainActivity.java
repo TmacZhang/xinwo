@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentManager;
 import com.github.dfqin.grantor.PermissionListener;
 import com.github.dfqin.grantor.PermissionsUtil;
 import com.xinwo.base.BaseActivity;
+import com.xinwo.base.BaseFragment;
 import com.xinwo.feed.FeedFragment;
 import com.xinwo.produce.record.FUDualInputToTextureExampleFragment;
 import com.xinwo.social.chat.fragment.ChatFragment;
@@ -27,6 +28,7 @@ import com.xinwo.social.profile.fragment.ProfileFragment;
 import com.xjh.xinwo.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +39,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             FUDualInputToTextureExampleFragment.class.getName(),
             GroupChatFragment.class.getName(),
             ProfileFragment.class.getName()};
+
+    private Map<Integer, BaseFragment> mFragments = new HashMap<>(6);
     private Fragment mCurrentFragment;
 
     private RelativeLayout mRelativeFeed;
@@ -172,7 +176,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
 
         FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentByTag(fragmentTags[tabPosition]);
+        BaseFragment fragment = (BaseFragment) fm.findFragmentByTag(fragmentTags[tabPosition]);
         if (fragment == null) {
             fragment = createFragment(tabPosition);
 
@@ -208,8 +212,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    private Fragment createFragment(int tabPosition) {
-        Fragment fragment = null;
+    private BaseFragment createFragment(int tabPosition) {
+        BaseFragment fragment = null;
         switch (tabPosition) {
             case 0:
                 fragment = new FeedFragment();
@@ -227,31 +231,53 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 fragment = new ProfileFragment();
                 break;
         }
+        mFragments.put(tabPosition, fragment);
         return fragment;
     }
 
     @Override
     public void onClick(View v) {
+        int position = -1;
         if (v.getId() == R.id.relativeFeed) {
             switchFragment(0);
             changeTab(0);
+            position = 0;
             mContainerMainBottom.setVisibility(View.VISIBLE);
         } else if (v.getId() == R.id.relativeChat) {
             switchFragment(1);
             changeTab(1);
+            position = 1;
             mContainerMainBottom.setVisibility(View.VISIBLE);
         } else if (v.getId() == R.id.relativeCamera) {
             switchFragment(2);
             changeTab(2);
+            position = 2;
             mContainerMainBottom.setVisibility(View.GONE);
         } else if (v.getId() == R.id.relativeGroupChat) {
             switchFragment(3);
             changeTab(3);
+            position = 3;
             mContainerMainBottom.setVisibility(View.VISIBLE);
         } else if (v.getId() == R.id.relativeProfile) {
             switchFragment(4);
             changeTab(4);
+            position = 4;
             mContainerMainBottom.setVisibility(View.VISIBLE);
+        }
+        onClickFragment(position);
+    }
+
+    private void onClickFragment(int position) {
+        for (int i = 0; i < mFragments.size(); i++) {
+            if (mFragments.get(i) == null) {
+                continue;
+            }
+
+            if (i != position) {
+                mFragments.get(i).OnOtherFragmentClicked();
+            } else {
+                mFragments.get(i).OnFragmentClicked();
+            }
         }
     }
 
