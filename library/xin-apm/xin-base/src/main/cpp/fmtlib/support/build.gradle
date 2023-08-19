@@ -22,10 +22,11 @@ repositories {
     google()
     jcenter()
 }
-    
-// Output: Shared library (.so) for Android 
-apply plugin: 'com.android.library'
 
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
 android {
     compileSdkVersion 33
 
