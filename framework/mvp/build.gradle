@@ -60,5 +60,6 @@ dependencies {
     api deps.library.third_party.fastjson
     api deps.library.third_party.okhttp
     api deps.library.third_party.retrofit
+    implementation "io.reactivex:rxandroid:1.2.1"
     api deps.library.third_party.retrofit_adpter
 }
