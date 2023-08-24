@@ -28,14 +28,8 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':library:xin-log')
-    implementation project(path: ':library:xin-application')
-    api deps.library.third_party.okhttp
-    api 'com.squareup.retrofit2:retrofit:2.6.1'
-    api 'com.squareup.retrofit2:adapter-rxjava:2.6.1'
-
-    api 'io.reactivex:rxjava:1.3.0'
-    api 'io.reactivex:rxandroid:1.2.1'
+    implementation project(deps.library.xin.xin_application)
+    implementation project(deps.library.xin.xin_log)
 }
 
 

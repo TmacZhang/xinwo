@@ -26,8 +26,8 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':library:xin-log')
-    implementation project(path: ':library:xin-application')
+    implementation project(deps.library.xin.xin_log)
+    implementation project(deps.library.xin.xin_application)
 
     api deps.library.third_party.okhttp
     api deps.library.third_party.retrofit
