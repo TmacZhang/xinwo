@@ -29,5 +29,5 @@ android {
 dependencies {
     implementation deps.library.third_party.recyclerview
     implementation deps.library.third_party.appcompat
-    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.2'
+    implementation deps.library.third_party.smart_refresh_layoutt
 }

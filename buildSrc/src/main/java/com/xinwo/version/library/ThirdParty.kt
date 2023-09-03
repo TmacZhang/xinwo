@@ -32,6 +32,8 @@ class ThirdParty {
     val support_v4 = "androidx.legacy:legacy-support-v4:1.0.0"
     val recyclerview = "androidx.recyclerview:recyclerview:1.1.0"
 
+    val annotation = "androidx.annotation:annotation:1.4.0"
+
     val relativepopupwindow = "com.labo.kaji:relativepopupwindow:0.3.1"
     val glide_compiler = "com.github.bumptech.glide:compiler:4.10.0"
     val glide = "com.github.bumptech.glide:glide:4.10.0"
@@ -75,4 +77,5 @@ class ThirdParty {
     val material = "com.google.android.material:material:1.3.0-alpha01"
     val runtime_ktx = "androidx.work:work-runtime-ktx:2.7.1"
     val exoplayer = "com.google.android.exoplayer:exoplayer:2.10.4"
+    val smart_refresh_layoutt = "com.scwang.smartrefresh:SmartRefreshLayout:1.1.2"
 }
