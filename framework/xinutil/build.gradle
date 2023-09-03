@@ -25,18 +25,18 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.4.0'
-    implementation 'com.auth0.android:jwtdecode:1.3.0'
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'com.googlecode.mp4parser:isoparser:1.1.7'
-    implementation 'org.adw.library:discrete-seekbar:1.0.1'
-    implementation 'org.greenrobot:eventbus:3.0.0'
-    implementation 'org.slf4j:slf4j-api:1.7.25'
-
+    implementation deps.library.third_party.annotation
+    implementation deps.library.third_party.jwtdecode
+    implementation deps.library.third_party.material
+    implementation deps.library.third_party.eventbus
+    implementation deps.library.third_party.isoparcer
+    implementation deps.library.third_party.seekbar
+    implementation deps.library.third_party.log4j
     implementation deps.library.third_party.netease_basesdk
-    implementation project(path: ':library:xin-application')
-    implementation project(path: ':framework:xinresources')
-    implementation project(path: ':library:xin-log')
+
+    implementation project(deps.library.xin.xin_application)
+    implementation project(deps.library.xin.xin_log)
+    implementation project(deps.library.xin.xinresources_framework)
 }
 
 
