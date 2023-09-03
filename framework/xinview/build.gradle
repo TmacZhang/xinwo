@@ -24,6 +24,7 @@ android {
 }
 
 dependencies {
+
     implementation project(path: ':framework:xinresources')
     implementation project(path: ':framework:xinutil')
     implementation 'androidx.annotation:annotation:1.4.0'
