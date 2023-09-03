@@ -2,7 +2,7 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
 }
-
+import com.xinwo.version.deps
 android {
     compileSdkVersion 33
 
@@ -24,8 +24,8 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.4.0'
-    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation deps.library.third_party.appcompat
+    implementation deps.library.third_party.annotation
 }
 
 
