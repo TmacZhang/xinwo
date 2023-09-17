@@ -48,8 +48,6 @@ android {
 
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-
     implementation project(deps.library.xin.xin_cache)
     implementation project(deps.library.xin.xin_network)
     implementation project(deps.library.xin.xin_log)
