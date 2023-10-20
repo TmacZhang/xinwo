@@ -1,7 +1,7 @@
 [
   {
     "storyId" : 1,
-    "storyUrl" : "http://180.76.242.204:19000/video/b333cac83276e382eadc72c3ea8e076b.mp4",
+    "storyUrl" : "http://121.37.162.226:19000/video/b333cac83276e382eadc72c3ea8e076b.mp4",
     "storyThumbUrl" : "https://res.cloudinary.com/mydatacloud/video/upload/v1592819413/stories/video_azmmil.jpg",
     "storyDescription" : "小桥流水人家",
     "musicCoverTitle" : "周杰伦",
@@ -15,7 +15,7 @@
   },
   {
     "storyId" : 2,
-    "storyUrl" : "http://180.76.242.204:19000/video/615277da793123ad6340b883fdaf0717.mp4",
+    "storyUrl" : "http://121.37.162.226:19000/video/615277da793123ad6340b883fdaf0717.mp4",
     "storyThumbUrl" : "https://res.cloudinary.com/mydatacloud/video/upload/v1592819403/stories/video_2_ouaa21.jpg",
     "storyDescription" : "苏州评弹",
     "musicCoverTitle" : "任贤齐",
@@ -29,7 +29,7 @@
   },
   {
     "storyId" : 3,
-    "storyUrl" : "http://180.76.242.204:19000/video/615277da793123ad6340b883fdaf0717.mp4",
+    "storyUrl" : "http://121.37.162.226:19000/video/615277da793123ad6340b883fdaf0717.mp4",
     "storyThumbUrl" : "https://res.cloudinary.com/mydatacloud/video/upload/v1592819404/stories/production_ID-3779801_rkecvx.jpg",
     "storyDescription" : "苏州小桥流水人家",
     "musicCoverTitle" : "新裤子乐队",
@@ -43,7 +43,7 @@
   },
   {
     "storyId" : 4,
-    "storyUrl" : "http://180.76.242.204:19000/video/4dd5ce2fab1715c94e484f05ba869618.mp4",
+    "storyUrl" : "http://121.37.162.226:19000/video/4dd5ce2fab1715c94e484f05ba869618.mp4",
     "storyThumbUrl" : "https://res.cloudinary.com/mydatacloud/video/upload/v1592819402/stories/Pexels_Videos_1570919_k0pbru.jpg",
     "storyDescription" : "苏州小桥流水人家",
     "musicCoverTitle" : "新裤子乐队",
@@ -57,7 +57,7 @@
   },
   {
     "storyId" : 5,
-    "storyUrl" : "http://180.76.242.204:19000/video/4dd5ce2fab1715c94e484f05ba869618.mp4",
+    "storyUrl" : "http://121.37.162.226:19000/video/4dd5ce2fab1715c94e484f05ba869618.mp4",
     "storyThumbUrl" : "https://res.cloudinary.com/mydatacloud/video/upload/v1592819402/stories/Pexels_Videos_2035391_chghyf.jpg",
     "storyDescription" : "杭州西湖",
     "musicCoverTitle" : "温拿乐队",

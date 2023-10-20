@@ -31,7 +31,7 @@ data class FeedModel(
             if (this.isNotEmpty()) {
                 fileName.apply {
                     if (this.isNotEmpty()) {
-                        return "http://180.76.242.204:19000/$bucketName/$fileName"
+                        return "http://121.37.162.226:19000/$bucketName/$fileName"
                     }
                 }
             }
