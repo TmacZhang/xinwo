@@ -21,7 +21,7 @@ class FeedFragmentViewModel: ViewModel() {
     }
 
      fun getHotFeed() {
-        val retrofit = NetManager.getRetrofit("http://180.76.242.204:18080")
+        val retrofit = NetManager.getRetrofit("http://121.37.162.226:18080")
         retrofit.create(IGetHostService::class.java)
             .getData(1, 10, "img")
             .subscribeOn(Schedulers.io())
