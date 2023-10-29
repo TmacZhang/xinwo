@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
@@ -18,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.MemoryCategory
 import com.google.android.material.tabs.TabLayout
 import com.xinwo.base.BaseFragment
+import com.xinwo.feed.find.FeedFindapter
 import com.xinwo.feed.hot.DataRepository
 import com.xinwo.feed.hot.FeedHotViewModel
 import com.xinwo.feed.hot.Mock
@@ -28,42 +28,57 @@ import com.xinwo.feed.viewmodel.FeedFragmentViewModel
 class FeedFragment : BaseFragment(), ViewPager.OnPageChangeListener {
     var mViewPager: ViewPager? = null
     var mTabLayout: TabLayout? = null
-    var mRecyclerView1: StaggerdRecyclerView? = null
-    var mRecyclerView2: StaggerdRecyclerView? = null
+    var mFeedFollowView: StaggerdRecyclerView? = null
+    var mFeedFindView: StaggerdRecyclerView? = null
     var mFeedHotView: View? = null
-    var view_pager_stories: ViewPager2? = null
-    var mRecyclerView4: StaggerdRecyclerView? = null
+    var mFeedHotViewViewPager: ViewPager2? = null
+    var mFeedTongchengView: StaggerdRecyclerView? = null
 
-    var mFeedFragmentViewModel1: FeedFragmentViewModel? = null
-    var mFeedFragmentViewModel2: FeedFragmentViewModel? = null
-    var mFeedFragmentViewModel4: FeedFragmentViewModel? = null
+    var mFeedFollowFragmentViewModel: FeedFragmentViewModel? = null
+    var mFeedFindFragmentViewModel: FeedFragmentViewModel? = null
+    var mFeedTongchengFragmentViewModel: FeedFragmentViewModel? = null
 
     var mRefresh: Boolean = false
 
-    private var homeViewModel: FeedHotViewModel? = null
-    private lateinit var storiesPagerAdapter: StoriesPagerAdapter
+    private var mHomeViewModel: FeedHotViewModel? = null
+    private lateinit var mStoriesPagerAdapter: StoriesPagerAdapter
     private var mPostion = -1
+    private var mFindPostion = 1
+    private var mHotPosition = 2
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val root: View = inflater.inflate(R.layout.feed_viewpager, container, false)
-        return root
+        return inflater.inflate(R.layout.feed_viewpager, container, false)
     }
 
     override fun initView() {
         initViewPager()
-        mFeedFragmentViewModel1 = ViewModelProviders.of(this).get(FeedFragmentViewModel::class.java)
-        mFeedFragmentViewModel2 = FeedFragmentViewModel()
-        mFeedFragmentViewModel4 = FeedFragmentViewModel()
-        initRecyclerView(mRecyclerView1!!, mFeedFragmentViewModel1!!)
-        initRecyclerView(mRecyclerView2!!, mFeedFragmentViewModel2!!)
-        initRecyclerView(mRecyclerView4!!, mFeedFragmentViewModel4!!)
+        initFollowView()
+        initFindView()
+        initHotView()
+        initTongchengView()
+        mViewPager?.setCurrentItem(mHotPosition)
+        // 初始化Glide
+        context?.let {
+            Glide.get(it).setMemoryCategory(MemoryCategory.HIGH)
+        }
+    }
 
-        homeViewModel = FeedHotViewModel(dataRepository = DataRepository(Mock(requireContext())))
-        val storiesData = homeViewModel?.getDataList()
+    private fun initFollowView() {
+        mFeedFollowFragmentViewModel = FeedFragmentViewModel()
+    }
+
+    private fun initFindView() {
+        mFeedFindFragmentViewModel = FeedFragmentViewModel()
+        initRecyclerView(mFeedFindView!!, mFeedFindFragmentViewModel!!)
+    }
+
+    private fun initHotView() {
+        mHomeViewModel = FeedHotViewModel(dataRepository = DataRepository(Mock(requireContext())))
+        val storiesData = mHomeViewModel?.getDataList()
         storiesData?.observe(viewLifecycleOwner, Observer { value ->
             when (value) {
                 is ResultData.Loading -> {
@@ -72,9 +87,9 @@ class FeedFragment : BaseFragment(), ViewPager.OnPageChangeListener {
                 is ResultData.Success -> {
                     if (!value.data.isNullOrEmpty()) {
                         val dataList = value.data
-                        storiesPagerAdapter = StoriesPagerAdapter(this, dataList)
-                        view_pager_stories?.adapter = storiesPagerAdapter
-                        view_pager_stories?.registerOnPageChangeCallback(storiesPagerAdapter.onPageChangeCallback)
+                        mStoriesPagerAdapter = StoriesPagerAdapter(this, dataList)
+                        mFeedHotViewViewPager?.adapter = mStoriesPagerAdapter
+                        mFeedHotViewViewPager?.registerOnPageChangeCallback(mStoriesPagerAdapter.onPageChangeCallback)
                     }
                 }
 
@@ -83,28 +98,28 @@ class FeedFragment : BaseFragment(), ViewPager.OnPageChangeListener {
                 }
             }
         })
+    }
 
-        mViewPager?.setCurrentItem(2)
-        // 初始化Glide
-        context?.let { Glide.get(it).setMemoryCategory(MemoryCategory.HIGH) }
+    private fun initTongchengView() {
+        mFeedTongchengFragmentViewModel = FeedFragmentViewModel()
     }
 
     private fun initViewPager() {
         mViewPager = view?.findViewById(R.id.feed_viewpager)
-        mRecyclerView1 = LayoutInflater.from(context)
+        mFeedFollowView = LayoutInflater.from(context)
             .inflate(R.layout.feed_fragment, null, false) as StaggerdRecyclerView
-        mRecyclerView2 = LayoutInflater.from(context)
+        mFeedFindView = LayoutInflater.from(context)
             .inflate(R.layout.feed_fragment, null, false) as StaggerdRecyclerView
         mFeedHotView = LayoutInflater.from(context)
             .inflate(R.layout.feed_hot, null, false)
-        view_pager_stories = mFeedHotView?.findViewById(R.id.view_pager_stories)
-        mRecyclerView4 = LayoutInflater.from(context)
+        mFeedHotViewViewPager = mFeedHotView?.findViewById(R.id.view_pager_stories)
+        mFeedTongchengView = LayoutInflater.from(context)
             .inflate(R.layout.feed_fragment, null, false) as StaggerdRecyclerView
         val list: ArrayList<View> = ArrayList<View>().apply {
-            this.add(mRecyclerView1!!)
-            this.add(mRecyclerView2!!)
+            this.add(mFeedFollowView!!)
+            this.add(mFeedFindView!!)
             this.add(mFeedHotView!!)
-            this.add(mRecyclerView4!!)
+            this.add(mFeedTongchengView!!)
         }
 
         val titleList = ArrayList<String>().apply {
@@ -124,7 +139,7 @@ class FeedFragment : BaseFragment(), ViewPager.OnPageChangeListener {
         recyclerView: StaggerdRecyclerView,
         feedFragmentViewModel: FeedFragmentViewModel
     ) {
-        val feedApdater = FeedAdapter(this.context)
+        val feedApdater = FeedFindapter(this.context)
         recyclerView.link(feedApdater, 2)
         setViewModel(feedApdater, feedFragmentViewModel)
         feedFragmentViewModel.getHotFeed()
@@ -146,7 +161,7 @@ class FeedFragment : BaseFragment(), ViewPager.OnPageChangeListener {
 
     }
 
-    private fun setViewModel(feedApdater: FeedAdapter, fragmentViewModel: FeedFragmentViewModel) {
+    private fun setViewModel(feedApdater: FeedFindapter, fragmentViewModel: FeedFragmentViewModel) {
         fragmentViewModel.getMutableLiveData()?.observe(this) { model ->
             val newData = model.listModel.filter {
                 !it.bucketName.equals("mall")
@@ -161,17 +176,18 @@ class FeedFragment : BaseFragment(), ViewPager.OnPageChangeListener {
 
     override fun onResume() {
         super.onResume()
-        Log.i("jin", "currentItem = "  +mViewPager?.currentItem)
-        if (mViewPager?.currentItem == 2) {
-            val adapter = view_pager_stories?.adapter as StoriesPagerAdapter?
+        Log.i("jin", "currentItem = " + mViewPager?.currentItem)
+        if (mViewPager?.currentItem == mHotPosition) {
+            val adapter = mFeedHotViewViewPager?.adapter as StoriesPagerAdapter?
             adapter?.OnFragmentResume()
+        } else {
+            onOtherFragmentClickedForHotView()
         }
     }
 
     override fun onPause() {
         super.onPause()
-        val adapter = view_pager_stories?.adapter as StoriesPagerAdapter?
-        adapter?.OnFragmentPause()
+        onOtherFragmentClickedForHotView()
     }
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
@@ -187,10 +203,9 @@ class FeedFragment : BaseFragment(), ViewPager.OnPageChangeListener {
 
     }
 
-    override fun OnOtherFragmentClicked() {
-        super.OnOtherFragmentClicked()
-        val adapter = view_pager_stories?.adapter as StoriesPagerAdapter?
-        adapter?.OnFragmentPause()
+    override fun onOtherFragmentClicked() {
+        super.onOtherFragmentClicked()
+        onOtherFragmentClickedForHotView()
     }
 
     override fun OnFragmentClicked() {
@@ -199,12 +214,27 @@ class FeedFragment : BaseFragment(), ViewPager.OnPageChangeListener {
     }
 
     private fun onStateChange() {
-        if (mPostion == 2) {
-            val adapter = view_pager_stories?.adapter as StoriesPagerAdapter?
+        onStateChangeForHotView()
+        onStateChangeForFindView()
+    }
+
+    private fun onStateChangeForFindView() {
+        if (mPostion != mFindPostion) {
+            (mFeedFindView?.staggedAdapter as FeedFindapter).stopPlayVideo()
+        }
+    }
+
+    private fun onStateChangeForHotView() {
+        if (mPostion == mHotPosition) {
+            val adapter = mFeedHotViewViewPager?.adapter as StoriesPagerAdapter?
             adapter?.OnFragmentResume()
         } else {
-            val adapter = view_pager_stories?.adapter as StoriesPagerAdapter?
-            adapter?.OnFragmentPause()
+            onOtherFragmentClickedForHotView()
         }
+    }
+
+    private fun onOtherFragmentClickedForHotView() {
+        val adapter = mFeedHotViewViewPager?.adapter as StoriesPagerAdapter?
+        adapter?.OnFragmentPause()
     }
 }

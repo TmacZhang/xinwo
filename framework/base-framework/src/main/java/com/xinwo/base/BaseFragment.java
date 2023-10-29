@@ -146,7 +146,7 @@ public abstract class BaseFragment extends LibRLBaseFragment {
         return new HashMap<>();
     }
 
-    public void OnOtherFragmentClicked() {
+    public void onOtherFragmentClicked() {
 
     }
 

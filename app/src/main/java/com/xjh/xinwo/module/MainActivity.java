@@ -274,7 +274,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             }
 
             if (i != position) {
-                mFragments.get(i).OnOtherFragmentClicked();
+                mFragments.get(i).onOtherFragmentClicked();
             } else {
                 mFragments.get(i).OnFragmentClicked();
             }

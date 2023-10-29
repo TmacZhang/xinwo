@@ -88,6 +88,10 @@ public class StaggerdRecyclerView extends LinearLayout {
         rv.setAdapter(staggedAdapter);
     }
 
+    public StaggedAdapter getStaggedAdapter(){
+        return staggedAdapter;
+    }
+
     public void addCallbackListener(final LoadMoreAndRefresh refreshCallback) {
 
         smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
