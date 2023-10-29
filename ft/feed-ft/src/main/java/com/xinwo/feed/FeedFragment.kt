@@ -142,20 +142,20 @@ class FeedFragment : BaseFragment(), ViewPager.OnPageChangeListener {
         val feedApdater = FeedFindapter(this.context)
         recyclerView.link(feedApdater, 2)
         setViewModel(feedApdater, feedFragmentViewModel)
-        feedFragmentViewModel.getHotFeed()
+        feedFragmentViewModel.getFindFeed()
         recyclerView.addCallbackListener(object : LoadMoreAndRefresh {
             @RequiresApi(Build.VERSION_CODES.N)
             override fun onLoadMore() {
                 mRefresh = false
                 feedApdater.loadMoreOrRefresh()
-                feedFragmentViewModel.getHotFeed()
+                feedFragmentViewModel.getFindFeed()
             }
 
             @RequiresApi(Build.VERSION_CODES.N)
             override fun onRefresh() {
                 mRefresh = true
                 feedApdater.loadMoreOrRefresh()
-                feedFragmentViewModel.getHotFeed()
+                feedFragmentViewModel.getFindFeed()
             }
         })
 
