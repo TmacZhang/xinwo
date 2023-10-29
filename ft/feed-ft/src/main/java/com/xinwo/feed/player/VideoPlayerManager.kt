@@ -18,6 +18,7 @@ class VideoPlayerManager(context: Context) {
     val mContext = context
     private val players: HashMap<Int, SimpleExoPlayer?> = HashMap()
     private var currentPlayingIndex: Int? = -1
+    var isPlaying = false
     var cacheDataSourceFactory: CacheDataSourceFactory? = null
 
     fun initializePlayer(index: Int): SimpleExoPlayer {
@@ -44,11 +45,13 @@ class VideoPlayerManager(context: Context) {
         player?.apply {
             if (this.playWhenReady) {
                 this.playWhenReady = false
+                isPlaying = false
                 return
             }
 
             if (currentPlayingIndex == playerIndex) {
                 this.playWhenReady = true
+                isPlaying = true
                 return
             }
 
@@ -56,6 +59,7 @@ class VideoPlayerManager(context: Context) {
             this.prepare(mediaSource)
             this.repeatMode = Player.REPEAT_MODE_OFF
             this.playWhenReady = true
+            isPlaying = true
             currentPlayingIndex = playerIndex
         }
 
@@ -81,6 +85,7 @@ class VideoPlayerManager(context: Context) {
         players.forEach { index, player ->
             player?.release()
             player?.playWhenReady = false
+            isPlaying = false
         }
         currentPlayingIndex = -1
     }
@@ -88,7 +93,7 @@ class VideoPlayerManager(context: Context) {
     @RequiresApi(Build.VERSION_CODES.N)
     private fun pauseOtherVideo(playerIndex: Int) {
         players.forEach { index, player ->
-            if (index!= playerIndex) {
+            if (index != playerIndex) {
                 player?.playWhenReady = false
             }
         }

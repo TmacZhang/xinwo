@@ -20,7 +20,7 @@ class FeedFragmentViewModel: ViewModel() {
         return mMutableLiveData
     }
 
-     fun getHotFeed() {
+     fun getFindFeed() {
         val retrofit = NetManager.getRetrofit("http://121.37.162.226:18080")
         retrofit.create(IGetHostService::class.java)
             .getData(1, 10, "img")

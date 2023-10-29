@@ -77,7 +77,7 @@ class FeedFindapter(c: Context?) : StaggedAdapter<FeedModel>(c) {
         setVideoFrame(feedViewHolder, i)
         feedViewHolder.mVideoPlayer?.player = mVideoPlayerManager.initializePlayer(i)
         feedViewHolder.mImageView?.setOnClickListener {
-            mPosition =i
+            mPosition = i
             feedViewHolder.mVideoPlayer?.resizeMode = RESIZE_MODE_ZOOM
             feedViewHolder.mVideoPlayer?.setControllerVisibilityListener { visibility ->
                 if (visibility == View.VISIBLE) {
@@ -162,11 +162,12 @@ class FeedFindapter(c: Context?) : StaggedAdapter<FeedModel>(c) {
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun loadMoreOrRefresh() {
+        mPosition = -1
         mVideoPlayerManager.releaseAllPlayers()
     }
 
-    public fun stopPlayVideo(){
-        if (mPosition != -1) {
+    fun stopPlayVideo() {
+        if (mPosition != -1 && mVideoPlayerManager.isPlaying) {
             mVideoPlayerManager.playVideo(datas[mPosition].getUrl(), mPosition)
         }
     }
